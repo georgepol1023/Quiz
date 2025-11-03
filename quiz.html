@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Quiz</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 1rem; max-width: 600px; margin: auto; }
+  h1 { text-align: center; }
+  .question { margin-bottom: 1.5rem; }
+  .options input { margin-right: 0.5rem; }
+  button { padding: 0.7rem 1.2rem; font-size: 1rem; border: none; background: #4CAF50; color: white; border-radius: 5px; width: 100%; }
+</style>
+</head>
+<body>
+<h1>Bible Quiz</h1>
+<form method="post">
+  {% for i, q in enumerate(quiz) %}
+    <div class="question">
+      <p>{{ q.question }}</p>
+      <div class="options">
+        {% for opt in q.options %}
+          <label><input type="radio" name="q{{ i }}" value="{{ opt }}" required> {{ opt }}</label><br>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>
