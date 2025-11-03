@@ -5,27 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bible Quiz</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 1rem; max-width: 600px; margin: auto; }
-  h1 { text-align: center; }
-  .question { margin-bottom: 1.5rem; }
-  .options input { margin-right: 0.5rem; }
-  button { padding: 0.7rem 1.2rem; font-size: 1rem; border: none; background: #4CAF50; color: white; border-radius: 5px; width: 100%; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    padding: 1rem;
+    background: linear-gradient(135deg,#ffecd2,#fcb69f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    animation: fadeIn .4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(25px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  .header {
+    font-size: .95rem;
+    margin-bottom: .8rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .progress {
+    height: 8px;
+    width: 100%;
+    background: #e5e5e5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: {{ progress }}%;
+    background: #667eea;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  input[type="radio"] { display: none; }
+
+  .opt-label {
+    display: block;
+    padding: 1rem;
+    background: #f7f7f7;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    margin-bottom: .8rem;
+    cursor: pointer;
+    transition: .25s;
+    font-size: 1rem;
+  }
+
+  .opt-label:hover {
+    border-color: #667eea;
+    background: #eef0ff;
+    transform: scale(1.02);
+  }
+
+  button {
+    width: 100%;
+    padding: 1.1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102,126,234,.4);
+  }
 </style>
 </head>
+
 <body>
-<h1>Bible Quiz</h1>
-<form method="post">
-  {% for i, q in enumerate(quiz) %}
-    <div class="question">
-      <p>{{ q.question }}</p>
-      <div class="options">
-        {% for opt in q.options %}
-          <label><input type="radio" name="q{{ i }}" value="{{ opt }}" required> {{ opt }}</label><br>
-        {% endfor %}
-      </div>
-    </div>
-  {% endfor %}
-  <button type="submit">Submit</button>
-</form>
+
+<div class="card">
+  <div class="header">Question {{ question_num }} of {{ total }}</div>
+
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <h2>{{ question.question }}</h2>
+
+  <form method="POST">
+    {% for opt in question.options %}
+    <label class="opt-label">
+      <input type="radio" name="answer" value="{{ opt }}" required>
+      {{ opt }}
+    </label>
+    {% endfor %}
+
+    <button type="submit">
+      {% if question_num == total %}Finish ✅{% else %}Next Question →{% endif %}
+    </button>
+  </form>
+</div>
+
 </body>
 </html>
