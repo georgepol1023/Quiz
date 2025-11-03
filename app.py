@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# Define your quiz questions dynamically
+# Dynamic quiz questions
 quiz = [
     {
         "question": "Who parted the Red Sea?",

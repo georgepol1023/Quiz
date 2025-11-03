@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Quiz - Welcome</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem;
+  }
+
+  .container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 450px;
+    width: 100%;
+    animation: slideIn 0.5s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h1 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .theme-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .theme-option {
+    position: relative;
+  }
+
+  .theme-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .theme-label {
+    display: block;
+    padding: 1rem 0.5rem;
+    border: 3px solid #e1e8ed;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .theme-light { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; }
+  .theme-dark { background: linear-gradient(135deg, #434343 0%, #000000 100%); color: white; }
+  .theme-colorful { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%); color: #333; }
+
+  .theme-option input[type="radio"]:checked + .theme-label {
+    border-color: #667eea;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  .start-btn {
+    width: 100%;
+    padding: 1.1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .start-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .theme-options {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Bible Quiz</h1>
+    <p class="subtitle">Test your knowledge of the Holy Bible</p>
+    
+    <form method="POST">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Choose Your Theme</label>
+        <div class="theme-options">
+          <div class="theme-option">
+            <input type="radio" id="light" name="theme" value="light" checked>
+            <label for="light" class="theme-label theme-light">☀️ Light</label>
+          </div>
+          <div class="theme-option">
+            <input type="radio" id="dark" name="theme" value="dark">
+            <label for="dark" class="theme-label theme-dark">🌙 Dark</label>
+          </div>
+          <div class="theme-option">
+            <input type="radio" id="colorful" name="theme" value="colorful">
+            <label for="colorful" class="theme-label theme-colorful">😎 Fun</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="start-btn">Start Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

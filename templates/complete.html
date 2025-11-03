@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Quiz - Complete!</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root.light {
+    --bg-gradient-1: #ffecd2;
+    --bg-gradient-2: #fcb69f;
+    --card-bg: white;
+    --text-color: #333;
+  }
+
+  :root.dark {
+    --bg-gradient-1: #434343;
+    --bg-gradient-2: #000000;
+    --card-bg: #1a1a1a;
+    --text-color: #e1e8ed;
+  }
+
+  :root.colorful {
+    --bg-gradient-1: #ff9a9e;
+    --bg-gradient-2: #fecfef;
+    --card-bg: white;
+    --text-color: #333;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+    padding: 1rem;
+  }
+
+  .container {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    animation: celebration 0.6s ease-out;
+  }
+
+  @keyframes celebration {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotate(-5deg);
+    }
+    50% {
+      transform: scale(1.05) rotate(2deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
+  }
+
+  .emoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  h1 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+  }
+
+  .message {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .name-highlight {
+    color: #667eea;
+    font-weight: 700;
+  }
+
+  .restart-btn {
+    display: inline-block;
+    padding: 1.1rem 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #667eea;
+    position: absolute;
+    animation: confetti-fall 3s linear infinite;
+  }
+
+  @keyframes confetti-fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    .emoji {
+      font-size: 4rem;
+    }
+
+    .message {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🎉</div>
+    <h1>Quiz Complete!</h1>
+    <p class="message">
+      Great job, <span class="name-highlight">{{ name }}</span>!<br>
+      Your answers have been recorded.<br>
+      Thank you for participating!
+    </p>
+  </div>
+
+  <script>
+    document.documentElement.className = '{{ theme }}';
+
+    function createConfetti() {
+      const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    createConfetti();
+  </script>
+</body>
+</html>
