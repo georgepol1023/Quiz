@@ -16,20 +16,55 @@ def download():
     )
 
 quiz = [
+     {
+        "question": "Who built the ark?",
+        "options": ["Moses", "Noah", "Abraham", "David"],
+        "answer": "Noah"
+    },
     {
-        "question": "Who parted the Red Sea?",
-        "options": ["Moses", "David", "Jesus", "Paul"],
+        "question": "What did God create on the first day?",
+        "options": ["Sun and moon", "Light", "Animals", "Plants"],
+        "answer": "Light"
+    },
+    {
+        "question": "Who was swallowed by a big fish?",
+        "options": ["Jonah", "Daniel", "Joseph", "Elijah"],
+        "answer": "Jonah"
+    },
+    {
+        "question": "How many commandments did God give Moses?",
+        "options": ["5", "10", "7", "12"],
+        "answer": "10"
+    },
+    {
+        "question": "Who was the mother of Jesus?",
+        "options": ["Mary", "Sarah", "Ruth", "Elizabeth"],
+        "answer": "Mary"
+    },
+    {
+        "question": "What did David use to defeat Goliath?",
+        "options": ["Sword", "Spear", "Sling and stone", "Bow and arrow"],
+        "answer": "Sling and stone"
+    },
+    {
+        "question": "Where was Jesus born?",
+        "options": ["Nazareth", "Bethlehem", "Jerusalem", "Jericho"],
+        "answer": "Bethlehem"
+    },
+    {
+        "question": "Who betrayed Jesus?",
+        "options": ["Peter", "Judas", "John", "Thomas"],
+        "answer": "Judas"
+    },
+    {
+        "question": "What river did John the Baptist baptize people in?",
+        "options": ["Nile", "Jordan", "Euphrates", "Tigris"],
+        "answer": "Jordan"
+    },
+    {
+        "question": "Who led the Israelites out of Egypt?",
+        "options": ["Abraham", "Moses", "Joshua", "Samuel"],
         "answer": "Moses"
-    },
-    {
-        "question": "What is the first book of the Bible?",
-        "options": ["Genesis", "Exodus", "Leviticus", "Numbers"],
-        "answer": "Genesis"
-    },
-    {
-        "question": "Who was thrown into the lions' den?",
-        "options": ["Daniel", "Joseph", "Elijah", "Jonah"],
-        "answer": "Daniel"
     },
 ]
 
