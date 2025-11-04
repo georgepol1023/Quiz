@@ -18,15 +18,18 @@ def download():
 quiz = [
     {
         "question": "Who parted the Red Sea?",
-        "options": ["Moses", "David", "Jesus", "Paul"]
+        "options": ["Moses", "David", "Jesus", "Paul"],
+        "answer": "Moses"
     },
     {
         "question": "What is the first book of the Bible?",
-        "options": ["Genesis", "Exodus", "Leviticus", "Numbers"]
+        "options": ["Genesis", "Exodus", "Leviticus", "Numbers"],
+        "answer": "Genesis"
     },
     {
         "question": "Who was thrown into the lions' den?",
-        "options": ["Daniel", "Joseph", "Elijah", "Jonah"]
+        "options": ["Daniel", "Joseph", "Elijah", "Jonah"],
+        "answer": "Daniel"
     },
 ]
 
