@@ -160,8 +160,14 @@
 .timer-svg { display:block; }
 .time-left { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1rem; pointer-events:none; color:inherit; }
 .timer-bg { stroke-width:8; }
-.timer-fg { stroke-width:8; transition: stroke-dashoffset 1s linear; transform-origin:center; }
+.timer-fg { stroke-width:8; transition: stroke-dashoffset 1s linear, stroke 300ms ease; transform-origin:center; }
 .timer-fg.expired { animation: pulse 700ms ease infinite; }
+
+/* Color states */
+.timer-fg.green { stroke: #34d399; }
+.timer-fg.warn { stroke: #fb923c; }
+.timer-fg.danger { stroke: #f87171; }
+
 @keyframes pulse { 0% { filter: drop-shadow(0 0 0 rgba(118,75,162,0)); } 50% { filter: drop-shadow(0 6px 18px rgba(118,75,162,0.22)); } 100% { filter: drop-shadow(0 0 0 rgba(118,75,162,0)); } }
 </style>
 
@@ -209,7 +215,7 @@
 
 <script>
 (function(){
-  const timeLimit = Number({{ time_limit|default(10) }});
+  const timeLimit = {{ time_limit|default(10) }};
   const timeLeftEl = document.getElementById('time-left');
   const fg = document.querySelector('.timer-fg');
   const radius = fg.r.baseVal.value;
@@ -219,9 +225,18 @@
   let timeLeft = timeLimit;
   const form = document.querySelector('form');
 
+  function updateColor(seconds){
+    const pct = seconds / timeLimit;
+    fg.classList.remove('green','warn','danger');
+    if(pct > 0.5) fg.classList.add('green');
+    else if(pct > 0.2) fg.classList.add('warn');
+    else fg.classList.add('danger');
+  }
+
   function setProgress(seconds){
     const offset = circumference - (seconds / timeLimit) * circumference;
     fg.style.strokeDashoffset = offset;
+    updateColor(seconds);
   }
 
   function format(t){
