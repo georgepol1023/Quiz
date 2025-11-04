@@ -1,9 +1,15 @@
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask, request, render_template, session, redirect, url_for, send_file
+
 import csv
 import os
 
 app = Flask(__name__)
 app.secret_key = os.environ['SESSION_SECRET']
+
+
+@app.route("/download")
+def download():
+    return send_file(CSV_FILE, mimetype="text/csv", as_attachment=True)
 
 quiz = [
     {
