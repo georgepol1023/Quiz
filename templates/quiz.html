@@ -160,7 +160,7 @@
 .timer-svg { display:block; }
 .time-left { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1rem; pointer-events:none; color:inherit; }
 .timer-bg { stroke-width:8; }
-.timer-fg { stroke-width:8; transition: stroke-dashoffset 1s linear, stroke 300ms ease; transform-origin:center; }
+.timer-fg { stroke-width:8; stroke: url(#timerGradient); transition: stroke-dashoffset 1s linear, stroke 300ms ease; transform-origin:center; }
 .timer-fg.expired { animation: pulse 700ms ease infinite; }
 
 /* Color states */
@@ -188,7 +188,7 @@
           </linearGradient>
         </defs>
         <circle class="timer-bg" cx="50" cy="50" r="45" fill="none" stroke="var(--timer-bg,#eee)" stroke-width="10"/>
-        <circle class="timer-fg" cx="50" cy="50" r="45" fill="none" stroke="url(#timerGradient)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+  <circle class="timer-fg" cx="50" cy="50" r="45" fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 50 50)"/>
       </svg>
       <div class="time-left" id="time-left">0:10</div>
     </div>
