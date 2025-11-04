@@ -60,9 +60,15 @@
     color: #333;
   }
 
-  button.opt-label {
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .opt-label {
     display: block;
-    width: 100%;
     padding: 1rem;
     background: #f7f7f7;
     border-radius: 12px;
@@ -71,17 +77,22 @@
     cursor: pointer;
     transition: .25s;
     font-size: 1rem;
-    text-align: left;
+    position: relative;
   }
 
-  button.opt-label:hover {
+  .opt-label:hover {
     border-color: #667eea;
     background: #eef0ff;
     transform: scale(1.02);
   }
 
-  button.opt-label:active {
-    transform: scale(0.98);
+  input[type="radio"]:checked + span {
+    background: #667eea;
+    color: white;
+  }
+
+  .opt-label span {
+    display: block;
   }
 
   button.submit-btn {
@@ -102,7 +113,6 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(102,126,234,.4);
   }
-
 </style>
 </head>
 
@@ -119,10 +129,15 @@
 
   <form method="POST">
     {% for opt in question.options %}
-      <button type="submit" name="answer" value="{{ opt }}" class="opt-label">
-        {{ opt }}
-      </button>
+      <label class="opt-label">
+        <input type="radio" name="answer" value="{{ opt }}" required>
+        <span>{{ opt }}</span>
+      </label>
     {% endfor %}
+
+    <button type="submit" class="submit-btn">
+      {% if question_num == total %}Finish ✅{% else %}Next Question →{% endif %}
+    </button>
   </form>
 </div>
 
