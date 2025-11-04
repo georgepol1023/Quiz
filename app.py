@@ -82,6 +82,8 @@ def quiz_question():
 
 @app.route("/complete")
 def complete():
+    FUN_FACT = "Did you know? The Bible is the most translated book in the world, available in over 3,000 languages!"
+
     # Make sure the user actually has answers
     if 'name' not in session or 'answers' not in session:
         return redirect(url_for('index'))
@@ -111,7 +113,10 @@ def complete():
                            name=name,
                            theme=theme,
                            score=score,
+                           fun_fact=FUN_FACT,
                            total_questions=len(quiz))
+
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
