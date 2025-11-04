@@ -60,8 +60,12 @@
     color: #333;
   }
 
-  input[type="radio"] { display: none; }
-
+  input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
   .opt-label {
     display: block;
     padding: 1rem;
