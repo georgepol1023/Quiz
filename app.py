@@ -73,7 +73,7 @@ CSV_FILE = "responses.csv"
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["Name"] + [f"Q{i}" for i in range(len(quiz))] + ["Score"])
+        writer.writerow(["Name"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)"])
 
 @app.route("/", methods=["GET", "POST"])
 def index():
