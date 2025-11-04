@@ -7,11 +7,25 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  body.light {
+    background: linear-gradient(135deg,#ffecd2,#fcb69f);
+    color: #333;
+  }
+
+  body.dark {
+    background: linear-gradient(135deg,#434343,#000);
+    color: white;
+  }
+
+  body.colorful {
+    background: linear-gradient(135deg,#ff9a9e,#fecfef,#a1c4fd);
+    color: #333;
+  }
+
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     min-height: 100vh;
     padding: 1rem;
-    background: linear-gradient(135deg,#ffecd2,#fcb69f);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +41,11 @@
     animation: fadeIn .4s ease-out;
   }
 
+  body.dark .card {
+    background: #222;
+    color: white;
+  }
+
   @keyframes fadeIn {
     from {opacity: 0; transform: translateY(25px);}
     to {opacity: 1; transform: translateY(0);}
@@ -35,8 +54,8 @@
   .header {
     font-size: .95rem;
     margin-bottom: .8rem;
-    color: #666;
     font-weight: 600;
+    color: inherit;
   }
 
   .progress {
@@ -52,25 +71,23 @@
     height: 100%;
     width: {{ progress }}%;
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    transition: width 0.3s ease;
   }
 
   h2 {
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: inherit;
   }
 
   input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+    display: none;
   }
 
+  /* Answer labels */
   .opt-label {
     display: block;
     padding: 1rem;
-    background: #f7f7f7;
     border-radius: 12px;
     border: 2px solid #ddd;
     margin-bottom: .8rem;
@@ -78,21 +95,41 @@
     transition: .25s;
     font-size: 1rem;
     position: relative;
+    background: #f7f7f7;
+    color: inherit;
+  }
+
+  body.dark .opt-label {
+    background: #333;
+    border-color: #555;
   }
 
   .opt-label:hover {
     border-color: #667eea;
     background: #eef0ff;
-    transform: scale(1.02);
   }
 
-  input[type="radio"]:checked + span {
-    background: #667eea;
-    color: white;
-  }
-
+  /* Highlight entire label when selected */
   .opt-label span {
     display: block;
+  }
+
+  /* Works in modern browsers */
+  .opt-label input:checked + span {
+    background: #667eea;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    display: block;
+  }
+
+  /* Fallback for full label highlight using label:has() */
+  @supports(selector(:has(*))) {
+    .opt-label:has(input:checked) {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
   }
 
   button.submit-btn {
@@ -116,7 +153,7 @@
 </style>
 </head>
 
-<body>
+<body class="{{ theme|default('light') }}">
 
 <div class="card">
   <div class="header">Question {{ question_num }} of {{ total }}</div>
@@ -135,9 +172,7 @@
       </label>
     {% endfor %}
 
-    <button type="submit" class="submit-btn">
-      {% if question_num == total %}Finish ✅{% else %}Next Question →{% endif %}
-    </button>
+    <button type="submit" class="submit-btn">Submit</button>
   </form>
 </div>
 
