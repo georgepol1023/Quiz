@@ -8,7 +8,12 @@ app.secret_key = os.environ['SESSION_SECRET']
 
 @app.route("/download")
 def download():
-    return send_file(CSV_FILE, mimetype="text/csv", as_attachment=True)
+    return send_file(
+        CSV_FILE,
+        mimetype="text/csv",
+        as_attachment=True,
+        download_name="responses.csv"
+    )
 
 quiz = [
     {
