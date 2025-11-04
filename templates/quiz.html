@@ -120,11 +120,8 @@
     background: #667eea;
     color: white;
     border-radius: 10px;
-<<<<<<< HEAD
     padding: 1rem;
     display: block;
-=======
->>>>>>> ee61a9a252b76dc01707d6f76695fc107193b777
   }
 
   /* Fallback for full label highlight using label:has() */
@@ -157,24 +154,17 @@
 </style>
 
 
+/* Modern circular timer styles */
 <style>
-/* Timer bar container */
-.timer-container {
-  height: 12px;
-  width: 100%;
-  background: #ddd;
-  border-radius: 10px;
-  margin: 15px 0;
-  overflow: hidden;
-}
-
-/* Timer bar itself */
-#timer-bar {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(135deg,#667eea,#764ba2);
-  transition: width 1s linear;
-}
+/* Modern circular timer */
+.timer-wrap { display:flex; justify-content:center; margin-bottom:16px; }
+.timer-ring { position: relative; width: 72px; height: 72px; }
+.timer-svg { display:block; }
+.time-left { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1rem; pointer-events:none; color:inherit; }
+.timer-bg { stroke-width:8; }
+.timer-fg { stroke-width:8; transition: stroke-dashoffset 1s linear; transform-origin:center; }
+.timer-fg.expired { animation: pulse 700ms ease infinite; }
+@keyframes pulse { 0% { filter: drop-shadow(0 0 0 rgba(118,75,162,0)); } 50% { filter: drop-shadow(0 6px 18px rgba(118,75,162,0.22)); } 100% { filter: drop-shadow(0 0 0 rgba(118,75,162,0)); } }
 </style>
 
 </head>
@@ -183,7 +173,23 @@
 
 <div class="card">
   <div class="header">Question {{ question_num }} of {{ total }}</div>
-  <div id="timer">Time left: 10s</div>
+
+  <div class="timer-wrap" aria-hidden="false">
+    <div class="timer-ring" data-time="{{ time_limit|default(10) }}">
+      <svg viewBox="0 0 100 100" class="timer-svg" width="72" height="72" aria-hidden="true">
+        <defs>
+          <linearGradient id="timerGradient" x1="0" x2="1">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+          </linearGradient>
+        </defs>
+        <circle class="timer-bg" cx="50" cy="50" r="45" fill="none" stroke="var(--timer-bg,#eee)" stroke-width="10"/>
+        <circle class="timer-fg" cx="50" cy="50" r="45" fill="none" stroke="url(#timerGradient)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+      </svg>
+      <div class="time-left" id="time-left">0:10</div>
+    </div>
+  </div>
+
   <div class="progress">
     <div class="progress-bar"></div>
   </div>
@@ -204,28 +210,48 @@
 
 
 <script>
-// 10-second timer
-let timeLeft = 10; 
-const timerBar = document.getElementById("timer-bar");
+(function(){
+  const timeLimit = Number({{ time_limit|default(10) }});
+  const timeLeftEl = document.getElementById('time-left');
+  const fg = document.querySelector('.timer-fg');
+  const radius = fg.r.baseVal.value;
+  const circumference = 2 * Math.PI * radius;
+  fg.style.strokeDasharray = `${circumference} ${circumference}`;
+  fg.style.strokeDashoffset = `${circumference}`;
+  let timeLeft = timeLimit;
+  const form = document.querySelector('form');
 
-const countdown = setInterval(() => {
+  function setProgress(seconds){
+    const offset = circumference - (seconds / timeLimit) * circumference;
+    fg.style.strokeDashoffset = offset;
+  }
+
+  function format(t){
+    const m = Math.floor(t/60);
+    const s = t%60;
+    return `${m}:${s.toString().padStart(2,'0')}`;
+  }
+
+  timeLeftEl.textContent = format(timeLeft);
+  setProgress(timeLeft);
+
+  const interval = setInterval(()=>{
     timeLeft--;
-    // Update timer bar width
-    timerBar.style.width = (timeLeft / 10 * 100) + "%";
-
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        const form = document.querySelector("form");
-        if (![...form.elements.answer].some(input => input.checked)) {
-            const hidden = document.createElement("input");
-            hidden.type = "hidden";
-            hidden.name = "answer";
-            hidden.value = "No Answer";
-            form.appendChild(hidden);
-        }
-        form.submit();
+    if(timeLeft<=0){
+      clearInterval(interval);
+      fg.classList.add('expired');
+      if(!form.querySelector('input[name="answer"]:checked')){
+        const hidden = document.createElement('input');
+        hidden.type='hidden'; hidden.name='answer'; hidden.value='No Answer';
+        form.appendChild(hidden);
+      }
+      form.submit();
+      return;
     }
-}, 1000);
+    timeLeftEl.textContent = format(timeLeft);
+    setProgress(timeLeft);
+  },1000);
+})();
 </script>
 
 </body>
