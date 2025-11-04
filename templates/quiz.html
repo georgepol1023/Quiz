@@ -61,10 +61,11 @@
   }
 
   input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+  position: absolute;  /* remove from flow */
+  opacity: 0;          /* make invisible */
+  cursor: pointer;     /* optional */
+  height: 1px;         /* tiny, still clickable */
+  width: 1px;
 }
   .opt-label {
     display: block;
