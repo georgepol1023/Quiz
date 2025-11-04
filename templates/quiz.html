@@ -155,6 +155,28 @@
     box-shadow: 0 10px 25px rgba(102,126,234,.4);
   }
 </style>
+
+
+<style>
+/* Timer bar container */
+.timer-container {
+  height: 12px;
+  width: 100%;
+  background: #ddd;
+  border-radius: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+/* Timer bar itself */
+#timer-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  transition: width 1s linear;
+}
+</style>
+
 </head>
 
 <body class="{{ theme|default('light') }}">
@@ -179,21 +201,22 @@
     <button type="submit" class="submit-btn">Submit</button>
   </form>
 </div>
+
+
 <script>
-let timeLeft = 10; // 10 seconds
-const timerEl = document.getElementById("timer");
+// 10-second timer
+let timeLeft = 10; 
+const timerBar = document.getElementById("timer-bar");
 
 const countdown = setInterval(() => {
     timeLeft--;
-    timerEl.textContent = `Time left: ${timeLeft}s`;
+    // Update timer bar width
+    timerBar.style.width = (timeLeft / 10 * 100) + "%";
 
     if (timeLeft <= 0) {
         clearInterval(countdown);
-        // Auto-submit the form if time runs out
         const form = document.querySelector("form");
-        // Select no answer if nothing is selected
         if (![...form.elements.answer].some(input => input.checked)) {
-            // create hidden input with value "No Answer"
             const hidden = document.createElement("input");
             hidden.type = "hidden";
             hidden.name = "answer";
