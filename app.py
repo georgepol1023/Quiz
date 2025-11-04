@@ -82,20 +82,35 @@ def quiz_question():
 
 @app.route("/complete")
 def complete():
+    # Make sure the user actually has answers
     if 'name' not in session or 'answers' not in session:
         return redirect(url_for('index'))
-    
+
     name = session['name']
     answers = session['answers']
-    
+
+    # Calculate score
+    score = 0
+    for user_answer, q in zip(answers, quiz):
+        if user_answer == q["answer"]:
+            score += 1
+
+    # Save name, answers, and score to CSV
     with open(CSV_FILE, "a", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow([name] + answers)
-    
+        writer.writerow([name] + answers + [score])
+
     theme = session.get('theme', 'light')
+
+    # Clear session after saving
     session.clear()
-    
-    return render_template("complete.html", name=name, theme=theme)
-    
+
+    # Render completion page and pass score
+    return render_template("complete.html",
+                           name=name,
+                           theme=theme,
+                           score=score,
+                           total_questions=len(quiz))
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
