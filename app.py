@@ -95,7 +95,7 @@ def complete():
         if user_answer == q["answer"]:
             score += 1
     score = score / len(quiz) * 100  # percentage
-
+    score = round(score, 2)
     # Save name, answers, and score to CSV
     with open(CSV_FILE, "a", newline="") as f:
         writer = csv.writer(f)
