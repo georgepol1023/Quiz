@@ -17,55 +17,80 @@ def download():
 
 quiz = [
      {
-        "question": "Who built the ark?",
-        "options": ["Moses", "Noah", "Abraham", "David"],
-        "answer": "Noah"
+        "question": "Who was thrown into the lions' den?",
+        "options": ["Daniel", "Joseph", "Moses", "Elijah"],
+        "answer": "Daniel"
     },
     {
-        "question": "What did God create on the first day?",
-        "options": ["Sun and moon", "Light", "Animals", "Plants"],
-        "answer": "Light"
+        "question": "Who was the strongest man in the Bible?",
+        "options": ["David", "Samson", "Saul", "Esau"],
+        "answer": "Samson"
     },
     {
-        "question": "Who was swallowed by a big fish?",
-        "options": ["Jonah", "Daniel", "Joseph", "Elijah"],
-        "answer": "Jonah"
+        "question": "Who crossed the Jordan River by striking the water with his cloak?",
+        "options": ["Elijah", "Elisha", "Moses", "Joshua"],
+        "answer": "Elijah"
     },
     {
-        "question": "How many commandments did God give Moses?",
-        "options": ["5", "10", "7", "12"],
-        "answer": "10"
+        "question": "What food did God provide the Israelites in the wilderness?",
+        "options": ["Bread and fish", "Manna", "Grapes", "Quail eggs"],
+        "answer": "Manna"
     },
     {
-        "question": "Who was the mother of Jesus?",
-        "options": ["Mary", "Sarah", "Ruth", "Elizabeth"],
-        "answer": "Mary"
+        "question": "Who was the first king of Israel?",
+        "options": ["David", "Saul", "Solomon", "Samuel"],
+        "answer": "Saul"
     },
     {
-        "question": "What did David use to defeat Goliath?",
-        "options": ["Sword", "Spear", "Sling and stone", "Bow and arrow"],
-        "answer": "Sling and stone"
+        "question": "Who anointed David to be king?",
+        "options": ["Nathan", "Samuel", "Elijah", "Aaron"],
+        "answer": "Samuel"
     },
     {
-        "question": "Where was Jesus born?",
-        "options": ["Nazareth", "Bethlehem", "Jerusalem", "Jericho"],
-        "answer": "Bethlehem"
+        "question": "Which sea did Moses part?",
+        "options": ["Red Sea", "Dead Sea", "Galilee Sea", "Mediterranean Sea"],
+        "answer": "Red Sea"
     },
     {
-        "question": "Who betrayed Jesus?",
-        "options": ["Peter", "Judas", "John", "Thomas"],
-        "answer": "Judas"
+        "question": "Who climbed a sycamore tree to see Jesus?",
+        "options": ["Zacchaeus", "Peter", "Bartimaeus", "Thomas"],
+        "answer": "Zacchaeus"
     },
     {
-        "question": "What river did John the Baptist baptize people in?",
-        "options": ["Nile", "Jordan", "Euphrates", "Tigris"],
-        "answer": "Jordan"
+        "question": "What did Jesus turn water into at the wedding?",
+        "options": ["Milk", "Wine", "Oil", "Honey"],
+        "answer": "Wine"
     },
     {
-        "question": "Who led the Israelites out of Egypt?",
-        "options": ["Abraham", "Moses", "Joshua", "Samuel"],
-        "answer": "Moses"
+        "question": "Who was the shepherd boy that became a king?",
+        "options": ["Solomon", "David", "Joshua", "Isaac"],
+        "answer": "David"
     },
+    {
+        "question": "Which apostle denied Jesus three times?",
+        "options": ["Peter", "Thomas", "John", "Andrew"],
+        "answer": "Peter"
+    },
+    {
+        "question": "Where did Jesus grow up?",
+        "options": ["Bethlehem", "Nazareth", "Jerusalem", "Capernaum"],
+        "answer": "Nazareth"
+    },
+    {
+        "question": "Who interpreted Pharaoh’s dreams about the cows and grain?",
+        "options": ["Joseph", "Moses", "Daniel", "Aaron"],
+        "answer": "Joseph"
+    },
+    {
+        "question": "What weapon did Samson use to defeat a thousand Philistines?",
+        "options": ["Spear", "Jawbone of a donkey", "Sword", "Rock"],
+        "answer": "Jawbone of a donkey"
+    },
+    {
+        "question": "Which disciple walked on water toward Jesus?",
+        "options": ["Peter", "John", "James", "Philip"],
+        "answer": "Peter"
+    }
 ]
 
 CSV_FILE = "responses.csv"
