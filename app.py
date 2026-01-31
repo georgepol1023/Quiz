@@ -16,80 +16,78 @@ def download():
     )
 
 quiz = [
-     {
-        "question": "Who was thrown into the lions' den?",
-        "options": ["Daniel", "Joseph", "Moses", "Elijah"],
+    {
+        "question": "What did God create on the very first day?",
+        "options": ["Animals", "Light", "Trees", "The Moon"],
+        "answer": "Light"
+    },
+    {
+        "question": "How many commandments did God give to Moses?",
+        "options": ["5", "10", "12", "20"],
+        "answer": "10"
+    },
+    {
+        "question": "What animal tempted Eve in the Garden of Eden?",
+        "options": ["A lion", "A snake", "A bear", "A wolf"],
+        "answer": "A snake"
+    },
+    {
+        "question": "What did Jesus use to feed 5,000 people?",
+        "options": ["Loaves and fishes", "Milk and honey", "Apples and nuts", "Steak and potatoes"],
+        "answer": "Loaves and fishes"
+    },
+    {
+        "question": "Who was the very first man created by God?",
+        "options": ["Noah", "Abraham", "Adam", "Moses"],
+        "answer": "Adam"
+    },
+    {
+        "question": "What did Noah build to save the animals?",
+        "options": ["A castle", "An ark", "A tower", "A bridge"],
+        "answer": "An ark"
+    },
+    {
+        "question": "Which bird brought back an olive branch to Noah?",
+        "options": ["An eagle", "A raven", "A dove", "A sparrow"],
+        "answer": "A dove"
+    },
+    {
+        "question": "What was the name of Jesus' mother?",
+        "options": ["Mary", "Martha", "Ruth", "Esther"],
+        "answer": "Mary"
+    },
+    {
+        "question": "What did the three wise men follow to find baby Jesus?",
+        "options": ["A map", "A star", "A river", "A cloud"],
+        "answer": "A star"
+    },
+    {
+        "question": "What did Moses use to part the Red Sea?",
+        "options": ["A sword", "A staff", "A shield", "A stone"],
+        "answer": "A staff"
+    },
+    {
+        "question": "Which day of the week did God rest after creating the world?",
+        "options": ["The first day", "The third day", "The seventh day", "The tenth day"],
+        "answer": "The seventh day"
+    },
+    {
+        "question": "Who was thrown into a den of lions but wasn't hurt?",
+        "options": ["Daniel", "David", "Peter", "Paul"],
         "answer": "Daniel"
     },
     {
-        "question": "Who was the strongest man in the Bible?",
-        "options": ["David", "Samson", "Saul", "Esau"],
-        "answer": "Samson"
+        "question": "What did God put in the sky as a promise to never flood the Earth again?",
+        "options": ["A rainbow", "The sun", "A comet", "A lightning bolt"],
+        "answer": "A rainbow"
     },
     {
-        "question": "Who crossed the Jordan River by striking the water with his cloak?",
-        "options": ["Elijah", "Elisha", "Moses", "Joshua"],
-        "answer": "Elijah"
+        "question": "What was Jesus' job before He started His ministry?",
+        "options": ["A fisherman", "A carpenter", "A tax collector", "A soldier"],
+        "answer": "A carpenter"
     },
     {
-        "question": "What food did God provide the Israelites in the wilderness?",
-        "options": ["Bread and fish", "Manna", "Grapes", "Quail eggs"],
-        "answer": "Manna"
-    },
-    {
-        "question": "Who was the first king of Israel?",
-        "options": ["David", "Saul", "Solomon", "Samuel"],
-        "answer": "Saul"
-    },
-    {
-        "question": "Who anointed David to be king?",
-        "options": ["Nathan", "Samuel", "Elijah", "Aaron"],
-        "answer": "Samuel"
-    },
-    {
-        "question": "Which sea did Moses part?",
-        "options": ["Red Sea", "Dead Sea", "Galilee Sea", "Mediterranean Sea"],
-        "answer": "Red Sea"
-    },
-    {
-        "question": "Who climbed a sycamore tree to see Jesus?",
-        "options": ["Zacchaeus", "Peter", "Bartimaeus", "Thomas"],
-        "answer": "Zacchaeus"
-    },
-    {
-        "question": "What did Jesus turn water into at the wedding?",
-        "options": ["Milk", "Wine", "Oil", "Honey"],
-        "answer": "Wine"
-    },
-    {
-        "question": "Who was the shepherd boy that became a king?",
-        "options": ["Solomon", "David", "Joshua", "Isaac"],
-        "answer": "David"
-    },
-    {
-        "question": "Which apostle denied Jesus three times?",
-        "options": ["Peter", "Thomas", "John", "Andrew"],
-        "answer": "Peter"
-    },
-    {
-        "question": "Where did Jesus grow up?",
-        "options": ["Bethlehem", "Nazareth", "Jerusalem", "Capernaum"],
-        "answer": "Nazareth"
-    },
-    {
-        "question": "Who interpreted Pharaoh's dreams about the cows and grain?",
-        "options": ["Joseph", "Moses", "Daniel", "Aaron"],
-        "answer": "Joseph"
-    },
-    {
-        "question": "What weapon did Samson use to defeat a thousand Philistines?",
-        "options": ["Spear", "Jawbone of a donkey", "Sword", "Rock"],
-        "answer": "Jawbone of a donkey"
-    },
-    {
-        "question": "Which disciple walked on water toward Jesus?",
-        "options": ["Peter", "John", "James", "Philip"],
-        "answer": "Peter"
+        "question": "Who killed his brother Abel?",
     }
 ]
 
