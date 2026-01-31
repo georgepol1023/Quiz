@@ -3,7 +3,7 @@ import csv
 import os
 
 app = Flask(__name__)
-app.secret_key = os.environ['SESSION_SECRET']
+app.secret_key = os.environ.get('SESSION_SECRET', 'dev-secret-key-change-in-production')
 
 
 @app.route("/download")
@@ -77,7 +77,7 @@ quiz = [
         "answer": "Nazareth"
     },
     {
-        "question": "Who interpreted Pharaoh’s dreams about the cows and grain?",
+        "question": "Who interpreted Pharaoh's dreams about the cows and grain?",
         "options": ["Joseph", "Moses", "Daniel", "Aaron"],
         "answer": "Joseph"
     },
@@ -176,7 +176,28 @@ def complete():
                            fun_fact=FUN_FACT,
                            total_questions=len(quiz))
 
+@app.route("/leaderboard")
+def leaderboard():
+    # Read all scores from CSV
+    leaderboard_data = []
     
+    if os.path.exists(CSV_FILE):
+        with open(CSV_FILE, "r", newline="") as f:
+            reader = csv.reader(f)
+            next(reader)  # Skip header row
+            
+            for row in reader:
+                if len(row) > 0:
+                    name = row[0]
+                    score = float(row[-1])  # Last column is the score
+                    leaderboard_data.append({"name": name, "score": score})
+    
+    # Sort by score (highest first)
+    leaderboard_data.sort(key=lambda x: x["score"], reverse=True)
+    
+    return render_template("leaderboard.html", 
+                         leaderboard=leaderboard_data,
+                         total_questions=len(quiz))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

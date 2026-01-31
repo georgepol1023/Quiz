@@ -56,19 +56,28 @@
   a:hover {
     background: #5569cc;
   }
+  
+  .score-display {
+    font-size: 1.3rem;
+    color: #667eea;
+    font-weight: 700;
+    margin: 1rem 0;
+  }
 </style>
 </head>
 
 <body>
 
-
 <div class="card">
   <div class="done">✅</div>
   <h2>Thank you, {{ name }}!</h2>
+  <p class="score-display">Your Score: {{ score }}%</p>
 
   <div style="margin-top: 20px; font-style: italic; background: #f0f8ff; padding: 15px; border-radius: 12px; text-align: center;">
     <strong>Fun Fact:</strong> {{ fun_fact }}
   </div>
+  
+  <a href="/leaderboard" style="background: #764ba2;">View Leaderboard 🏆</a>
 </div>
 
 </body>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard - Bible Quiz</title>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box;}
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    padding: 1rem;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    border-radius: 20px;
+    animation: fadeIn .4s ease-out;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform:translateY(25px);}
+    to {opacity:1; transform:translateY(0);}
+  }
+
+  h1 { 
+    font-size: 2rem; 
+    margin-bottom: 0.5rem; 
+    color: #667eea; 
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .leaderboard {
+    margin-bottom: 1.5rem;
+  }
+
+  .leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 12px;
+    background: #f7f7f7;
+    transition: .25s;
+  }
+
+  .leaderboard-item:hover {
+    background: #eef0ff;
+    transform: translateX(5px);
+  }
+
+  .leaderboard-item.top-1 {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    font-weight: 700;
+  }
+
+  .leaderboard-item.top-2 {
+    background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+    font-weight: 600;
+  }
+
+  .leaderboard-item.top-3 {
+    background: linear-gradient(135deg, #cd7f32, #e8a87c);
+    font-weight: 600;
+  }
+
+  .rank {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #667eea;
+    min-width: 40px;
+  }
+
+  .top-1 .rank, .top-2 .rank, .top-3 .rank {
+    color: #333;
+  }
+
+  .player-name {
+    flex: 1;
+    font-size: 1rem;
+    margin: 0 1rem;
+  }
+
+  .score {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #764ba2;
+  }
+
+  .top-1 .score, .top-2 .score, .top-3 .score {
+    color: #333;
+  }
+
+  .medal {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #999;
+  }
+
+  .empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    display: block;
+    margin-top: 1.5rem;
+    padding: .9rem;
+    background: #667eea;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: .25s;
+  }
+
+  a:hover {
+    background: #5569cc;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102,126,234,.4);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🏆 Leaderboard</h1>
+  <p class="subtitle">Top Players - Bible Quiz</p>
+
+  <div class="leaderboard">
+    {% if leaderboard %}
+      {% for player in leaderboard %}
+        <div class="leaderboard-item {% if loop.index == 1 %}top-1{% elif loop.index == 2 %}top-2{% elif loop.index == 3 %}top-3{% endif %}">
+          <div class="rank">
+            {% if loop.index == 1 %}
+              <span class="medal">🥇</span>
+            {% elif loop.index == 2 %}
+              <span class="medal">🥈</span>
+            {% elif loop.index == 3 %}
+              <span class="medal">🥉</span>
+            {% else %}
+              #{{ loop.index }}
+            {% endif %}
+          </div>
+          <div class="player-name">{{ player.name }}</div>
+          <div class="score">{{ player.score }}%</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <div class="empty-state-icon">📊</div>
+        <p>No scores yet! Be the first to take the quiz.</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <a href="/">Take the Quiz</a>
+</div>
+
+</body>
+</html>
