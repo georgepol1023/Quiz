@@ -23,8 +23,8 @@ quiz = [
     },
     {
         "question": "How many commandments did God give to Moses?",
-        "options": ["5", "10", "12", "20"],
-        "answer": "10"
+        "options": ["5", "10", "300", "none of the above"],
+        "answer": "none of the above"
     },
     {
         "question": "What animal tempted Eve in the Garden of Eden?",
@@ -88,6 +88,8 @@ quiz = [
     },
     {
         "question": "Who killed his brother Abel?",
+        "options": ["Cain", "Seth", "Enos", "Jared"],
+        "answer": "Cain"
     }
 ]
 
