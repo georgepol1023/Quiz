@@ -16,7 +16,7 @@ def download():
     )
 
 quiz = [
-    [
+    
     {
         "question": "Who built the ark during the great flood?",
         "options": ["Moses", "Noah", "Abraham", "David"],
@@ -94,7 +94,6 @@ quiz = [
     }
 ]
 
-]
 
 CSV_FILE = "responses.csv"
 
