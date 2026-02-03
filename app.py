@@ -1,22 +1,12 @@
-from flask import Flask, request, render_template, session, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for, session
 import csv
 import os
+import time
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SESSION_SECRET', 'dev-secret-key-change-in-production')
-
-
-@app.route("/download")
-def download():
-    return send_file(
-        CSV_FILE,
-        mimetype="text/csv",
-        as_attachment=True,
-        download_name="responses.csv"
-    )
+app.secret_key = "your_secret_key_here_12345"
 
 quiz = [
-    
      {
         "question": "Who was Jesus' mother?",
         "options": ["Elizabeth", "Mary", "Martha", "Anna"],
@@ -98,13 +88,14 @@ quiz = [
     }
 ]
 
-
 CSV_FILE = "responses.csv"
+MAX_POINTS_PER_QUESTION = 100
+TIME_LIMIT_SECONDS = 30  # Time until points reach minimum
 
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["Name"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)"])
+        writer.writerow(["Name"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)", "Total Points"])
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -113,6 +104,8 @@ def index():
         session['theme'] = request.form.get('theme', 'light')
         session['answers'] = []
         session['current_question'] = 0
+        session['total_points'] = 0
+        session['question_start_time'] = None
         return redirect(url_for('quiz_question'))
     return render_template("welcome.html")
 
@@ -125,7 +118,18 @@ def quiz_question():
     
     if request.method == "POST":
         answer = request.form.get('answer')
+        time_taken = float(request.form.get('time_taken', TIME_LIMIT_SECONDS))
+        
+        # Calculate points based on time taken
+        if answer == quiz[current_q]["answer"]:
+            # Points decrease linearly from MAX_POINTS to 10 over TIME_LIMIT_SECONDS
+            points = max(10, MAX_POINTS_PER_QUESTION - (time_taken / TIME_LIMIT_SECONDS * (MAX_POINTS_PER_QUESTION - 10)))
+            points = round(points)
+        else:
+            points = 0
+        
         session['answers'].append(answer)
+        session['total_points'] = session.get('total_points', 0) + points
         session['current_question'] = current_q + 1
         
         if session['current_question'] >= len(quiz):
@@ -144,47 +148,50 @@ def quiz_question():
                          question_num=current_q + 1,
                          total=len(quiz),
                          progress=progress,
-                         theme=session.get('theme', 'light'))
+                         theme=session.get('theme', 'light'),
+                         max_points=MAX_POINTS_PER_QUESTION,
+                         time_limit=TIME_LIMIT_SECONDS)
 
 @app.route("/complete")
 def complete():
     FUN_FACT = "Did you know? The Bible is the most translated book in the world, available in over 3,000 languages!"
 
-    # Make sure the user actually has answers
     if 'name' not in session or 'answers' not in session:
         return redirect(url_for('index'))
 
     name = session['name']
     answers = session['answers']
+    total_points = session.get('total_points', 0)
 
-    # Calculate score
-    score = 0
+    # Calculate percentage score
+    correct = 0
     for user_answer, q in zip(answers, quiz):
         if user_answer == q["answer"]:
-            score += 1
-    score = score / len(quiz) * 100  # percentage
-    score = round(score, 2)
-    # Save name, answers, and score to CSV
+            correct += 1
+    percentage_score = round((correct / len(quiz)) * 100, 2)
+    
+    # Save name, answers, percentage score, and total points to CSV
     with open(CSV_FILE, "a", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow([name] + answers + [score])
+        writer.writerow([name] + answers + [percentage_score, total_points])
 
     theme = session.get('theme', 'light')
+    max_possible_points = MAX_POINTS_PER_QUESTION * len(quiz)
 
     # Clear session after saving
     session.clear()
 
-    # Render completion page and pass score
     return render_template("complete.html",
                            name=name,
                            theme=theme,
-                           score=score,
+                           score=percentage_score,
+                           total_points=total_points,
+                           max_possible_points=max_possible_points,
                            fun_fact=FUN_FACT,
                            total_questions=len(quiz))
 
 @app.route("/leaderboard")
 def leaderboard():
-    # Read all scores from CSV
     leaderboard_data = []
     
     if os.path.exists(CSV_FILE):
@@ -193,17 +200,23 @@ def leaderboard():
             next(reader)  # Skip header row
             
             for row in reader:
-                if len(row) > 0:
+                if len(row) > len(quiz) + 1:  # Make sure row has points data
                     name = row[0]
-                    score = float(row[-1])  # Last column is the score
-                    leaderboard_data.append({"name": name, "score": score})
+                    percentage = float(row[-2])
+                    points = int(row[-1])
+                    leaderboard_data.append({
+                        "name": name, 
+                        "percentage": percentage,
+                        "points": points
+                    })
     
-    # Sort by score (highest first)
-    leaderboard_data.sort(key=lambda x: x["score"], reverse=True)
+    # Sort by points (highest first), then by percentage
+    leaderboard_data.sort(key=lambda x: (x["points"], x["percentage"]), reverse=True)
     
     return render_template("leaderboard.html", 
                          leaderboard=leaderboard_data,
-                         total_questions=len(quiz))
+                         total_questions=len(quiz),
+                         max_possible_points=MAX_POINTS_PER_QUESTION * len(quiz))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

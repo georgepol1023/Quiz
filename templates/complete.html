@@ -3,82 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Complete</title>
+<title>Quiz Complete!</title>
 <style>
-  * {margin: 0; padding: 0; box-sizing: border-box;}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     min-height: 100vh;
-    padding: 1rem;
-    background: linear-gradient(135deg,#667eea,#764ba2);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    transition: background 0.3s ease;
   }
 
-  .card {
+  body.light {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  body.dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .container {
     background: white;
-    width: 100%;
-    max-width: 420px;
-    padding: 2rem;
+    padding: 50px;
     border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 600px;
+    width: 100%;
     text-align: center;
-    animation: fadeIn .4s ease-out;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
-  @keyframes fadeIn {
-    from {opacity:0; transform:translateY(25px);}
-    to {opacity:1; transform:translateY(0);}
+  body.dark .container {
+    background: #0f3460;
+    color: #e8e8e8;
   }
 
-  h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #333; }
-  p { color: #666; font-size: 1rem; margin-bottom: 1.5rem; }
-
-  .done {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  .celebration {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: bounce 1s ease infinite;
   }
 
-  a {
-    display: block;
-    margin-top: 1rem;
-    padding: .9rem;
-    background: #667eea;
-    color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .25s;
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
   }
 
-  a:hover {
-    background: #5569cc;
+  h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 15px;
   }
-  
-  .score-display {
-    font-size: 1.3rem;
+
+  body.dark h1 {
+    color: #e8e8e8;
+  }
+
+  .name {
+    font-size: 24px;
     color: #667eea;
-    font-weight: 700;
-    margin: 1rem 0;
+    margin-bottom: 40px;
+    font-weight: 600;
   }
+
+  body.dark .name {
+    color: #e94560;
+  }
+
+  .score-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    color: white;
+  }
+
+  body.dark .score-container {
+    background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  }
+
+  .score-label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+
+  .score {
+    font-size: 64px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .points-container {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+  }
+
+  body.dark .points-container {
+    background: #16213e;
+  }
+
+  .points-label {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  body.dark .points-label {
+    color: #aaa;
+  }
+
+  .points-score {
+    font-size: 48px;
+    font-weight: bold;
+    color: #764ba2;
+    margin-bottom: 5px;
+  }
+
+  body.dark .points-score {
+    color: #f39c12;
+  }
+
+  .points-max {
+    font-size: 14px;
+    color: #999;
+  }
+
+  body.dark .points-max {
+    color: #888;
+  }
+
+  .fun-fact {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  body.dark .fun-fact {
+    background: #16213e;
+    color: #ccc;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  body.dark .button-primary {
+    background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+  }
+
+  .button-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+  }
+
+  body.dark .button-secondary {
+    background: #16213e;
+    color: #e94560;
+    border-color: #e94560;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .button:active {
+    transform: translateY(0);
+  }
+
+  .feedback {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .feedback.excellent { color: #52c41a; }
+  .feedback.good { color: #1890ff; }
+  .feedback.ok { color: #faad14; }
+  .feedback.poor { color: #f5222d; }
 </style>
 </head>
+<body class="{{ theme }}">
+<div class="container">
+  <div class="celebration">🎉</div>
+  <h1>Quiz Complete!</h1>
+  <p class="name">{{ name }}</p>
 
-<body>
-
-<div class="card">
-  <div class="done">✅</div>
-  <h2>Thank you, {{ name }}!</h2>
-  <p class="score-display">Your Score: {{ score }}%</p>
-
-  <div style="margin-top: 20px; font-style: italic; background: #f0f8ff; padding: 15px; border-radius: 12px; text-align: center;">
-    <strong>Fun Fact:</strong> {{ fun_fact }}
+  <div class="score-container">
+    <div class="score-label">Accuracy</div>
+    <div class="score">{{ score }}%</div>
+    <div class="score-label">{{ (score / 100 * total_questions) | round | int }} out of {{ total_questions }} correct</div>
   </div>
-  
-  <a href="/leaderboard" style="background: #764ba2;">View Leaderboard 🏆</a>
-</div>
 
+  <div class="points-container">
+    <div class="points-label">Total Score</div>
+    <div class="points-score">{{ total_points }}</div>
+    <div class="points-max">out of {{ max_possible_points }} possible points</div>
+  </div>
+
+  {% if score >= 90 %}
+  <p class="feedback excellent">Excellent work! You really know your Bible! 🌟</p>
+  {% elif score >= 70 %}
+  <p class="feedback good">Great job! Keep studying! 📖</p>
+  {% elif score >= 50 %}
+  <p class="feedback ok">Good effort! There's room to grow! 💪</p>
+  {% else %}
+  <p class="feedback poor">Keep practicing! You'll improve! 🙏</p>
+  {% endif %}
+
+  <div class="fun-fact">
+    💡 {{ fun_fact }}
+  </div>
+
+  <div class="buttons">
+    <a href="/" class="button button-primary">Play Again</a>
+    <a href="/leaderboard" class="button button-secondary">View Leaderboard</a>
+  </div>
+</div>
 </body>
 </html>

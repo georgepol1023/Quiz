@@ -3,183 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leaderboard - Bible Quiz</title>
+<title>Leaderboard</title>
 <style>
-  * {margin: 0; padding: 0; box-sizing: border-box;}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     min-height: 100vh;
-    padding: 1rem;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 20px;
   }
 
   .container {
+    max-width: 800px;
+    margin: 0 auto;
     background: white;
-    width: 100%;
-    max-width: 600px;
-    padding: 2rem;
     border-radius: 20px;
-    animation: fadeIn .4s ease-out;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    padding: 40px;
   }
 
-  @keyframes fadeIn {
-    from {opacity:0; transform:translateY(25px);}
-    to {opacity:1; transform:translateY(0);}
-  }
-
-  h1 { 
-    font-size: 2rem; 
-    margin-bottom: 0.5rem; 
-    color: #667eea; 
+  h1 {
     text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
   }
 
   .subtitle {
     text-align: center;
     color: #666;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+    margin-bottom: 30px;
+    font-size: 14px;
   }
 
   .leaderboard {
-    margin-bottom: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .leaderboard-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px 120px;
+    gap: 15px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 
   .leaderboard-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 60px 1fr 120px 120px;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
     align-items: center;
-    padding: 1rem;
-    margin-bottom: 0.8rem;
-    border-radius: 12px;
-    background: #f7f7f7;
-    transition: .25s;
   }
 
   .leaderboard-item:hover {
-    background: #eef0ff;
+    border-color: #667eea;
     transform: translateX(5px);
-  }
-
-  .leaderboard-item.top-1 {
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    font-weight: 700;
-  }
-
-  .leaderboard-item.top-2 {
-    background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
-    font-weight: 600;
-  }
-
-  .leaderboard-item.top-3 {
-    background: linear-gradient(135deg, #cd7f32, #e8a87c);
-    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
   }
 
   .rank {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #667eea;
-    min-width: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #764ba2;
+    text-align: center;
   }
 
-  .top-1 .rank, .top-2 .rank, .top-3 .rank {
+  .rank-1 { color: #FFD700; font-size: 32px; }
+  .rank-2 { color: #C0C0C0; font-size: 28px; }
+  .rank-3 { color: #CD7F32; font-size: 26px; }
+
+  .name {
+    font-size: 18px;
+    font-weight: 600;
     color: #333;
-  }
-
-  .player-name {
-    flex: 1;
-    font-size: 1rem;
-    margin: 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .score {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #764ba2;
-  }
-
-  .top-1 .score, .top-2 .score, .top-3 .score {
-    color: #333;
-  }
-
-  .medal {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
-  }
-
-  .empty-state {
     text-align: center;
-    padding: 3rem 1rem;
+  }
+
+  .score-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #667eea;
+  }
+
+  .score-label {
+    font-size: 12px;
     color: #999;
   }
 
-  .empty-state-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    display: block;
-    margin-top: 1.5rem;
-    padding: .9rem;
-    background: #667eea;
-    color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
+  .points {
     text-align: center;
-    transition: .25s;
   }
 
-  a:hover {
-    background: #5569cc;
+  .points-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #764ba2;
+  }
+
+  .points-label {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+  }
+
+  .no-data-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102,126,234,.4);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .button-container {
+    text-align: center;
+  }
+
+  .trophy {
+    display: inline-block;
+    margin-left: 5px;
   }
 </style>
 </head>
-
 <body>
-
 <div class="container">
-  <h1>🏆 Leaderboard</h1>
-  <p class="subtitle">Top Players - Bible Quiz</p>
+  <h1>🏆 Leaderboard 🏆</h1>
+  <p class="subtitle">Top scores sorted by points (max: {{ max_possible_points }} pts)</p>
 
   <div class="leaderboard">
     {% if leaderboard %}
-      {% for player in leaderboard %}
-        <div class="leaderboard-item {% if loop.index == 1 %}top-1{% elif loop.index == 2 %}top-2{% elif loop.index == 3 %}top-3{% endif %}">
-          <div class="rank">
-            {% if loop.index == 1 %}
-              <span class="medal">🥇</span>
-            {% elif loop.index == 2 %}
-              <span class="medal">🥈</span>
-            {% elif loop.index == 3 %}
-              <span class="medal">🥉</span>
-            {% else %}
-              #{{ loop.index }}
-            {% endif %}
-          </div>
-          <div class="player-name">{{ player.name }}</div>
-          <div class="score">{{ player.score }}%</div>
+      <div class="leaderboard-header">
+        <div>Rank</div>
+        <div>Player</div>
+        <div style="text-align: center;">Accuracy</div>
+        <div style="text-align: center;">Points</div>
+      </div>
+      
+      {% for entry in leaderboard %}
+      <div class="leaderboard-item">
+        <div class="rank rank-{{ loop.index if loop.index <= 3 else 'other' }}">
+          {% if loop.index == 1 %}
+            🥇
+          {% elif loop.index == 2 %}
+            🥈
+          {% elif loop.index == 3 %}
+            🥉
+          {% else %}
+            #{{ loop.index }}
+          {% endif %}
         </div>
+        <div class="name">
+          {{ entry.name }}
+          {% if loop.index == 1 %}
+            <span class="trophy">👑</span>
+          {% endif %}
+        </div>
+        <div class="score">
+          <div class="score-value">{{ entry.percentage }}%</div>
+          <div class="score-label">correct</div>
+        </div>
+        <div class="points">
+          <div class="points-value">{{ entry.points }}</div>
+          <div class="points-label">points</div>
+        </div>
+      </div>
       {% endfor %}
     {% else %}
-      <div class="empty-state">
-        <div class="empty-state-icon">📊</div>
-        <p>No scores yet! Be the first to take the quiz.</p>
+      <div class="no-data">
+        <div class="no-data-icon">📊</div>
+        <p>No scores yet. Be the first to play!</p>
       </div>
     {% endif %}
   </div>
 
-  <a href="/">Take the Quiz</a>
+  <div class="button-container">
+    <a href="/" class="button">Play Quiz</a>
+  </div>
 </div>
-
 </body>
 </html>
