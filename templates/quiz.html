@@ -527,6 +527,32 @@
     wasVisible = isVisible;
   });
 
+  // Detect app switching on mobile (blur/focus events)
+  let hadFocus = true;
+  let blurTimeout;
+  
+  window.addEventListener('blur', function() {
+    if (hadFocus && !isLocked) {
+      // Use a small timeout to distinguish between app switching and other blur events
+      blurTimeout = setTimeout(function() {
+        if (!hadFocus && !document.hidden) {
+          // Window lost focus but page is still visible - likely app switch on mobile
+          console.log('App switch detected (blur) - violation triggered');
+          lockScreen();
+        }
+      }, 100);
+    }
+    hadFocus = false;
+  });
+
+  window.addEventListener('focus', function() {
+    hadFocus = true;
+    // Clear the blur timeout if focus returns quickly
+    if (blurTimeout) {
+      clearTimeout(blurTimeout);
+    }
+  });
+
   // Additional detection for iOS/Safari (pagehide event)
   window.addEventListener('pagehide', function(e) {
     if (!e.persisted && !isLocked) {
