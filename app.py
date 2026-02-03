@@ -100,6 +100,15 @@ def quiz_question():
     if request.method == "POST":
         answer = request.form.get('answer')
         time_taken = float(request.form.get('time_taken', TIME_LIMIT_SECONDS))
+        terminated = request.form.get('terminated', 'false') == 'true'
+        
+        # If quiz was terminated due to violations, mark all remaining as wrong
+        if terminated:
+            # Fill remaining answers with empty strings (wrong answers)
+            while len(session['answers']) < len(quiz):
+                session['answers'].append('')
+            session['quiz_terminated'] = True
+            return redirect(url_for('complete'))
         
         # Calculate points based on time taken
         if answer == quiz[current_q]["answer"]:
@@ -143,6 +152,7 @@ def complete():
     name = session['name']
     answers = session['answers']
     total_points = session.get('total_points', 0)
+    was_terminated = session.get('quiz_terminated', False)
 
     # Calculate percentage score
     correct = 0
@@ -169,7 +179,8 @@ def complete():
                            total_points=total_points,
                            max_possible_points=max_possible_points,
                            fun_fact=FUN_FACT,
-                           total_questions=len(quiz))
+                           total_questions=len(quiz),
+                           was_terminated=was_terminated)
 
 @app.route("/leaderboard")
 def leaderboard():

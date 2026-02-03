@@ -309,6 +309,13 @@
   <h1>Quiz Complete!</h1>
   <p class="name">{{ name }}</p>
 
+  {% if was_terminated %}
+  <div style="background: #ff4757; color: white; padding: 20px; border-radius: 10px; margin-bottom: 25px; font-weight: bold;">
+    ⚠️ QUIZ TERMINATED<br>
+    <span style="font-size: 14px; font-weight: normal;">Your quiz was ended early due to 3 anti-cheat violations.</span>
+  </div>
+  {% endif %}
+
   <div class="score-container">
     <div class="score-label">Accuracy</div>
     <div class="score">{{ score }}%</div>

@@ -326,6 +326,24 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  /* Prevent text selection for anti-cheat */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Allow selection only in radio buttons */
+  input[type="radio"] {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
 </style>
 </head>
 <body class="{{ theme }}">
@@ -380,6 +398,7 @@
   let timerInterval;
   let violations = 0;
   let isLocked = false;
+  let lastInteractionTime = Date.now();
 
   // Screen lock functionality
   const screenLock = document.getElementById('screenLock');
@@ -395,16 +414,23 @@
       clearInterval(timerInterval);
       
       // Update violation count
-      violationCountElement.textContent = `Violations: ${violations}${violations >= 3 ? ' - Answer will be marked as wrong!' : ''}`;
-      
-      // Disable form submission if too many violations
       if (violations >= 3) {
+        violationCountElement.innerHTML = `<span style="color: #ff4757; font-size: 20px; font-weight: bold;">QUIZ TERMINATED!</span><br><span style="color: #ffd93d;">Too many violations detected.<br>All remaining questions marked as wrong.</span>`;
         submitButton.disabled = true;
+        
+        // Add hidden input to indicate termination
+        const terminatedInput = document.createElement('input');
+        terminatedInput.type = 'hidden';
+        terminatedInput.name = 'terminated';
+        terminatedInput.value = 'true';
+        quizForm.appendChild(terminatedInput);
+        
+        // Auto-submit after 4 seconds to end quiz
         setTimeout(() => {
-          // Auto-submit with no answer after 3 violations
-          document.getElementById('timeTaken').value = timeLimit;
           quizForm.submit();
-        }, 3000);
+        }, 4000);
+      } else {
+        violationCountElement.textContent = `Violations: ${violations}/3 - Return to continue`;
       }
     }
   }
@@ -419,7 +445,7 @@
     }
   }
 
-  // Detect when user leaves the page
+  // Detect when user leaves the page (works on desktop and mobile)
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
       lockScreen();
@@ -428,7 +454,7 @@
     }
   });
 
-  // Detect window blur (switching windows/tabs)
+  // Detect window blur (switching windows/tabs on desktop)
   window.addEventListener('blur', function() {
     lockScreen();
   });
@@ -439,9 +465,78 @@
     }
   });
 
-  // Prevent right-click
+  // Mobile-specific: Detect when app goes to background
+  window.addEventListener('pagehide', function() {
+    lockScreen();
+  });
+
+  window.addEventListener('pageshow', function() {
+    if (!document.hidden) {
+      unlockScreen();
+    }
+  });
+
+  // Detect when page loses focus (mobile browsers)
+  let wasVisible = true;
+  setInterval(function() {
+    const isVisible = !document.hidden;
+    if (wasVisible && !isVisible) {
+      lockScreen();
+    } else if (!wasVisible && isVisible) {
+      unlockScreen();
+    }
+    wasVisible = isVisible;
+  }, 500);
+
+  // Detect inactivity (user might have switched apps)
+  function resetInactivityTimer() {
+    lastInteractionTime = Date.now();
+  }
+
+  // Track user interactions
+  document.addEventListener('touchstart', resetInactivityTimer);
+  document.addEventListener('touchmove', resetInactivityTimer);
+  document.addEventListener('touchend', resetInactivityTimer);
+  document.addEventListener('mousedown', resetInactivityTimer);
+  document.addEventListener('mousemove', resetInactivityTimer);
+  document.addEventListener('keydown', resetInactivityTimer);
+
+  // Check for inactivity every second
+  setInterval(function() {
+    const inactiveTime = Date.now() - lastInteractionTime;
+    // If no interaction for 3 seconds and timer is running, might be cheating
+    if (inactiveTime > 3000 && !isLocked && timerInterval) {
+      const elapsed = (Date.now() - startTime) / 1000;
+      // Only trigger if there's still time left (they should be answering)
+      if (elapsed < timeLimit - 1) {
+        lockScreen();
+      }
+    }
+  }, 1000);
+
+  // Prevent right-click (desktop)
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
+  });
+
+  // Prevent long-press context menu (mobile)
+  document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  let touchStartTime;
+  document.addEventListener('touchstart', function(e) {
+    touchStartTime = Date.now();
+  });
+
+  document.addEventListener('touchend', function(e) {
+    const touchDuration = Date.now() - touchStartTime;
+    // If touch was held for more than 500ms (long press), prevent it
+    if (touchDuration > 500) {
+      e.preventDefault();
+    }
   });
 
   // Prevent common keyboard shortcuts for cheating
@@ -456,6 +551,45 @@
     }
   });
 
+  // Detect if user takes a screenshot (Android)
+  document.addEventListener('visibilitychange', function() {
+    // On some Android devices, taking a screenshot briefly changes visibility
+    if (document.hidden) {
+      setTimeout(function() {
+        if (!document.hidden) {
+          // Page became visible again quickly - might be screenshot
+          lockScreen();
+        }
+      }, 100);
+    }
+  });
+
+  // Warn if user tries to zoom (often used to screenshot)
+  let lastTouchDistance = 0;
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2) {
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const distance = Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+      );
+      
+      if (lastTouchDistance > 0) {
+        const scaleDiff = Math.abs(distance - lastTouchDistance);
+        if (scaleDiff > 10) { // Pinch zoom detected
+          e.preventDefault();
+          lockScreen();
+        }
+      }
+      lastTouchDistance = distance;
+    }
+  }, { passive: false });
+
+  document.addEventListener('touchend', function() {
+    lastTouchDistance = 0;
+  });
+
   function updateTimer() {
     const elapsed = (Date.now() - startTime) / 1000;
     const remaining = Math.max(0, timeLimit - elapsed);
@@ -465,7 +599,7 @@
     timerElement.textContent = remaining.toFixed(1) + 's';
     
     // Add warning class when time is running out
-    if (remaining < 10) {
+    if (remaining < 5) {
       timerElement.classList.add('warning');
     }
     
@@ -502,6 +636,12 @@
   quizForm.addEventListener('submit', function() {
     clearInterval(timerInterval);
   });
+
+  // Disable text selection (makes it harder to copy)
+  document.body.style.userSelect = 'none';
+  document.body.style.webkitUserSelect = 'none';
+  document.body.style.mozUserSelect = 'none';
+  document.body.style.msUserSelect = 'none';
 </script>
 </body>
 </html>
