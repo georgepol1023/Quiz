@@ -428,7 +428,6 @@
   let timerInterval;
   let violations = 0;
   let isLocked = false;
-  let lastInteractionTime = Date.now();
   let hasTriggeredLock = false; // Prevent multiple simultaneous locks
 
   // Screen lock functionality
@@ -446,184 +445,81 @@
 
   function lockScreen() {
     // Prevent multiple simultaneous lock triggers
-    if (hasTriggeredLock) {
+    if (hasTriggeredLock || isLocked) {
       return;
     }
     
-    if (!isLocked) {
-      hasTriggeredLock = true;
-      isLocked = true;
-      violations++;
+    hasTriggeredLock = true;
+    isLocked = true;
+    violations++;
+    
+    console.log('Violation detected! Count:', violations);
+    
+    screenLock.classList.add('active');
+    clearInterval(timerInterval);
+    
+    // Update violation count and button state
+    if (violations >= 3) {
+      violationCountElement.innerHTML = `<span style="color: #ff4757; font-size: 20px; font-weight: bold;">QUIZ TERMINATED!</span><br><span style="color: #ffd93d;">Too many violations detected.<br>All remaining questions marked as wrong.</span>`;
+      resumeButton.classList.add('hidden');
+      submitButton.disabled = true;
       
-      console.log('Lock triggered. Violations:', violations);
+      // Add hidden input to indicate termination
+      const terminatedInput = document.createElement('input');
+      terminatedInput.type = 'hidden';
+      terminatedInput.name = 'terminated';
+      terminatedInput.value = 'true';
+      quizForm.appendChild(terminatedInput);
       
-      screenLock.classList.add('active');
-      clearInterval(timerInterval);
-      
-      // Update violation count and button state
-      if (violations >= 3) {
-        violationCountElement.innerHTML = `<span style="color: #ff4757; font-size: 20px; font-weight: bold;">QUIZ TERMINATED!</span><br><span style="color: #ffd93d;">Too many violations detected.<br>All remaining questions marked as wrong.</span>`;
-        resumeButton.classList.add('hidden');
-        submitButton.disabled = true;
-        
-        // Add hidden input to indicate termination
-        const terminatedInput = document.createElement('input');
-        terminatedInput.type = 'hidden';
-        terminatedInput.name = 'terminated';
-        terminatedInput.value = 'true';
-        quizForm.appendChild(terminatedInput);
-        
-        // Auto-submit after 4 seconds to end quiz
-        setTimeout(() => {
-          quizForm.submit();
-        }, 4000);
-      } else {
-        violationCountElement.innerHTML = `<span style="color: #ffd93d; font-size: 18px;">Violation ${violations} of 3</span><br><span style="color: #fff; font-size: 14px;">Tap "Resume Quiz" to continue</span>`;
-        resumeButton.classList.remove('hidden');
-      }
-      
-      // Reset trigger flag after a delay
+      // Auto-submit after 4 seconds to end quiz
       setTimeout(() => {
-        hasTriggeredLock = false;
-      }, 1000);
+        quizForm.submit();
+      }, 4000);
+    } else {
+      violationCountElement.innerHTML = `<span style="color: #ffd93d; font-size: 18px;">Violation ${violations} of 3</span><br><span style="color: #fff; font-size: 14px;">Tap "Resume Quiz" to continue</span>`;
+      resumeButton.classList.remove('hidden');
     }
+    
+    // Reset trigger flag after a delay
+    setTimeout(() => {
+      hasTriggeredLock = false;
+    }, 1000);
   }
 
   function unlockScreen() {
     if (isLocked && violations < 3) {
+      console.log('Quiz resumed. Current violations:', violations);
       isLocked = false;
       hasTriggeredLock = false;
       screenLock.classList.remove('active');
       startTime = Date.now(); // Reset timer start time
       timerInterval = setInterval(updateTimer, 100);
       updateTimer();
-      lastInteractionTime = Date.now(); // Reset inactivity timer
     }
   }
 
+  // ONLY detect page visibility changes (tab switch, home screen, lock screen)
   // Track visibility state to prevent duplicate triggers
-  let isCurrentlyVisible = !document.hidden;
+  let wasVisible = !document.hidden;
   
-  // Detect when user leaves the page (works on desktop and mobile)
   document.addEventListener('visibilitychange', function() {
-    const nowVisible = !document.hidden;
+    const isVisible = !document.hidden;
     
-    // Only trigger if state actually changed
-    if (isCurrentlyVisible && !nowVisible) {
-      // Became hidden
+    // Only trigger lock when page becomes hidden
+    if (wasVisible && !isVisible) {
+      console.log('Page hidden - violation triggered');
       lockScreen();
     }
     
-    isCurrentlyVisible = nowVisible;
+    wasVisible = isVisible;
   });
 
-  // Detect window blur (switching windows/tabs on desktop)
-  let hadFocus = true;
-  window.addEventListener('blur', function() {
-    if (hadFocus && !isLocked) {
-      hadFocus = false;
+  // Additional detection for iOS/Safari (pagehide event)
+  window.addEventListener('pagehide', function(e) {
+    if (!e.persisted) {
+      console.log('Page hide detected - violation triggered');
       lockScreen();
     }
-  });
-
-  window.addEventListener('focus', function() {
-    hadFocus = true;
-  });
-
-  // Mobile-specific: Detect when app goes to background
-  window.addEventListener('pagehide', function() {
-    if (!isLocked) {
-      lockScreen();
-    }
-  });
-
-  // Track user interactions
-  function resetInactivityTimer() {
-    lastInteractionTime = Date.now();
-  }
-
-  document.addEventListener('touchstart', resetInactivityTimer);
-  document.addEventListener('touchmove', resetInactivityTimer);
-  document.addEventListener('touchend', resetInactivityTimer);
-  document.addEventListener('mousedown', resetInactivityTimer);
-  document.addEventListener('mousemove', resetInactivityTimer);
-  document.addEventListener('keydown', resetInactivityTimer);
-
-  // Check for inactivity every 2 seconds
-  setInterval(function() {
-    if (isLocked || violations >= 3) {
-      return; // Don't check if already locked or terminated
-    }
-    
-    const inactiveTime = Date.now() - lastInteractionTime;
-    // If no interaction for 5 seconds and timer is running, might be cheating
-    if (inactiveTime > 5000 && timerInterval) {
-      const elapsed = (Date.now() - startTime) / 1000;
-      // Only trigger if there's still time left (they should be answering)
-      if (elapsed < timeLimit - 1 && elapsed > 1) {
-        lockScreen();
-      }
-    }
-  }, 2000);
-
-  // Prevent right-click (desktop)
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
-
-  // Prevent long-press context menu (mobile)
-  let touchStartTime;
-  document.addEventListener('touchstart', function(e) {
-    touchStartTime = Date.now();
-    if (e.touches.length > 1) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  document.addEventListener('touchend', function(e) {
-    const touchDuration = Date.now() - touchStartTime;
-    // If touch was held for more than 500ms (long press), prevent it
-    if (touchDuration > 500) {
-      e.preventDefault();
-    }
-  });
-
-  // Prevent common keyboard shortcuts for cheating
-  document.addEventListener('keydown', function(e) {
-    // Prevent Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A, F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-    if (
-      (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x' || e.key === 'a' || e.key === 'u')) ||
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
-    ) {
-      e.preventDefault();
-    }
-  });
-
-  // Warn if user tries to zoom (often used to screenshot)
-  let lastTouchDistance = 0;
-  document.addEventListener('touchmove', function(e) {
-    if (e.touches.length === 2) {
-      const touch1 = e.touches[0];
-      const touch2 = e.touches[1];
-      const distance = Math.hypot(
-        touch2.clientX - touch1.clientX,
-        touch2.clientY - touch1.clientY
-      );
-      
-      if (lastTouchDistance > 0) {
-        const scaleDiff = Math.abs(distance - lastTouchDistance);
-        if (scaleDiff > 10) { // Pinch zoom detected
-          e.preventDefault();
-          lockScreen();
-        }
-      }
-      lastTouchDistance = distance;
-    }
-  }, { passive: false });
-
-  document.addEventListener('touchend', function() {
-    lastTouchDistance = 0;
   });
 
   function updateTimer() {
