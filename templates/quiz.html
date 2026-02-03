@@ -429,6 +429,7 @@
   let violations = 0;
   let isLocked = false;
   let lastInteractionTime = Date.now();
+  let hasTriggeredLock = false; // Prevent multiple simultaneous locks
 
   // Screen lock functionality
   const screenLock = document.getElementById('screenLock');
@@ -438,15 +439,24 @@
   const submitButton = quizForm.querySelector('button[type="submit"]');
 
   function attemptResume() {
-    if (violations < 3) {
+    if (violations < 3 && isLocked) {
       unlockScreen();
     }
   }
 
   function lockScreen() {
+    // Prevent multiple simultaneous lock triggers
+    if (hasTriggeredLock) {
+      return;
+    }
+    
     if (!isLocked) {
+      hasTriggeredLock = true;
       isLocked = true;
       violations++;
+      
+      console.log('Lock triggered. Violations:', violations);
+      
       screenLock.classList.add('active');
       clearInterval(timerInterval);
       
@@ -471,64 +481,67 @@
         violationCountElement.innerHTML = `<span style="color: #ffd93d; font-size: 18px;">Violation ${violations} of 3</span><br><span style="color: #fff; font-size: 14px;">Tap "Resume Quiz" to continue</span>`;
         resumeButton.classList.remove('hidden');
       }
+      
+      // Reset trigger flag after a delay
+      setTimeout(() => {
+        hasTriggeredLock = false;
+      }, 1000);
     }
   }
 
   function unlockScreen() {
     if (isLocked && violations < 3) {
       isLocked = false;
+      hasTriggeredLock = false;
       screenLock.classList.remove('active');
       startTime = Date.now(); // Reset timer start time
       timerInterval = setInterval(updateTimer, 100);
       updateTimer();
+      lastInteractionTime = Date.now(); // Reset inactivity timer
     }
   }
 
-  // Remove automatic unlock on visibility change - now requires button press
+  // Track visibility state to prevent duplicate triggers
+  let isCurrentlyVisible = !document.hidden;
+  
+  // Detect when user leaves the page (works on desktop and mobile)
   document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
+    const nowVisible = !document.hidden;
+    
+    // Only trigger if state actually changed
+    if (isCurrentlyVisible && !nowVisible) {
+      // Became hidden
       lockScreen();
     }
-    // Don't auto-unlock - user must press Resume button
+    
+    isCurrentlyVisible = nowVisible;
   });
 
   // Detect window blur (switching windows/tabs on desktop)
+  let hadFocus = true;
   window.addEventListener('blur', function() {
-    lockScreen();
+    if (hadFocus && !isLocked) {
+      hadFocus = false;
+      lockScreen();
+    }
   });
 
-  // Remove auto-unlock on focus
   window.addEventListener('focus', function() {
-    // Don't auto-unlock - user must press Resume button
+    hadFocus = true;
   });
 
   // Mobile-specific: Detect when app goes to background
   window.addEventListener('pagehide', function() {
-    lockScreen();
-  });
-
-  // Don't auto-unlock - require button press
-  window.addEventListener('pageshow', function() {
-    // User must press Resume button
-  });
-
-  // Detect when page loses focus (mobile browsers)
-  let wasVisible = true;
-  setInterval(function() {
-    const isVisible = !document.hidden;
-    if (wasVisible && !isVisible) {
+    if (!isLocked) {
       lockScreen();
     }
-    // Don't auto-unlock - user must press Resume button
-    wasVisible = isVisible;
-  }, 500);
+  });
 
-  // Detect inactivity (user might have switched apps)
+  // Track user interactions
   function resetInactivityTimer() {
     lastInteractionTime = Date.now();
   }
 
-  // Track user interactions
   document.addEventListener('touchstart', resetInactivityTimer);
   document.addEventListener('touchmove', resetInactivityTimer);
   document.addEventListener('touchend', resetInactivityTimer);
@@ -536,18 +549,22 @@
   document.addEventListener('mousemove', resetInactivityTimer);
   document.addEventListener('keydown', resetInactivityTimer);
 
-  // Check for inactivity every second
+  // Check for inactivity every 2 seconds
   setInterval(function() {
+    if (isLocked || violations >= 3) {
+      return; // Don't check if already locked or terminated
+    }
+    
     const inactiveTime = Date.now() - lastInteractionTime;
-    // If no interaction for 3 seconds and timer is running, might be cheating
-    if (inactiveTime > 3000 && !isLocked && timerInterval) {
+    // If no interaction for 5 seconds and timer is running, might be cheating
+    if (inactiveTime > 5000 && timerInterval) {
       const elapsed = (Date.now() - startTime) / 1000;
       // Only trigger if there's still time left (they should be answering)
-      if (elapsed < timeLimit - 1) {
+      if (elapsed < timeLimit - 1 && elapsed > 1) {
         lockScreen();
       }
     }
-  }, 1000);
+  }, 2000);
 
   // Prevent right-click (desktop)
   document.addEventListener('contextmenu', function(e) {
@@ -555,16 +572,13 @@
   });
 
   // Prevent long-press context menu (mobile)
+  let touchStartTime;
   document.addEventListener('touchstart', function(e) {
+    touchStartTime = Date.now();
     if (e.touches.length > 1) {
       e.preventDefault();
     }
   }, { passive: false });
-
-  let touchStartTime;
-  document.addEventListener('touchstart', function(e) {
-    touchStartTime = Date.now();
-  });
 
   document.addEventListener('touchend', function(e) {
     const touchDuration = Date.now() - touchStartTime;
@@ -583,19 +597,6 @@
       (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))
     ) {
       e.preventDefault();
-    }
-  });
-
-  // Detect if user takes a screenshot (Android)
-  document.addEventListener('visibilitychange', function() {
-    // On some Android devices, taking a screenshot briefly changes visibility
-    if (document.hidden) {
-      setTimeout(function() {
-        if (!document.hidden) {
-          // Page became visible again quickly - might be screenshot
-          lockScreen();
-        }
-      }, 100);
     }
   });
 
