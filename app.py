@@ -7,90 +7,71 @@ app = Flask(__name__)
 app.secret_key = "your_secret_key_here_12345"
 
 quiz = [
-     {
-        "question": "Who was Jesus' mother?",
-        "options": ["Elizabeth", "Mary", "Martha", "Anna"],
-        "answer": "Mary",
-        "difficulty": "easy"
+    {
+        "question": "Who built the ark to survive the great flood?",
+        "options": ["Moses", "Noah", "Abraham", "David"],
+        "answer": "Noah"
     },
     {
-        "question": "Where was Jesus born?",
-        "options": ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
-        "answer": "Bethlehem",
-        "difficulty": "easy"
+        "question": "What is the first book of the Bible?",
+        "options": ["Genesis", "Exodus", "Psalms", "Matthew"],
+        "answer": "Genesis"
     },
     {
-        "question": "How many disciples did Jesus have?",
-        "options": ["7", "10", "12", "20"],
-        "answer": "12",
-        "difficulty": "easy"
+        "question": "Who was swallowed by a great fish?",
+        "options": ["Jonah", "Peter", "Paul", "Elijah"],
+        "answer": "Jonah"
     },
     {
-        "question": "Who baptized Jesus?",
-        "options": ["Peter", "John the Baptist", "Matthew", "Paul"],
-        "answer": "John the Baptist",
-        "difficulty": "easy"
-    },
-
-    {
-        "question": "What was Jesus’ first miracle?",
-        "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the 5,000"],
-        "answer": "Turning water into wine",
-        "difficulty": "medium"
+        "question": "How many days did God take to create the world?",
+        "options": ["5", "6", "7", "8"],
+        "answer": "6"
     },
     {
-        "question": "Who denied Jesus three times?",
-        "options": ["John", "Peter", "James", "Andrew"],
-        "answer": "Peter",
-        "difficulty": "medium"
+        "question": "Who led the Israelites out of Egypt?",
+        "options": ["Joshua", "Moses", "Aaron", "Caleb"],
+        "answer": "Moses"
     },
     {
-        "question": "How many baskets of leftovers were collected after feeding the 5,000?",
-        "options": ["5", "7", "10", "12"],
-        "answer": "12",
-        "difficulty": "medium"
+        "question": "What did Jesus turn water into at the wedding?",
+        "options": ["Milk", "Wine", "Oil", "Honey"],
+        "answer": "Wine"
     },
     {
-        "question": "Which Gospel tells the story of the Good Samaritan?",
-        "options": ["Matthew", "Mark", "Luke", "John"],
-        "answer": "Luke",
-        "difficulty": "medium"
-    },
-
-    {
-        "question": "Who helped carry Jesus’ cross?",
-        "options": ["Joseph of Arimathea", "Nicodemus", "Simon of Cyrene", "Barabbas"],
-        "answer": "Simon of Cyrene",
-        "difficulty": "hard"
+        "question": "Who was the shepherd boy that became a king?",
+        "options": ["Solomon", "David", "Joshua", "Isaac"],
+        "answer": "David"
     },
     {
-        "question": "Who was released instead of Jesus?",
-        "options": ["Barnabas", "Barabbas", "Silas", "Stephen"],
-        "answer": "Barabbas",
-        "difficulty": "hard"
+        "question": "Which apostle denied Jesus three times?",
+        "options": ["Peter", "Thomas", "John", "Andrew"],
+        "answer": "Peter"
     },
     {
-        "question": "Which disciple was known for doubting Jesus’ resurrection?",
-        "options": ["Philip", "Matthew", "Thomas", "Simon"],
-        "answer": "Thomas",
-        "difficulty": "hard"
+        "question": "Where did Jesus grow up?",
+        "options": ["Bethlehem", "Nazareth", "Jerusalem", "Capernaum"],
+        "answer": "Nazareth"
     },
     {
-        "question": "What happened at Pentecost?",
-        "options": [
-            "Jesus ascended to heaven",
-            "The Holy Spirit came upon the disciples",
-            "The temple was destroyed",
-            "Jesus fed the crowd"
-        ],
-        "answer": "The Holy Spirit came upon the disciples",
-        "difficulty": "hard"
+        "question": "Who interpreted Pharaoh's dreams about the cows and grain?",
+        "options": ["Joseph", "Moses", "Daniel", "Aaron"],
+        "answer": "Joseph"
+    },
+    {
+        "question": "What weapon did Samson use to defeat a thousand Philistines?",
+        "options": ["Spear", "Jawbone of a donkey", "Sword", "Rock"],
+        "answer": "Jawbone of a donkey"
+    },
+    {
+        "question": "Which disciple walked on water toward Jesus?",
+        "options": ["Peter", "John", "James", "Philip"],
+        "answer": "Peter"
     }
 ]
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 100
-TIME_LIMIT_SECONDS = 30  # Time until points reach minimum
+TIME_LIMIT_SECONDS = 10  # Time until points reach minimum
 
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, "w", newline="") as f:

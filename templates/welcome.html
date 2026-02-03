@@ -27,6 +27,77 @@
     text-align: center;
   }
 
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 15px;
+      align-items: flex-start;
+      padding-top: 30px;
+    }
+
+    .container {
+      padding: 30px 25px;
+      border-radius: 15px;
+    }
+
+    .logo {
+      font-size: 60px !important;
+      margin-bottom: 15px !important;
+    }
+
+    h1 {
+      font-size: 28px !important;
+      margin-bottom: 12px !important;
+    }
+
+    p {
+      font-size: 15px !important;
+      margin-bottom: 30px !important;
+    }
+
+    .info-box {
+      font-size: 13px !important;
+      padding: 12px !important;
+      margin-top: 20px !important;
+    }
+
+    .theme-selector {
+      flex-direction: column !important;
+    }
+
+    .theme-option {
+      padding: 15px !important;
+    }
+
+    button {
+      padding: 15px !important;
+      font-size: 16px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 25px 20px;
+    }
+
+    .logo {
+      font-size: 50px !important;
+    }
+
+    h1 {
+      font-size: 24px !important;
+    }
+
+    p {
+      font-size: 14px !important;
+    }
+
+    input[type="text"] {
+      padding: 12px !important;
+      font-size: 15px !important;
+    }
+  }
+
   .logo {
     font-size: 80px;
     margin-bottom: 20px;
@@ -170,10 +241,16 @@
     <button type="submit">Start Quiz</button>
   </form>
 
+  <div style="margin-top: 20px;">
+    <a href="/leaderboard" style="display: inline-block; padding: 12px 30px; background: white; color: #667eea; border: 2px solid #667eea; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s ease;">
+      🏆 View Leaderboard
+    </a>
+  </div>
+
   <div class="info-box">
     <strong>🎯 Game Rules:</strong><br>
     • Answer quickly to earn more points (100 → 10 pts)<br>
-    • Each question has a 30-second time limit<br>
+    • Each question has a 10-second time limit<br>
     • <strong>⚠️ Anti-Cheat:</strong> Don't switch tabs or minimize the window! After 3 violations, your answer will be marked wrong automatically.
   </div>
 </div>

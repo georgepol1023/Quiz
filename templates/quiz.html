@@ -40,6 +40,81 @@
     color: #e8e8e8;
   }
 
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
+    .container {
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    h2 {
+      font-size: 20px !important;
+      margin-bottom: 20px !important;
+    }
+
+    .question-header {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+    }
+
+    .timer-container {
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 15px !important;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .timer {
+      font-size: 16px !important;
+    }
+
+    .points-display {
+      font-size: 20px !important;
+    }
+
+    .option {
+      padding: 12px 15px !important;
+      font-size: 14px !important;
+    }
+
+    button {
+      padding: 12px !important;
+      font-size: 16px !important;
+      margin-top: 20px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 15px;
+    }
+
+    h2 {
+      font-size: 18px !important;
+    }
+
+    .question-number {
+      font-size: 12px !important;
+    }
+
+    .lock-message {
+      font-size: 22px !important;
+    }
+
+    .lock-warning {
+      font-size: 16px !important;
+      padding: 0 15px;
+    }
+  }
+
   .progress-container {
     margin-bottom: 30px;
   }

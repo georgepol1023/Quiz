@@ -23,6 +23,97 @@
     padding: 40px;
   }
 
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px 10px;
+    }
+
+    .container {
+      padding: 25px 15px;
+      border-radius: 15px;
+    }
+
+    h1 {
+      font-size: 28px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .subtitle {
+      font-size: 12px !important;
+      margin-bottom: 25px !important;
+    }
+
+    .leaderboard-header {
+      display: none !important;
+    }
+
+    .leaderboard-item {
+      grid-template-columns: 50px 1fr !important;
+      grid-template-rows: auto auto !important;
+      padding: 15px !important;
+      gap: 10px !important;
+    }
+
+    .rank {
+      grid-row: 1 / 3 !important;
+      font-size: 20px !important;
+    }
+
+    .rank-1 { font-size: 28px !important; }
+    .rank-2 { font-size: 24px !important; }
+    .rank-3 { font-size: 22px !important; }
+
+    .name {
+      grid-column: 2 !important;
+      font-size: 16px !important;
+      margin-bottom: 5px !important;
+    }
+
+    .score, .points {
+      grid-column: 2 !important;
+      text-align: left !important;
+      display: flex !important;
+      gap: 10px !important;
+      align-items: baseline !important;
+    }
+
+    .score-value {
+      font-size: 16px !important;
+    }
+
+    .points-value {
+      font-size: 18px !important;
+    }
+
+    .score-label, .points-label {
+      font-size: 11px !important;
+    }
+
+    .button {
+      padding: 12px 30px !important;
+      font-size: 15px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 20px 12px;
+    }
+
+    h1 {
+      font-size: 24px !important;
+    }
+
+    .leaderboard-item {
+      padding: 12px !important;
+    }
+
+    .name {
+      font-size: 15px !important;
+    }
+  }
+
   h1 {
     text-align: center;
     font-size: 36px;
