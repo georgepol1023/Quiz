@@ -102,6 +102,13 @@ def quiz_question():
         time_taken = float(request.form.get('time_taken', TIME_LIMIT_SECONDS))
         terminated = request.form.get('terminated', 'false') == 'true'
         
+        # Update violations count from form if provided
+        violations_from_form = request.form.get('violations_count', '0')
+        try:
+            session['violations'] = int(violations_from_form)
+        except:
+            pass
+        
         # If quiz was terminated due to violations, mark all remaining as wrong
         if terminated:
             # Fill remaining answers with empty strings (wrong answers)
@@ -130,6 +137,10 @@ def quiz_question():
     if current_q >= len(quiz):
         return redirect(url_for('complete'))
     
+    # Initialize violations count if not set
+    if 'violations' not in session:
+        session['violations'] = 0
+    
     question = quiz[current_q]
     progress = ((current_q) / len(quiz)) * 100
     
@@ -140,7 +151,8 @@ def quiz_question():
                          progress=progress,
                          theme=session.get('theme', 'light'),
                          max_points=MAX_POINTS_PER_QUESTION,
-                         time_limit=TIME_LIMIT_SECONDS)
+                         time_limit=TIME_LIMIT_SECONDS,
+                         current_violations=session.get('violations', 0))
 
 @app.route("/complete")
 def complete():

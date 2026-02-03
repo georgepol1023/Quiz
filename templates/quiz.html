@@ -426,7 +426,7 @@
   const minPoints = 10;
   let startTime = Date.now();
   let timerInterval;
-  let violations = 0;
+  let violations = {{ current_violations }}; // Initialize from server
   let isLocked = false;
   let hasTriggeredLock = false; // Prevent multiple simultaneous locks
 
@@ -436,6 +436,16 @@
   const resumeButton = document.getElementById('resumeButton');
   const quizForm = document.getElementById('quizForm');
   const submitButton = quizForm.querySelector('button[type="submit"]');
+
+  // Create hidden input to track violations
+  const violationsInput = document.createElement('input');
+  violationsInput.type = 'hidden';
+  violationsInput.name = 'violations_count';
+  violationsInput.id = 'violationsCount';
+  violationsInput.value = violations;
+  quizForm.appendChild(violationsInput);
+
+  console.log('Quiz loaded. Current violations:', violations);
 
   function attemptResume() {
     if (violations < 3 && isLocked) {
@@ -452,6 +462,9 @@
     hasTriggeredLock = true;
     isLocked = true;
     violations++;
+    
+    // Update hidden input
+    document.getElementById('violationsCount').value = violations;
     
     console.log('Violation detected! Count:', violations);
     
@@ -516,7 +529,7 @@
 
   // Additional detection for iOS/Safari (pagehide event)
   window.addEventListener('pagehide', function(e) {
-    if (!e.persisted) {
+    if (!e.persisted && !isLocked) {
       console.log('Page hide detected - violation triggered');
       lockScreen();
     }
@@ -567,6 +580,7 @@
   // Clean up timer on form submit
   quizForm.addEventListener('submit', function() {
     clearInterval(timerInterval);
+    console.log('Form submitted with violations:', violations);
   });
 
   // Disable text selection (makes it harder to copy)
