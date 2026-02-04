@@ -8,82 +8,82 @@ app.secret_key = "your_secret_key_here_12345"
 
 quiz = [
     {
-        "question": "Who was Jesus' mother?",
-        "options": ["Elizabeth", "Mary", "Martha", "Anna"],
-        "answer": "Mary",
+        "question": "Who was thought of as Jesus' earthly father?",
+        "options": ["Joseph", "Zachariah", "Peter", "Simeon"],
+        "answer": "Joseph",
         "difficulty": "easy"
     },
     {
-        "question": "Where was Jesus born?",
-        "options": ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
-        "answer": "Bethlehem",
+        "question": "In which town did Jesus grow up?",
+        "options": ["Bethlehem", "Jerusalem", "Nazareth", "Jericho"],
+        "answer": "Nazareth",
         "difficulty": "easy"
     },
     {
-        "question": "How many disciples did Jesus have?",
-        "options": ["7", "10", "12", "20"],
-        "answer": "12",
+        "question": "What was Jesus' occupation before his ministry?",
+        "options": ["Fisherman", "Carpenter", "Shepherd", "Teacher"],
+        "answer": "Carpenter",
         "difficulty": "easy"
     },
     {
-        "question": "Who baptized Jesus?",
-        "options": ["Peter", "John the Baptist", "Matthew", "Paul"],
-        "answer": "John the Baptist",
+        "question": "Who were the first disciples Jesus called?",
+        "options": ["Peter and Andrew", "James and John", "Matthew and Thomas", "Philip and Bartholomew"],
+        "answer": "Peter and Andrew",
         "difficulty": "easy"
     },
 
     {
-        "question": "What was Jesus’ first miracle?",
-        "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the 5,000"],
-        "answer": "Turning water into wine",
+        "question": "How long did Jesus fast in the wilderness?",
+        "options": ["7 days", "14 days", "30 days", "40 days"],
+        "answer": "40 days",
         "difficulty": "medium"
     },
     {
-        "question": "Who denied Jesus three times?",
-        "options": ["John", "Peter", "James", "Andrew"],
-        "answer": "Peter",
+        "question": "What prayer did Jesus teach his disciples?",
+        "options": ["The Shema", "The Lord’s Prayer", "The Psalm", "The Blessing"],
+        "answer": "The Lord’s Prayer",
         "difficulty": "medium"
     },
     {
-        "question": "How many baskets of leftovers were collected after feeding the 5,000?",
-        "options": ["5", "7", "10", "12"],
-        "answer": "12",
+        "question": "Which disciple was a tax collector?",
+        "options": ["Peter", "James", "Matthew", "Simon"],
+        "answer": "Matthew",
         "difficulty": "medium"
     },
     {
-        "question": "Which Gospel tells the story of the Good Samaritan?",
-        "options": ["Matthew", "Mark", "Luke", "John"],
-        "answer": "Luke",
+        "question": "On which day did Jesus rise from the dead?",
+        "options": ["Friday", "Saturday", "Sunday", "Monday"],
+        "answer": "Sunday",
         "difficulty": "medium"
     },
 
     {
-        "question": "Who helped carry Jesus’ cross?",
-        "options": ["Joseph of Arimathea", "Nicodemus", "Simon of Cyrene", "Barabbas"],
-        "answer": "Simon of Cyrene",
+        "question": "Who asked Pilate for Jesus’ body after the crucifixion?",
+        "options": ["Nicodemus", "Joseph of Arimathea", "Peter", "John"],
+        "answer": "Joseph of Arimathea",
         "difficulty": "hard"
     },
     {
-        "question": "Who was released instead of Jesus?",
-        "options": ["Barnabas", "Barabbas", "Silas", "Stephen"],
-        "answer": "Barabbas",
-        "difficulty": "hard"
-    },
-    {
-        "question": "Which disciple was known for doubting Jesus’ resurrection?",
-        "options": ["Philip", "Matthew", "Thomas", "Simon"],
-        "answer": "Thomas",
-        "difficulty": "hard"
-    },
-    {
-        "question": "What happened at Pentecost?",
+        "question": "What sign was placed above Jesus on the cross?",
         "options": [
-            "Jesus ascended to heaven",
-            "The Holy Spirit came upon the disciples",
-            "The temple was destroyed",
-            "Jesus fed the crowd"
+            "Son of God",
+            "King of Israel",
+            "King of the Jews",
+            "Messiah"
         ],
-        "answer": "The Holy Spirit came upon the disciples",
+        "answer": "King of the Jews",
+        "difficulty": "hard"
+    },
+    {
+        "question": "Which book comes directly after the four Gospels?",
+        "options": ["Romans", "Acts", "Hebrews", "Revelation"],
+        "answer": "Acts",
+        "difficulty": "hard"
+    },
+    {
+        "question": "Who replaced Judas Iscariot as an apostle?",
+        "options": ["Paul", "Barnabas", "Matthias", "Silas"],
+        "answer": "Matthias",
         "difficulty": "hard"
     }
 ]

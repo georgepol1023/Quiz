@@ -182,21 +182,6 @@
     50% { opacity: 0.6; }
   }
 
-  .points-display {
-    font-size: 24px;
-    font-weight: bold;
-    color: #764ba2;
-    transition: all 0.1s ease;
-  }
-
-  body.dark .points-display {
-    color: #f39c12;
-  }
-
-  .points-display.dropping {
-    color: #ff6b6b;
-  }
-
   h2 {
     font-size: 24px;
     margin-bottom: 30px;
@@ -400,7 +385,6 @@
     <span class="question-number">Question {{ question_num }} of {{ total }}</span>
     <div class="timer-container">
       <div class="timer" id="timer">{{ time_limit }}s</div>
-      <div class="points-display" id="pointsDisplay">{{ max_points }} pts</div>
     </div>
   </div>
 
@@ -574,21 +558,7 @@
       timerElement.classList.add('warning');
     }
     
-    // Calculate current points (linear decrease)
-    let currentPoints = maxPoints - (elapsed / timeLimit * (maxPoints - minPoints));
-    currentPoints = Math.max(minPoints, Math.min(maxPoints, currentPoints));
-    currentPoints = Math.round(currentPoints);
-    
-    // Update points display
-    const pointsElement = document.getElementById('pointsDisplay');
-    pointsElement.textContent = currentPoints + ' pts';
-    
-    // Add dropping class when points are decreasing
-    if (currentPoints < maxPoints * 0.5) {
-      pointsElement.classList.add('dropping');
-    }
-    
-    // Update hidden input for form submission
+    // Update hidden input for form submission (still calculate points in backend)
     document.getElementById('timeTaken').value = elapsed;
     
     // Stop timer if time is up
