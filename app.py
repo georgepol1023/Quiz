@@ -6,7 +6,12 @@ import secrets
 import hashlib
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key_here_12345"
+app.secret_key = "praisejesus"
+
+# Fixed admin token - CHANGE THIS TO YOUR OWN SECRET VALUE!
+ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'my_bible_quiz_secret_2024')
+
+print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 # Generate a secure token for admin download access (keep this secret!)
 ADMIN_TOKEN = secrets.token_urlsafe(32)
