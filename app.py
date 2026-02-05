@@ -8,6 +8,9 @@ import hashlib
 app = Flask(__name__)
 app.secret_key = "praisejesus"
 
+#download excel file : https://quiz-ehus.onrender.com/download?token=praisejesus
+
+
 # Fixed admin token - CHANGE THIS TO YOUR OWN SECRET VALUE!
 ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'praisejesus')
 
