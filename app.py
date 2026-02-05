@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = "praisejesus"
 
 # Fixed admin token - CHANGE THIS TO YOUR OWN SECRET VALUE!
-ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'my_bible_quiz_secret_2024')
+ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'praisejesus')
 
 print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
