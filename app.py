@@ -18,89 +18,89 @@ print(f"{'='*60}\n")
 
 quiz = [
     {
-        "question": "Who was thought of as Jesus' earthly father?",
-        "options": ["Joseph", "Zachariah", "Peter", "Simeon"],
-        "answer": "Joseph",
-        "difficulty": "easy"
-    },
-    {
-        "question": "In which town did Jesus grow up?",
-        "options": ["Bethlehem", "Jerusalem", "Nazareth", "Jericho"],
-        "answer": "Nazareth",
-        "difficulty": "easy"
-    },
-    {
-        "question": "What was Jesus' occupation before his ministry?",
-        "options": ["Fisherman", "Carpenter", "Shepherd", "Teacher"],
-        "answer": "Carpenter",
-        "difficulty": "easy"
-    },
-    {
-        "question": "Who were the first disciples Jesus called?",
-        "options": ["Peter and Andrew", "James and John", "Matthew and Thomas", "Philip and Bartholomew"],
-        "answer": "Peter and Andrew",
-        "difficulty": "easy"
-    },
+    "question": "On which day did God create humans?",
+    "options": ["Fourth day", "Fifth day", "Sixth day", "Seventh day"],
+    "answer": "Sixth day",
+    "difficulty": "easy"
+},
+{
+    "question": "What did God create on the first day?",
+    "options": ["Land and seas", "Light", "Sun and moon", "Animals"],
+    "answer": "Light",
+    "difficulty": "easy"
+},
+{
+    "question": "Who lived the longest according to Genesis?",
+    "options": ["Adam", "Noah", "Methuselah", "Enoch"],
+    "answer": "Methuselah",
+    "difficulty": "easy"
+},
+{
+    "question": "What material did God use to create Eve?",
+    "options": ["Dust", "Clay", "Adam’s rib", "Breath"],
+    "answer": "Adam’s rib",
+    "difficulty": "easy"
+},
 
-    {
-        "question": "How long did Jesus fast in the wilderness?",
-        "options": ["7 days", "14 days", "30 days", "40 days"],
-        "answer": "40 days",
-        "difficulty": "medium"
-    },
-    {
-        "question": "What prayer did Jesus teach his disciples?",
-        "options": ["The Shema", "The Lord's Prayer", "The Psalm", "The Blessing"],
-        "answer": "The Lord's Prayer",
-        "difficulty": "medium"
-    },
-    {
-        "question": "Which disciple was a tax collector?",
-        "options": ["Peter", "James", "Matthew", "Simon"],
-        "answer": "Matthew",
-        "difficulty": "medium"
-    },
-    {
-        "question": "On which day did Jesus rise from the dead?",
-        "options": ["Friday", "Saturday", "Sunday", "Monday"],
-        "answer": "Sunday",
-        "difficulty": "medium"
-    },
+{
+    "question": "How many people were on the ark including Noah?",
+    "options": ["6", "7", "8", "10"],
+    "answer": "8",
+    "difficulty": "medium"
+},
+{
+    "question": "What tower did people build to reach the heavens?",
+    "options": ["Tower of Jerusalem", "Tower of Eden", "Tower of Babel", "Tower of Sodom"],
+    "answer": "Tower of Babel",
+    "difficulty": "medium"
+},
+{
+    "question": "Who was Abraham’s wife?",
+    "options": ["Rebekah", "Leah", "Rachel", "Sarah"],
+    "answer": "Sarah",
+    "difficulty": "medium"
+},
+{
+    "question": "What was the name of Abraham’s son with Hagar?",
+    "options": ["Isaac", "Ishmael", "Esau", "Lot"],
+    "answer": "Ishmael",
+    "difficulty": "medium"
+},
 
-    {
-        "question": "Who asked Pilate for Jesus' body after the crucifixion?",
-        "options": ["Nicodemus", "Joseph of Arimathea", "Peter", "John"],
-        "answer": "Joseph of Arimathea",
-        "difficulty": "hard"
-    },
-    {
-        "question": "What sign was placed above Jesus on the cross?",
-        "options": [
-            "Son of God",
-            "King of Israel",
-            "King of the Jews",
-            "Messiah"
-        ],
-        "answer": "King of the Jews",
-        "difficulty": "hard"
-    },
-    {
-        "question": "Which book comes directly after the four Gospels?",
-        "options": ["Romans", "Acts", "Hebrews", "Revelation"],
-        "answer": "Acts",
-        "difficulty": "hard"
-    },
-    {
-        "question": "Who replaced Judas Iscariot as an apostle?",
-        "options": ["Paul", "Barnabas", "Matthias", "Silas"],
-        "answer": "Matthias",
-        "difficulty": "hard"
-    }
+{
+    "question": "What was the name of Isaac’s wife?",
+    "options": ["Sarah", "Leah", "Rachel", "Rebekah"],
+    "answer": "Rebekah",
+    "difficulty": "hard"
+},
+{
+    "question": "Which twin did Isaac favor?",
+    "options": ["Jacob", "Esau", "Joseph", "Benjamin"],
+    "answer": "Esau",
+    "difficulty": "hard"
+},
+{
+    "question": "What was Joseph’s special garment called?",
+    "options": [
+        "A royal robe",
+        "A linen cloak",
+        "A coat of many colors",
+        "A priestly tunic"
+    ],
+    "answer": "A coat of many colors",
+    "difficulty": "hard"
+},
+{
+    "question": "What animals did God instruct Noah to take seven pairs of?",
+    "options": ["Wild animals", "Birds", "Clean animals", "Creeping things"],
+    "answer": "Clean animals",
+    "difficulty": "hard"
+}
 ]
 
 CSV_FILE = "responses.csv"
-MAX_POINTS_PER_QUESTION = 100
-TIME_LIMIT_SECONDS = 10  # Time until points reach minimum
+MAX_POINTS_PER_QUESTION = 50
+TIME_LIMIT_SECONDS = 15  # Time until points reach minimum
 
 def generate_player_id(name):
     """Generate a unique ID for each player based on name and timestamp"""
