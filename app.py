@@ -13,13 +13,6 @@ ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'my_bible_quiz_secret_2024')
 
 print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
-# Generate a secure token for admin download access (keep this secret!)
-ADMIN_TOKEN = secrets.token_urlsafe(32)
-print(f"\n{'='*60}")
-print(f"ADMIN DOWNLOAD TOKEN (keep this secret!):")
-print(f"{ADMIN_TOKEN}")
-print(f"Download URL: http://your-domain.com/download?token={ADMIN_TOKEN}")
-print(f"{'='*60}\n")
 
 quiz = [
     {
