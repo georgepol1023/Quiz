@@ -1,10 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_file, abort
 import csv
 import os
 import time
+import secrets
+import hashlib
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key_here_12345"
+
+# Generate a secure token for admin download access (keep this secret!)
+ADMIN_TOKEN = secrets.token_urlsafe(32)
+print(f"\n{'='*60}")
+print(f"ADMIN DOWNLOAD TOKEN (keep this secret!):")
+print(f"{ADMIN_TOKEN}")
+print(f"Download URL: http://your-domain.com/download?token={ADMIN_TOKEN}")
+print(f"{'='*60}\n")
 
 quiz = [
     {
@@ -40,8 +50,8 @@ quiz = [
     },
     {
         "question": "What prayer did Jesus teach his disciples?",
-        "options": ["The Shema", "The Lord’s Prayer", "The Psalm", "The Blessing"],
-        "answer": "The Lord’s Prayer",
+        "options": ["The Shema", "The Lord's Prayer", "The Psalm", "The Blessing"],
+        "answer": "The Lord's Prayer",
         "difficulty": "medium"
     },
     {
@@ -58,7 +68,7 @@ quiz = [
     },
 
     {
-        "question": "Who asked Pilate for Jesus’ body after the crucifixion?",
+        "question": "Who asked Pilate for Jesus' body after the crucifixion?",
         "options": ["Nicodemus", "Joseph of Arimathea", "Peter", "John"],
         "answer": "Joseph of Arimathea",
         "difficulty": "hard"
@@ -92,20 +102,30 @@ CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 100
 TIME_LIMIT_SECONDS = 10  # Time until points reach minimum
 
+def generate_player_id(name):
+    """Generate a unique ID for each player based on name and timestamp"""
+    unique_string = f"{name}_{time.time()}"
+    return hashlib.sha256(unique_string.encode()).hexdigest()[:16]
+
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["Name"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)", "Total Points"])
+        writer.writerow(["PlayerID", "Name", "Timestamp"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)", "Total Points"])
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        session['name'] = request.form.get('name')
+        name = request.form.get('name')
+        player_id = generate_player_id(name)
+        
+        session['player_id'] = player_id
+        session['name'] = name
         session['theme'] = request.form.get('theme', 'light')
         session['answers'] = []
         session['current_question'] = 0
         session['total_points'] = 0
         session['question_start_time'] = None
+        session['timestamp'] = time.strftime("%Y-%m-%d %H:%M:%S")
         return redirect(url_for('quiz_question'))
     return render_template("welcome.html")
 
@@ -180,10 +200,12 @@ def complete():
     if 'name' not in session or 'answers' not in session:
         return redirect(url_for('index'))
 
+    player_id = session['player_id']
     name = session['name']
     answers = session['answers']
     total_points = session.get('total_points', 0)
     was_terminated = session.get('quiz_terminated', False)
+    timestamp = session.get('timestamp', time.strftime("%Y-%m-%d %H:%M:%S"))
 
     # Calculate percentage score
     correct = 0
@@ -192,17 +214,15 @@ def complete():
             correct += 1
     percentage_score = round((correct / len(quiz)) * 100, 2)
     
-    # Save name, answers, percentage score, and total points to CSV
+    # Save player_id, name, timestamp, answers, percentage score, and total points to CSV
     with open(CSV_FILE, "a", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow([name] + answers + [percentage_score, total_points])
+        writer.writerow([player_id, name, timestamp] + answers + [percentage_score, total_points])
 
     theme = session.get('theme', 'light')
     max_possible_points = MAX_POINTS_PER_QUESTION * len(quiz)
 
-    # Clear session after saving
-    session.clear()
-
+    # Don't clear session yet - we need player_id for results page
     return render_template("complete.html",
                            name=name,
                            theme=theme,
@@ -211,7 +231,52 @@ def complete():
                            max_possible_points=max_possible_points,
                            fun_fact=FUN_FACT,
                            total_questions=len(quiz),
-                           was_terminated=was_terminated)
+                           was_terminated=was_terminated,
+                           player_id=player_id)
+
+@app.route("/results/<player_id>")
+def view_results(player_id):
+    """Private results page for each player"""
+    player_data = None
+    
+    if os.path.exists(CSV_FILE):
+        with open(CSV_FILE, "r", newline="") as f:
+            reader = csv.reader(f)
+            header = next(reader)  # Skip header row
+            
+            for row in reader:
+                if row[0] == player_id:  # Match player_id
+                    player_data = {
+                        "player_id": row[0],
+                        "name": row[1],
+                        "timestamp": row[2],
+                        "answers": row[3:3+len(quiz)],
+                        "percentage": float(row[-2]),
+                        "points": int(row[-1])
+                    }
+                    break
+    
+    if not player_data:
+        abort(404, description="Results not found")
+    
+    # Build detailed results with correct/incorrect for each question
+    detailed_results = []
+    for i, (user_answer, question) in enumerate(zip(player_data["answers"], quiz)):
+        is_correct = user_answer == question["answer"]
+        detailed_results.append({
+            "question_num": i + 1,
+            "question": question["question"],
+            "user_answer": user_answer,
+            "correct_answer": question["answer"],
+            "is_correct": is_correct,
+            "difficulty": question["difficulty"]
+        })
+    
+    return render_template("results.html",
+                         player_data=player_data,
+                         detailed_results=detailed_results,
+                         total_questions=len(quiz),
+                         max_possible_points=MAX_POINTS_PER_QUESTION * len(quiz))
 
 @app.route("/leaderboard")
 def leaderboard():
@@ -223,23 +288,42 @@ def leaderboard():
             next(reader)  # Skip header row
             
             for row in reader:
-                if len(row) > len(quiz) + 1:  # Make sure row has points data
-                    name = row[0]
+                if len(row) > len(quiz) + 3:  # Make sure row has all data
+                    player_id = row[0]
+                    name = row[1]
                     percentage = float(row[-2])
                     points = int(row[-1])
                     leaderboard_data.append({
+                        "player_id": player_id,
                         "name": name, 
                         "percentage": percentage,
                         "points": points
                     })
     
-    # Sort by points (highest first), then by percentage
-    leaderboard_data.sort(key=lambda x: (x["points"], x["percentage"]), reverse=True)
+    # Sort by percentage (highest first), then by points as tiebreaker
+    leaderboard_data.sort(key=lambda x: (x["percentage"], x["points"]), reverse=True)
     
     return render_template("leaderboard.html", 
                          leaderboard=leaderboard_data,
                          total_questions=len(quiz),
                          max_possible_points=MAX_POINTS_PER_QUESTION * len(quiz))
+
+@app.route("/download")
+def download_csv():
+    """Hidden admin endpoint to download all responses CSV"""
+    token = request.args.get('token', '')
+    
+    # Check if token matches
+    if token != ADMIN_TOKEN:
+        abort(403, description="Unauthorized access")
+    
+    if not os.path.exists(CSV_FILE):
+        abort(404, description="No data available")
+    
+    return send_file(CSV_FILE, 
+                    as_attachment=True, 
+                    download_name=f"quiz_responses_{time.strftime('%Y%m%d_%H%M%S')}.csv",
+                    mimetype='text/csv')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
