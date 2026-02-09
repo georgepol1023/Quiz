@@ -18,95 +18,115 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 
 quiz = [
-   {
-    "question": "Who was Samuel’s mother?",
-    "options": ["Hannah", "Peninnah", "Ruth", "Deborah"],
-    "answer": "Hannah",
+ {
+    "question": "Who replaced Judas Iscariot among the twelve apostles?",
+    "options": ["Barnabas", "Matthias", "Stephen", "Silas"],
+    "answer": "Matthias",
     "difficulty": "easy"
 },
 {
-    "question": "Where did Hannah pray for a child?",
-    "options": ["Jerusalem", "Shiloh", "Bethel", "Hebron"],
-    "answer": "Shiloh",
+    "question": "On which Jewish festival did the Holy Spirit come upon the apostles?",
+    "options": ["Passover", "Pentecost", "Tabernacles", "Purim"],
+    "answer": "Pentecost",
     "difficulty": "easy"
 },
 {
-    "question": "Who was the priest when Samuel was a child?",
-    "options": ["Samuel", "Eli", "Saul", "Abiathar"],
-    "answer": "Eli",
+    "question": "What appeared above the apostles when they were filled with the Holy Spirit?",
+    "options": ["Bright clouds", "Angels", "Tongues of fire", "Lightning"],
+    "answer": "Tongues of fire",
     "difficulty": "easy"
 },
 {
-    "question": "Who anointed Saul as the first king of Israel?",
-    "options": ["Eli", "Samuel", "Nathan", "David"],
-    "answer": "Samuel",
+    "question": "Who preached the first sermon after Pentecost?",
+    "options": ["John", "Peter", "James", "Paul"],
+    "answer": "Peter",
     "difficulty": "easy"
 },
 
 {
-    "question": "Why did the Israelites ask for a king?",
+    "question": "How many people were added to the church on the day of Pentecost?",
+    "options": ["About 500", "About 1,000", "About 3,000", "About 5,000"],
+    "answer": "About 3,000",
+    "difficulty": "medium"
+},
+{
+    "question": "Which man was healed at the Beautiful Gate of the temple?",
+    "options": ["A blind man", "A paralysed man", "A lame man", "A leper"],
+    "answer": "A lame man",
+    "difficulty": "medium"
+},
+{
+    "question": "Who were the married couple struck dead for lying to the Holy Spirit?",
+    "options": ["Aquila and Priscilla", "Ananias and Sapphira", "Zechariah and Elizabeth", "Felix and Drusilla"],
+    "answer": "Ananias and Sapphira",
+    "difficulty": "medium"
+},
+{
+    "question": "Who was Gamaliel?",
     "options": [
-        "To be like other nations",
-        "Because Samuel had no sons",
-        "To lead worship",
-        "To replace the priests"
+        "A Roman governor",
+        "A Jewish teacher of the law",
+        "A high priest",
+        "One of the apostles"
     ],
-    "answer": "To be like other nations",
-    "difficulty": "medium"
-},
-{
-    "question": "From which tribe was King Saul?",
-    "options": ["Judah", "Levi", "Benjamin", "Ephraim"],
-    "answer": "Benjamin",
-    "difficulty": "medium"
-},
-{
-    "question": "What animal did Saul search for before becoming king?",
-    "options": ["Sheep", "Camels", "Donkeys", "Oxen"],
-    "answer": "Donkeys",
-    "difficulty": "medium"
-},
-{
-    "question": "Who defeated Goliath?",
-    "options": ["Saul", "Jonathan", "David", "Samuel"],
-    "answer": "David",
+    "answer": "A Jewish teacher of the law",
     "difficulty": "medium"
 },
 
 {
-    "question": "What weapon did David use to defeat Goliath?",
-    "options": ["Sword", "Spear", "Sling and stone", "Bow and arrow"],
-    "answer": "Sling and stone",
+    "question": "Who was the first Christian martyr?",
+    "options": ["James", "Peter", "Stephen", "Philip"],
+    "answer": "Stephen",
     "difficulty": "hard"
 },
 {
-    "question": "What did Saul do that led God to reject him as king?",
+    "question": "Who approved of Stephen’s death?",
+    "options": ["Herod", "Caiaphas", "Saul", "Pilate"],
+    "answer": "Saul",
+    "difficulty": "hard"
+},
+{
+    "question": "Which apostle preached to the Ethiopian eunuch?",
+    "options": ["Peter", "John", "Philip", "Andrew"],
+    "answer": "Philip",
+    "difficulty": "hard"
+},
+{
+    "question": "What happened to Saul on the road to Damascus?",
     "options": [
-        "Built an idol",
-        "Offered sacrifices unlawfully",
-        "Refused to fight the Philistines",
-        "Killed Samuel"
+        "He was imprisoned",
+        "He was struck blind",
+        "He was healed",
+        "He was baptised"
     ],
-    "answer": "Offered sacrifices unlawfully",
+    "answer": "He was struck blind",
+    "difficulty": "hard"
+},
+
+{
+    "question": "Who was the Roman centurion that Peter visited in Acts 10?",
+    "options": ["Cornelius", "Julius", "Felix", "Festus"],
+    "answer": "Cornelius",
     "difficulty": "hard"
 },
 {
-    "question": "Which prophet anointed David as king?",
-    "options": ["Eli", "Nathan", "Samuel", "Gad"],
-    "answer": "Samuel",
-    "difficulty": "hard"
-},
-{
-    "question": "Why did David spare Saul’s life?",
+    "question": "What vision did Peter receive before visiting Cornelius?",
     "options": [
-        "He was afraid",
-        "He respected God’s anointed king",
-        "Jonathan asked him to",
-        "Saul was injured"
+        "A burning bush",
+        "A sheet with unclean animals",
+        "A ladder to heaven",
+        "A golden altar"
     ],
-    "answer": "He respected God’s anointed king",
+    "answer": "A sheet with unclean animals",
+    "difficulty": "hard"
+},
+{
+    "question": "Which apostle was killed by King Herod in Acts 12?",
+    "options": ["Peter", "John", "James", "Andrew"],
+    "answer": "James",
     "difficulty": "hard"
 }
+
 
 ]
 
