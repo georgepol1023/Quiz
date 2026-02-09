@@ -196,6 +196,106 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+
+            .celebration {
+                font-size: 60px;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+
+            .name {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .score-container {
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            .score-box {
+                padding: 20px;
+            }
+
+            .score-label {
+                font-size: 12px;
+            }
+
+            .score-value {
+                font-size: 36px;
+            }
+
+            .fun-fact {
+                padding: 15px;
+                margin: 20px 0;
+            }
+
+            .fun-fact-title {
+                font-size: 14px;
+            }
+
+            .fun-fact-text {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .btn {
+                padding: 15px;
+                font-size: 15px;
+            }
+
+            .buttons {
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .warning-message {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .celebration {
+                font-size: 50px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .name {
+                font-size: 18px;
+            }
+
+            .score-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .score-value {
+                font-size: 32px;
+            }
+        }
     </style>
 </head>
 <body>

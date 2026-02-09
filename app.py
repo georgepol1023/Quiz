@@ -18,85 +18,96 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 
 quiz = [
-    {
-    "question": "On which day did God create humans?",
-    "options": ["Fourth day", "Fifth day", "Sixth day", "Seventh day"],
-    "answer": "Sixth day",
+   {
+    "question": "Who was Samuel’s mother?",
+    "options": ["Hannah", "Peninnah", "Ruth", "Deborah"],
+    "answer": "Hannah",
     "difficulty": "easy"
 },
 {
-    "question": "What did God create on the first day?",
-    "options": ["Land and seas", "Light", "Sun and moon", "Animals"],
-    "answer": "Light",
+    "question": "Where did Hannah pray for a child?",
+    "options": ["Jerusalem", "Shiloh", "Bethel", "Hebron"],
+    "answer": "Shiloh",
     "difficulty": "easy"
 },
 {
-    "question": "Who lived the longest according to Genesis?",
-    "options": ["Adam", "Noah", "Methuselah", "Enoch"],
-    "answer": "Methuselah",
+    "question": "Who was the priest when Samuel was a child?",
+    "options": ["Samuel", "Eli", "Saul", "Abiathar"],
+    "answer": "Eli",
     "difficulty": "easy"
 },
 {
-    "question": "What material did God use to create Eve?",
-    "options": ["Dust", "Clay", "Adam’s rib", "Breath"],
-    "answer": "Adam’s rib",
+    "question": "Who anointed Saul as the first king of Israel?",
+    "options": ["Eli", "Samuel", "Nathan", "David"],
+    "answer": "Samuel",
     "difficulty": "easy"
 },
 
 {
-    "question": "How many people were on the ark including Noah?",
-    "options": ["6", "7", "8", "10"],
-    "answer": "8",
-    "difficulty": "medium"
-},
-{
-    "question": "What tower did people build to reach the heavens?",
-    "options": ["Tower of Jerusalem", "Tower of Eden", "Tower of Babel", "Tower of Sodom"],
-    "answer": "Tower of Babel",
-    "difficulty": "medium"
-},
-{
-    "question": "Who was Abraham’s wife?",
-    "options": ["Rebekah", "Leah", "Rachel", "Sarah"],
-    "answer": "Sarah",
-    "difficulty": "medium"
-},
-{
-    "question": "What was the name of Abraham’s son with Hagar?",
-    "options": ["Isaac", "Ishmael", "Esau", "Lot"],
-    "answer": "Ishmael",
-    "difficulty": "medium"
-},
-
-{
-    "question": "What was the name of Isaac’s wife?",
-    "options": ["Sarah", "Leah", "Rachel", "Rebekah"],
-    "answer": "Rebekah",
-    "difficulty": "hard"
-},
-{
-    "question": "Which twin did Isaac favor?",
-    "options": ["Jacob", "Esau", "Joseph", "Benjamin"],
-    "answer": "Esau",
-    "difficulty": "hard"
-},
-{
-    "question": "What was Joseph’s special garment called?",
+    "question": "Why did the Israelites ask for a king?",
     "options": [
-        "A royal robe",
-        "A linen cloak",
-        "A coat of many colors",
-        "A priestly tunic"
+        "To be like other nations",
+        "Because Samuel had no sons",
+        "To lead worship",
+        "To replace the priests"
     ],
-    "answer": "A coat of many colors",
+    "answer": "To be like other nations",
+    "difficulty": "medium"
+},
+{
+    "question": "From which tribe was King Saul?",
+    "options": ["Judah", "Levi", "Benjamin", "Ephraim"],
+    "answer": "Benjamin",
+    "difficulty": "medium"
+},
+{
+    "question": "What animal did Saul search for before becoming king?",
+    "options": ["Sheep", "Camels", "Donkeys", "Oxen"],
+    "answer": "Donkeys",
+    "difficulty": "medium"
+},
+{
+    "question": "Who defeated Goliath?",
+    "options": ["Saul", "Jonathan", "David", "Samuel"],
+    "answer": "David",
+    "difficulty": "medium"
+},
+
+{
+    "question": "What weapon did David use to defeat Goliath?",
+    "options": ["Sword", "Spear", "Sling and stone", "Bow and arrow"],
+    "answer": "Sling and stone",
     "difficulty": "hard"
 },
 {
-    "question": "What animals did God instruct Noah to take seven pairs of?",
-    "options": ["Wild animals", "Birds", "Clean animals", "Creeping things"],
-    "answer": "Clean animals",
+    "question": "What did Saul do that led God to reject him as king?",
+    "options": [
+        "Built an idol",
+        "Offered sacrifices unlawfully",
+        "Refused to fight the Philistines",
+        "Killed Samuel"
+    ],
+    "answer": "Offered sacrifices unlawfully",
+    "difficulty": "hard"
+},
+{
+    "question": "Which prophet anointed David as king?",
+    "options": ["Eli", "Nathan", "Samuel", "Gad"],
+    "answer": "Samuel",
+    "difficulty": "hard"
+},
+{
+    "question": "Why did David spare Saul’s life?",
+    "options": [
+        "He was afraid",
+        "He respected God’s anointed king",
+        "Jonathan asked him to",
+        "Saul was injured"
+    ],
+    "answer": "He respected God’s anointed king",
     "difficulty": "hard"
 }
+
 ]
 
 CSV_FILE = "responses.csv"
