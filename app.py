@@ -19,112 +19,64 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
  {
-    "question": "Who replaced Judas Iscariot among the twelve apostles?",
-    "options": ["Barnabas", "Matthias", "Stephen", "Silas"],
-    "answer": "Matthias",
+    "question": "Who baptized Jesus?",
+    "options": ["Peter", "John the Baptist", "James", "Andrew"],
+    "answer": "John the Baptist",
     "difficulty": "easy"
 },
 {
-    "question": "On which Jewish festival did the Holy Spirit come upon the apostles?",
-    "options": ["Passover", "Pentecost", "Tabernacles", "Purim"],
-    "answer": "Pentecost",
+    "question": "Where was Jesus born?",
+    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Galilee"],
+    "answer": "Bethlehem",
     "difficulty": "easy"
 },
 {
-    "question": "What appeared above the apostles when they were filled with the Holy Spirit?",
-    "options": ["Bright clouds", "Angels", "Tongues of fire", "Lightning"],
-    "answer": "Tongues of fire",
+    "question": "Who was Jesus' mother?",
+    "options": ["Martha", "Mary", "Elizabeth", "Anna"],
+    "answer": "Mary",
     "difficulty": "easy"
 },
 {
-    "question": "Who preached the first sermon after Pentecost?",
-    "options": ["John", "Peter", "James", "Paul"],
+    "question": "How many disciples did Jesus choose?",
+    "options": ["10", "12", "7", "14"],
+    "answer": "12",
+    "difficulty": "easy"
+},
+{
+    "question": "Who betrayed Jesus?",
+    "options": ["Peter", "John", "Judas Iscariot", "Thomas"],
+    "answer": "Judas Iscariot",
+    "difficulty": "easy"
+},
+{
+    "question": "What did Jesus turn water into?",
+    "options": ["Oil", "Wine", "Milk", "Honey"],
+    "answer": "Wine",
+    "difficulty": "easy"
+},
+{
+    "question": "Where did Jesus walk on water?",
+    "options": ["The River Jordan", "The Sea of Galilee", "The Dead Sea", "The Red Sea"],
+    "answer": "The Sea of Galilee",
+    "difficulty": "easy"
+},
+{
+    "question": "Who denied Jesus three times?",
+    "options": ["Peter", "James", "Andrew", "Matthew"],
     "answer": "Peter",
     "difficulty": "easy"
 },
-
 {
-    "question": "How many people were added to the church on the day of Pentecost?",
-    "options": ["About 500", "About 1,000", "About 3,000", "About 5,000"],
-    "answer": "About 3,000",
-    "difficulty": "medium"
+    "question": "On which day did Jesus rise from the dead?",
+    "options": ["Friday", "Saturday", "Sunday", "Monday"],
+    "answer": "Sunday",
+    "difficulty": "easy"
 },
 {
-    "question": "Which man was healed at the Beautiful Gate of the temple?",
-    "options": ["A blind man", "A paralysed man", "A lame man", "A leper"],
-    "answer": "A lame man",
-    "difficulty": "medium"
-},
-{
-    "question": "Who were the married couple struck dead for lying to the Holy Spirit?",
-    "options": ["Aquila and Priscilla", "Ananias and Sapphira", "Zechariah and Elizabeth", "Felix and Drusilla"],
-    "answer": "Ananias and Sapphira",
-    "difficulty": "medium"
-},
-{
-    "question": "Who was Gamaliel?",
-    "options": [
-        "A Roman governor",
-        "A Jewish teacher of the law",
-        "A high priest",
-        "One of the apostles"
-    ],
-    "answer": "A Jewish teacher of the law",
-    "difficulty": "medium"
-},
-
-{
-    "question": "Who was the first Christian martyr?",
-    "options": ["James", "Peter", "Stephen", "Philip"],
-    "answer": "Stephen",
-    "difficulty": "hard"
-},
-{
-    "question": "Who approved of Stephen’s death?",
-    "options": ["Herod", "Caiaphas", "Saul", "Pilate"],
-    "answer": "Saul",
-    "difficulty": "hard"
-},
-{
-    "question": "Which apostle preached to the Ethiopian eunuch?",
-    "options": ["Peter", "John", "Philip", "Andrew"],
-    "answer": "Philip",
-    "difficulty": "hard"
-},
-{
-    "question": "What happened to Saul on the road to Damascus?",
-    "options": [
-        "He was imprisoned",
-        "He was struck blind",
-        "He was healed",
-        "He was baptised"
-    ],
-    "answer": "He was struck blind",
-    "difficulty": "hard"
-},
-
-{
-    "question": "Who was the Roman centurion that Peter visited in Acts 10?",
-    "options": ["Cornelius", "Julius", "Felix", "Festus"],
-    "answer": "Cornelius",
-    "difficulty": "hard"
-},
-{
-    "question": "What vision did Peter receive before visiting Cornelius?",
-    "options": [
-        "A burning bush",
-        "A sheet with unclean animals",
-        "A ladder to heaven",
-        "A golden altar"
-    ],
-    "answer": "A sheet with unclean animals",
-    "difficulty": "hard"
-},
-{
-    "question": "Which apostle was killed by King Herod in Acts 12?",
-    "options": ["Peter", "John", "James", "Andrew"],
-    "answer": "James",
-    "difficulty": "hard"
+    "question": "What is the first book of the New Testament?",
+    "options": ["Mark", "Matthew", "Luke", "John"],
+    "answer": "Matthew",
+    "difficulty": "easy"
 }
 
 
