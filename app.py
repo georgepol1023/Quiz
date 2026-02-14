@@ -18,7 +18,67 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 
 quiz = [
- {
+{
+    "question": "Who built the ark?",
+    "options": ["Moses", "Noah", "Abraham", "David"],
+    "answer": "Noah",
+    "difficulty": "easy"
+},
+{
+    "question": "Who led the Israelites out of Egypt?",
+    "options": ["Joshua", "Aaron", "Moses", "Joseph"],
+    "answer": "Moses",
+    "difficulty": "easy"
+},
+{
+    "question": "Who was swallowed by a great fish?",
+    "options": ["Elijah", "Jonah", "Isaiah", "Daniel"],
+    "answer": "Jonah",
+    "difficulty": "easy"
+},
+{
+    "question": "Who killed Goliath?",
+    "options": ["Saul", "David", "Solomon", "Samuel"],
+    "answer": "David",
+    "difficulty": "easy"
+},
+{
+    "question": "Who was thrown into the lions’ den?",
+    "options": ["Joseph", "Daniel", "Elijah", "Isaiah"],
+    "answer": "Daniel",
+    "difficulty": "easy"
+},
+{
+    "question": "What did God create on the first day?",
+    "options": ["Animals", "Light", "Plants", "Humans"],
+    "answer": "Light",
+    "difficulty": "easy"
+},
+{
+    "question": "Who was the first man?",
+    "options": ["Noah", "Adam", "Abraham", "Jacob"],
+    "answer": "Adam",
+    "difficulty": "easy"
+},
+{
+    "question": "Who was Abraham’s wife?",
+    "options": ["Rebekah", "Rachel", "Sarah", "Leah"],
+    "answer": "Sarah",
+    "difficulty": "easy"
+},
+{
+    "question": "Who received the Ten Commandments?",
+    "options": ["Aaron", "Moses", "Joshua", "Samuel"],
+    "answer": "Moses",
+    "difficulty": "easy"
+},
+{
+    "question": "Who became king after David?",
+    "options": ["Saul", "Solomon", "Absalom", "Hezekiah"],
+    "answer": "Solomon",
+    "difficulty": "easy"
+},
+{
     "question": "Who baptized Jesus?",
     "options": ["Peter", "John the Baptist", "James", "Andrew"],
     "answer": "John the Baptist",
@@ -55,21 +115,9 @@ quiz = [
     "difficulty": "easy"
 },
 {
-    "question": "Where did Jesus walk on water?",
-    "options": ["The River Jordan", "The Sea of Galilee", "The Dead Sea", "The Red Sea"],
-    "answer": "The Sea of Galilee",
-    "difficulty": "easy"
-},
-{
     "question": "Who denied Jesus three times?",
     "options": ["Peter", "James", "Andrew", "Matthew"],
     "answer": "Peter",
-    "difficulty": "easy"
-},
-{
-    "question": "On which day did Jesus rise from the dead?",
-    "options": ["Friday", "Saturday", "Sunday", "Monday"],
-    "answer": "Sunday",
     "difficulty": "easy"
 },
 {
@@ -77,9 +125,19 @@ quiz = [
     "options": ["Mark", "Matthew", "Luke", "John"],
     "answer": "Matthew",
     "difficulty": "easy"
+},
+{
+    "question": "Who was the strongest man in the Old Testament?",
+    "options": ["David", "Samson", "Saul", "Joshua"],
+    "answer": "Samson",
+    "difficulty": "easy"
+},
+{
+    "question": "Who climbed a tree to see Jesus?",
+    "options": ["Bartimaeus", "Zacchaeus", "Thomas", "Philip"],
+    "answer": "Zacchaeus",
+    "difficulty": "easy"
 }
-
-
 ]
 
 CSV_FILE = "responses.csv"
@@ -94,7 +152,7 @@ def generate_player_id(name):
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["PlayerID", "Name", "Timestamp"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)", "Total Points"])
+        writer.writerow(["PlayerID", "Name", "Timestamp"] + [f"Q{i}" for i in range(len(quiz))] + ["Score (%)", "Total Points", "Violations"])
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -110,6 +168,7 @@ def index():
         session['total_points'] = 0
         session['question_start_time'] = None
         session['timestamp'] = time.strftime("%Y-%m-%d %H:%M:%S")
+        session['violations'] = 0  # Initialize violations
         return redirect(url_for('quiz_question'))
     return render_template("welcome.html")
 
@@ -190,6 +249,7 @@ def complete():
     total_points = session.get('total_points', 0)
     was_terminated = session.get('quiz_terminated', False)
     timestamp = session.get('timestamp', time.strftime("%Y-%m-%d %H:%M:%S"))
+    violations = session.get('violations', 0)
 
     # Calculate percentage score
     correct = 0
@@ -198,10 +258,10 @@ def complete():
             correct += 1
     percentage_score = round((correct / len(quiz)) * 100, 2)
     
-    # Save player_id, name, timestamp, answers, percentage score, and total points to CSV
+    # Save player_id, name, timestamp, answers, percentage score, total points, and violations to CSV
     with open(CSV_FILE, "a", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow([player_id, name, timestamp] + answers + [percentage_score, total_points])
+        writer.writerow([player_id, name, timestamp] + answers + [percentage_score, total_points, violations])
 
     theme = session.get('theme', 'light')
     max_possible_points = MAX_POINTS_PER_QUESTION * len(quiz)
@@ -235,8 +295,9 @@ def view_results(player_id):
                         "name": row[1],
                         "timestamp": row[2],
                         "answers": row[3:3+len(quiz)],
-                        "percentage": float(row[-2]),
-                        "points": int(row[-1])
+                        "percentage": float(row[-3]),
+                        "points": int(row[-2]),
+                        "violations": int(row[-1])
                     }
                     break
     
@@ -272,16 +333,18 @@ def leaderboard():
             next(reader)  # Skip header row
             
             for row in reader:
-                if len(row) > len(quiz) + 3:  # Make sure row has all data
+                if len(row) > len(quiz) + 4:  # Make sure row has all data including violations
                     player_id = row[0]
                     name = row[1]
-                    percentage = float(row[-2])
-                    points = int(row[-1])
+                    percentage = float(row[-3])
+                    points = int(row[-2])
+                    violations = int(row[-1])
                     leaderboard_data.append({
                         "player_id": player_id,
                         "name": name, 
                         "percentage": percentage,
-                        "points": points
+                        "points": points,
+                        "violations": violations
                     })
     
     # Sort by percentage (highest first), then by points as tiebreaker
