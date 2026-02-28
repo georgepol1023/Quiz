@@ -108,6 +108,7 @@ quiz = [
     "answer": "Sunday",
     "difficulty": "medium"
 }
+]
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 50
