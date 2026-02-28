@@ -19,126 +19,95 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
 {
-    "question": "Who built the ark?",
-    "options": ["Moses", "Noah", "Abraham", "David"],
-    "answer": "Noah",
-    "difficulty": "easy"
+    "question": "In which town did Jesus perform His first miracle?",
+    "options": ["Nazareth", "Bethlehem", "Cana", "Capernaum"],
+    "answer": "Cana",
+    "difficulty": "medium"
 },
 {
-    "question": "Who led the Israelites out of Egypt?",
-    "options": ["Joshua", "Aaron", "Moses", "Joseph"],
-    "answer": "Moses",
-    "difficulty": "easy"
+    "question": "Who requested the body of Jesus after the crucifixion?",
+    "options": ["Nicodemus", "Joseph of Arimathea", "Peter", "John"],
+    "answer": "Joseph of Arimathea",
+    "difficulty": "medium"
 },
 {
-    "question": "Who was swallowed by a great fish?",
-    "options": ["Elijah", "Jonah", "Isaiah", "Daniel"],
-    "answer": "Jonah",
-    "difficulty": "easy"
+    "question": "What was the name of the high priest during Jesus’ trial?",
+    "options": ["Annas", "Caiaphas", "Gamaliel", "Zacharias"],
+    "answer": "Caiaphas",
+    "difficulty": "medium"
 },
 {
-    "question": "Who killed Goliath?",
-    "options": ["Saul", "David", "Solomon", "Samuel"],
-    "answer": "David",
-    "difficulty": "easy"
-},
-{
-    "question": "Who was thrown into the lions’ den?",
-    "options": ["Joseph", "Daniel", "Elijah", "Isaiah"],
-    "answer": "Daniel",
-    "difficulty": "easy"
-},
-{
-    "question": "What did God create on the first day?",
-    "options": ["Animals", "Light", "Plants", "Humans"],
-    "answer": "Light",
-    "difficulty": "easy"
-},
-{
-    "question": "Who was the first man?",
-    "options": ["Noah", "Adam", "Abraham", "Jacob"],
-    "answer": "Adam",
-    "difficulty": "easy"
-},
-{
-    "question": "Who was Abraham’s wife?",
-    "options": ["Rebekah", "Rachel", "Sarah", "Leah"],
-    "answer": "Sarah",
-    "difficulty": "easy"
-},
-{
-    "question": "Who received the Ten Commandments?",
-    "options": ["Aaron", "Moses", "Joshua", "Samuel"],
-    "answer": "Moses",
-    "difficulty": "easy"
-},
-{
-    "question": "Who became king after David?",
-    "options": ["Saul", "Solomon", "Absalom", "Hezekiah"],
-    "answer": "Solomon",
-    "difficulty": "easy"
-},
-{
-    "question": "Who baptized Jesus?",
-    "options": ["Peter", "John the Baptist", "James", "Andrew"],
-    "answer": "John the Baptist",
-    "difficulty": "easy"
-},
-{
-    "question": "Where was Jesus born?",
-    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Galilee"],
-    "answer": "Bethlehem",
-    "difficulty": "easy"
-},
-{
-    "question": "Who was Jesus' mother?",
-    "options": ["Martha", "Mary", "Elizabeth", "Anna"],
-    "answer": "Mary",
-    "difficulty": "easy"
-},
-{
-    "question": "How many disciples did Jesus choose?",
-    "options": ["10", "12", "7", "14"],
-    "answer": "12",
-    "difficulty": "easy"
-},
-{
-    "question": "Who betrayed Jesus?",
-    "options": ["Peter", "John", "Judas Iscariot", "Thomas"],
-    "answer": "Judas Iscariot",
-    "difficulty": "easy"
-},
-{
-    "question": "What did Jesus turn water into?",
-    "options": ["Oil", "Wine", "Milk", "Honey"],
-    "answer": "Wine",
-    "difficulty": "easy"
-},
-{
-    "question": "Who denied Jesus three times?",
-    "options": ["Peter", "James", "Andrew", "Matthew"],
+    "question": "Which disciple cut off the ear of the high priest’s servant?",
+    "options": ["James", "John", "Peter", "Andrew"],
     "answer": "Peter",
-    "difficulty": "easy"
+    "difficulty": "medium"
 },
 {
-    "question": "What is the first book of the New Testament?",
-    "options": ["Mark", "Matthew", "Luke", "John"],
+    "question": "What was the name of the high priest’s servant whose ear was cut off?",
+    "options": ["Malchus", "Barabbas", "Cornelius", "Lazarus"],
+    "answer": "Malchus",
+    "difficulty": "hard"
+},
+{
+    "question": "Which Gospel records the raising of Lazarus?",
+    "options": ["Matthew", "Mark", "Luke", "John"],
+    "answer": "John",
+    "difficulty": "medium"
+},
+{
+    "question": "What sign was given to the shepherds to identify baby Jesus?",
+    "options": ["A bright star", "Wrapped in swaddling cloths and lying in a manger", "Angels singing", "A royal crown"],
+    "answer": "Wrapped in swaddling cloths and lying in a manger",
+    "difficulty": "medium"
+},
+{
+    "question": "Who carried Jesus’ cross?",
+    "options": ["Peter", "Simon of Cyrene", "John", "Joseph"],
+    "answer": "Simon of Cyrene",
+    "difficulty": "medium"
+},
+{
+    "question": "How many days did Jesus fast in the wilderness?",
+    "options": ["30", "40", "7", "21"],
+    "answer": "40",
+    "difficulty": "medium"
+},
+{
+    "question": "What was the name of the place where Jesus was crucified?",
+    "options": ["Gethsemane", "Golgotha", "Mount Olivet", "Bethany"],
+    "answer": "Golgotha",
+    "difficulty": "medium"
+},
+{
+    "question": "Which parable is unique to Luke’s Gospel?",
+    "options": ["The Good Samaritan", "The Sower", "The Mustard Seed", "The Wicked Tenants"],
+    "answer": "The Good Samaritan",
+    "difficulty": "medium"
+},
+{
+    "question": "What inscription was placed above Jesus on the cross?",
+    "options": ["Son of God", "King of Kings", "Jesus of Nazareth, King of the Jews", "The Messiah"],
+    "answer": "Jesus of Nazareth, King of the Jews",
+    "difficulty": "medium"
+},
+{
+    "question": "Which disciple was formerly known as Levi?",
+    "options": ["Peter", "Matthew", "Thomas", "Philip"],
     "answer": "Matthew",
-    "difficulty": "easy"
+    "difficulty": "medium"
 },
 {
-    "question": "Who was the strongest man in the Old Testament?",
-    "options": ["David", "Samson", "Saul", "Joshua"],
-    "answer": "Samson",
-    "difficulty": "easy"
+    "question": "Who doubted Jesus’ resurrection until he saw and touched His wounds?",
+    "options": ["Andrew", "Thomas", "James", "Bartholomew"],
+    "answer": "Thomas",
+    "difficulty": "medium"
 },
 {
-    "question": "Who climbed a tree to see Jesus?",
-    "options": ["Bartimaeus", "Zacchaeus", "Thomas", "Philip"],
-    "answer": "Zacchaeus",
-    "difficulty": "easy"
+    "question": "On which day of the week did Jesus rise from the dead?",
+    "options": ["Friday", "Saturday", "Sunday", "Monday"],
+    "answer": "Sunday",
+    "difficulty": "medium"
 }
-]
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 50
