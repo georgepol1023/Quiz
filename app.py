@@ -142,7 +142,7 @@ quiz = [
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 50
-TIME_LIMIT_SECONDS = 15  # Time until points reach minimum
+TIME_LIMIT_SECONDS = 20  # Time until points reach minimum
 
 def generate_player_id(name):
     """Generate a unique ID for each player based on name and timestamp"""
