@@ -19,93 +19,123 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
 {
-    "question": "In which town did Jesus perform His first miracle?",
-    "options": ["Nazareth", "Bethlehem", "Cana", "Capernaum"],
-    "answer": "Cana",
+    "question": "Who was the mother of John the Baptist?",
+    "options": ["Mary", "Elizabeth", "Martha", "Anna"],
+    "answer": "Elizabeth",
     "difficulty": "medium"
 },
 {
-    "question": "Who requested the body of Jesus after the crucifixion?",
-    "options": ["Nicodemus", "Joseph of Arimathea", "Peter", "John"],
-    "answer": "Joseph of Arimathea",
+    "question": "Who was John the Baptist’s father?",
+    "options": ["Zechariah", "Joseph", "Simeon", "Nicodemus"],
+    "answer": "Zechariah",
     "difficulty": "medium"
 },
 {
-    "question": "What was the name of the high priest during Jesus’ trial?",
-    "options": ["Annas", "Caiaphas", "Gamaliel", "Zacharias"],
-    "answer": "Caiaphas",
-    "difficulty": "medium"
-},
-{
-    "question": "Which disciple cut off the ear of the high priest’s servant?",
-    "options": ["James", "John", "Peter", "Andrew"],
-    "answer": "Peter",
-    "difficulty": "medium"
-},
-{
-    "question": "What was the name of the high priest’s servant whose ear was cut off?",
-    "options": ["Malchus", "Barabbas", "Cornelius", "Lazarus"],
-    "answer": "Malchus",
-    "difficulty": "hard"
-},
-{
-    "question": "Which Gospel records the raising of Lazarus?",
-    "options": ["Matthew", "Mark", "Luke", "John"],
+    "question": "Which disciple was known as 'the beloved disciple'?",
+    "options": ["Peter", "John", "James", "Andrew"],
     "answer": "John",
     "difficulty": "medium"
 },
 {
-    "question": "What sign was given to the shepherds to identify baby Jesus?",
-    "options": ["A bright star", "Wrapped in swaddling cloths and lying in a manger", "Angels singing", "A royal crown"],
-    "answer": "Wrapped in swaddling cloths and lying in a manger",
+    "question": "Which city was Jesus raised in?",
+    "options": ["Bethlehem", "Nazareth", "Jerusalem", "Bethany"],
+    "answer": "Nazareth",
+    "difficulty": "easy"
+},
+{
+    "question": "Who climbed a sycamore tree to see Jesus?",
+    "options": ["Zacchaeus", "Bartimaeus", "Nicodemus", "Lazarus"],
+    "answer": "Zacchaeus",
+    "difficulty": "easy"
+},
+{
+    "question": "Who was the blind man healed by Jesus near Jericho?",
+    "options": ["Bartimaeus", "Malchus", "Cornelius", "Stephen"],
+    "answer": "Bartimaeus",
     "difficulty": "medium"
 },
 {
-    "question": "Who carried Jesus’ cross?",
-    "options": ["Peter", "Simon of Cyrene", "John", "Joseph"],
-    "answer": "Simon of Cyrene",
+    "question": "Which disciple replaced Judas Iscariot?",
+    "options": ["Barnabas", "Matthias", "Silas", "Timothy"],
+    "answer": "Matthias",
     "difficulty": "medium"
 },
 {
-    "question": "How many days did Jesus fast in the wilderness?",
-    "options": ["30", "40", "7", "21"],
-    "answer": "40",
+    "question": "Who was stoned to death and became the first Christian martyr?",
+    "options": ["Stephen", "James", "Peter", "Paul"],
+    "answer": "Stephen",
     "difficulty": "medium"
 },
 {
-    "question": "What was the name of the place where Jesus was crucified?",
-    "options": ["Gethsemane", "Golgotha", "Mount Olivet", "Bethany"],
-    "answer": "Golgotha",
+    "question": "Who held the coats of those who stoned Stephen?",
+    "options": ["Saul", "Barnabas", "Philip", "Silas"],
+    "answer": "Saul",
     "difficulty": "medium"
 },
 {
-    "question": "Which parable is unique to Luke’s Gospel?",
-    "options": ["The Good Samaritan", "The Sower", "The Mustard Seed", "The Wicked Tenants"],
-    "answer": "The Good Samaritan",
+    "question": "Which apostle was a fisherman along with his brother Andrew?",
+    "options": ["Peter", "Matthew", "Philip", "Thomas"],
+    "answer": "Peter",
+    "difficulty": "easy"
+},
+{
+    "question": "What was the name of the tax collector Jesus called from his booth?",
+    "options": ["Matthew", "Thomas", "Simon", "Philip"],
+    "answer": "Matthew",
+    "difficulty": "easy"
+},
+{
+    "question": "Who helped bury Jesus along with Joseph of Arimathea?",
+    "options": ["Nicodemus", "Peter", "John", "James"],
+    "answer": "Nicodemus",
     "difficulty": "medium"
 },
 {
-    "question": "What inscription was placed above Jesus on the cross?",
-    "options": ["Son of God", "King of Kings", "Jesus of Nazareth, King of the Jews", "The Messiah"],
-    "answer": "Jesus of Nazareth, King of the Jews",
+    "question": "What miracle did Jesus perform for Jairus?",
+    "options": ["Healed his blindness", "Raised his daughter from the dead", "Healed his servant", "Multiplied food"],
+    "answer": "Raised his daughter from the dead",
     "difficulty": "medium"
 },
 {
-    "question": "Which disciple was formerly known as Levi?",
-    "options": ["Peter", "Matthew", "Thomas", "Philip"],
+    "question": "Which disciple said, 'Lord, to whom shall we go? You have the words of eternal life'?",
+    "options": ["Peter", "John", "Thomas", "Andrew"],
+    "answer": "Peter",
+    "difficulty": "hard"
+},
+{
+    "question": "What did the soldiers place on Jesus’ head during the crucifixion?",
+    "options": ["Golden crown", "Crown of thorns", "Cloth band", "Iron helmet"],
+    "answer": "Crown of thorns",
+    "difficulty": "easy"
+},
+{
+    "question": "Which Roman centurion declared, 'Surely this man was the Son of God'?",
+    "options": ["The centurion at the cross", "Cornelius", "Julius", "Longinus"],
+    "answer": "The centurion at the cross",
+    "difficulty": "medium"
+},
+{
+    "question": "Who interpreted the scriptures to the disciples on the road to Emmaus?",
+    "options": ["Peter", "Jesus", "John", "Paul"],
+    "answer": "Jesus",
+    "difficulty": "medium"
+},
+{
+    "question": "Which disciple said, 'Unless I see the nail marks in His hands, I will not believe'?",
+    "options": ["Thomas", "Peter", "James", "Andrew"],
+    "answer": "Thomas",
+    "difficulty": "easy"
+},
+{
+    "question": "Which book of the New Testament contains the Beatitudes?",
+    "options": ["Matthew", "Mark", "Luke", "John"],
     "answer": "Matthew",
     "difficulty": "medium"
 },
 {
-    "question": "Who doubted Jesus’ resurrection until he saw and touched His wounds?",
-    "options": ["Andrew", "Thomas", "James", "Bartholomew"],
-    "answer": "Thomas",
-    "difficulty": "medium"
-},
-{
-    "question": "On which day of the week did Jesus rise from the dead?",
-    "options": ["Friday", "Saturday", "Sunday", "Monday"],
-    "answer": "Sunday",
+    "question": "What event happened 50 days after the resurrection?",
+    "options": ["Ascension", "Pentecost", "Transfiguration", "Conversion of Paul"],
+    "answer": "Pentecost",
     "difficulty": "medium"
 }
 ]
