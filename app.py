@@ -18,126 +18,96 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 
 quiz = [
-{
-    "question": "Who was the mother of John the Baptist?",
-    "options": ["Mary", "Elizabeth", "Martha", "Anna"],
-    "answer": "Elizabeth",
-    "difficulty": "medium"
-},
-{
-    "question": "Who was John the Baptist’s father?",
-    "options": ["Zechariah", "Joseph", "Simeon", "Nicodemus"],
-    "answer": "Zechariah",
-    "difficulty": "medium"
-},
-{
-    "question": "Which disciple was known as 'the beloved disciple'?",
-    "options": ["Peter", "John", "James", "Andrew"],
-    "answer": "John",
-    "difficulty": "medium"
-},
-{
-    "question": "Which city was Jesus raised in?",
-    "options": ["Bethlehem", "Nazareth", "Jerusalem", "Bethany"],
-    "answer": "Nazareth",
+  {
+    "question": "Who baptized Jesus?",
+    "options": ["Peter", "John the Baptist", "James", "Elijah"],
+    "answer": "John the Baptist",
     "difficulty": "easy"
-},
-{
-    "question": "Who climbed a sycamore tree to see Jesus?",
-    "options": ["Zacchaeus", "Bartimaeus", "Nicodemus", "Lazarus"],
-    "answer": "Zacchaeus",
+  },
+  {
+    "question": "What was the first miracle Jesus performed?",
+    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding 5000"],
+    "answer": "Turning water into wine",
     "difficulty": "easy"
-},
-{
-    "question": "Who was the blind man healed by Jesus near Jericho?",
-    "options": ["Bartimaeus", "Malchus", "Cornelius", "Stephen"],
-    "answer": "Bartimaeus",
-    "difficulty": "medium"
-},
-{
-    "question": "Which disciple replaced Judas Iscariot?",
-    "options": ["Barnabas", "Matthias", "Silas", "Timothy"],
-    "answer": "Matthias",
-    "difficulty": "medium"
-},
-{
-    "question": "Who was stoned to death and became the first Christian martyr?",
-    "options": ["Stephen", "James", "Peter", "Paul"],
-    "answer": "Stephen",
-    "difficulty": "medium"
-},
-{
-    "question": "Who held the coats of those who stoned Stephen?",
-    "options": ["Saul", "Barnabas", "Philip", "Silas"],
-    "answer": "Saul",
-    "difficulty": "medium"
-},
-{
-    "question": "Which apostle was a fisherman along with his brother Andrew?",
-    "options": ["Peter", "Matthew", "Philip", "Thomas"],
+  },
+  {
+    "question": "Which disciple walked on water with Jesus?",
+    "options": ["John", "Peter", "Andrew", "Thomas"],
     "answer": "Peter",
     "difficulty": "easy"
-},
-{
-    "question": "What was the name of the tax collector Jesus called from his booth?",
-    "options": ["Matthew", "Thomas", "Simon", "Philip"],
-    "answer": "Matthew",
-    "difficulty": "easy"
-},
-{
-    "question": "Who helped bury Jesus along with Joseph of Arimathea?",
-    "options": ["Nicodemus", "Peter", "John", "James"],
-    "answer": "Nicodemus",
-    "difficulty": "medium"
-},
-{
-    "question": "What miracle did Jesus perform for Jairus?",
-    "options": ["Healed his blindness", "Raised his daughter from the dead", "Healed his servant", "Multiplied food"],
-    "answer": "Raised his daughter from the dead",
-    "difficulty": "medium"
-},
-{
-    "question": "Which disciple said, 'Lord, to whom shall we go? You have the words of eternal life'?",
-    "options": ["Peter", "John", "Thomas", "Andrew"],
+  },
+  {
+    "question": "Who denied Jesus three times?",
+    "options": ["Judas", "Peter", "Thomas", "James"],
     "answer": "Peter",
-    "difficulty": "hard"
-},
-{
-    "question": "What did the soldiers place on Jesus’ head during the crucifixion?",
-    "options": ["Golden crown", "Crown of thorns", "Cloth band", "Iron helmet"],
-    "answer": "Crown of thorns",
     "difficulty": "easy"
-},
-{
-    "question": "Which Roman centurion declared, 'Surely this man was the Son of God'?",
-    "options": ["The centurion at the cross", "Cornelius", "Julius", "Longinus"],
-    "answer": "The centurion at the cross",
+  },
+  {
+    "question": "What was the name of the garden where Jesus prayed before His arrest?",
+    "options": ["Eden", "Gethsemane", "Galilee", "Zion"],
+    "answer": "Gethsemane",
     "difficulty": "medium"
-},
-{
-    "question": "Who interpreted the scriptures to the disciples on the road to Emmaus?",
-    "options": ["Peter", "Jesus", "John", "Paul"],
-    "answer": "Jesus",
-    "difficulty": "medium"
-},
-{
-    "question": "Which disciple said, 'Unless I see the nail marks in His hands, I will not believe'?",
-    "options": ["Thomas", "Peter", "James", "Andrew"],
-    "answer": "Thomas",
+  },
+  {
+    "question": "Who betrayed Jesus?",
+    "options": ["Peter", "Judas Iscariot", "Thomas", "Matthew"],
+    "answer": "Judas Iscariot",
     "difficulty": "easy"
-},
-{
-    "question": "Which book of the New Testament contains the Beatitudes?",
-    "options": ["Matthew", "Mark", "Luke", "John"],
+  },
+  {
+    "question": "Which apostle was known as a tentmaker?",
+    "options": ["Peter", "Paul", "John", "Andrew"],
+    "answer": "Paul",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who was the Roman governor who sentenced Jesus to be crucified?",
+    "options": ["Herod", "Caesar", "Pontius Pilate", "Felix"],
+    "answer": "Pontius Pilate",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What did Jesus feed the 5000 with?",
+    "options": ["Bread and fish", "Bread and wine", "Fish and honey", "Bread and oil"],
+    "answer": "Bread and fish",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which disciple was a tax collector before following Jesus?",
+    "options": ["Matthew", "Peter", "James", "Philip"],
     "answer": "Matthew",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the last book of the New Testament?",
+    "options": ["Jude", "Hebrews", "Revelation", "Acts"],
+    "answer": "Revelation",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who saw a vision of a sheet with unclean animals?",
+    "options": ["Paul", "Peter", "John", "Stephen"],
+    "answer": "Peter",
     "difficulty": "medium"
-},
-{
-    "question": "What event happened 50 days after the resurrection?",
-    "options": ["Ascension", "Pentecost", "Transfiguration", "Conversion of Paul"],
-    "answer": "Pentecost",
+  },
+  {
+    "question": "Who was the first person to see the risen Jesus?",
+    "options": ["Mary Magdalene", "Peter", "John", "Thomas"],
+    "answer": "Mary Magdalene",
     "difficulty": "medium"
-}
+  },
+  {
+    "question": "Which city did Paul travel to on his missionary journeys in Greece?",
+    "options": ["Athens", "Rome", "Damascus", "Jericho"],
+    "answer": "Athens",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who wrote most of the letters (epistles) in the New Testament?",
+    "options": ["Peter", "Paul", "John", "James"],
+    "answer": "Paul",
+    "difficulty": "easy"
+  }
 ]
 
 CSV_FILE = "responses.csv"
