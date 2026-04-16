@@ -19,94 +19,100 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
   {
-    "question": "Who baptized Jesus?",
-    "options": ["Peter", "John the Baptist", "James", "Elijah"],
-    "answer": "John the Baptist",
+    "question": "According to Romans, what is the wages of sin?",
+    "options": ["Death", "Judgment", "Suffering", "Separation"],
+    "answer": "Death",
     "difficulty": "easy"
   },
   {
-    "question": "What was the first miracle Jesus performed?",
-    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding 5000"],
-    "answer": "Turning water into wine",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which disciple walked on water with Jesus?",
-    "options": ["John", "Peter", "Andrew", "Thomas"],
-    "answer": "Peter",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who denied Jesus three times?",
-    "options": ["Judas", "Peter", "Thomas", "James"],
-    "answer": "Peter",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What was the name of the garden where Jesus prayed before His arrest?",
-    "options": ["Eden", "Gethsemane", "Galilee", "Zion"],
-    "answer": "Gethsemane",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who betrayed Jesus?",
-    "options": ["Peter", "Judas Iscariot", "Thomas", "Matthew"],
-    "answer": "Judas Iscariot",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which apostle was known as a tentmaker?",
-    "options": ["Peter", "Paul", "John", "Andrew"],
-    "answer": "Paul",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who was the Roman governor who sentenced Jesus to be crucified?",
-    "options": ["Herod", "Caesar", "Pontius Pilate", "Felix"],
-    "answer": "Pontius Pilate",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What did Jesus feed the 5000 with?",
-    "options": ["Bread and fish", "Bread and wine", "Fish and honey", "Bread and oil"],
-    "answer": "Bread and fish",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which disciple was a tax collector before following Jesus?",
-    "options": ["Matthew", "Peter", "James", "Philip"],
-    "answer": "Matthew",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What is the last book of the New Testament?",
-    "options": ["Jude", "Hebrews", "Revelation", "Acts"],
-    "answer": "Revelation",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who saw a vision of a sheet with unclean animals?",
-    "options": ["Paul", "Peter", "John", "Stephen"],
-    "answer": "Peter",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who was the first person to see the risen Jesus?",
-    "options": ["Mary Magdalene", "Peter", "John", "Thomas"],
-    "answer": "Mary Magdalene",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Which city did Paul travel to on his missionary journeys in Greece?",
-    "options": ["Athens", "Rome", "Damascus", "Jericho"],
-    "answer": "Athens",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who wrote most of the letters (epistles) in the New Testament?",
-    "options": ["Peter", "Paul", "John", "James"],
+    "question": "Who wrote the Epistle to the Romans?",
+    "options": ["Peter", "Paul", "James", "John"],
     "answer": "Paul",
     "difficulty": "easy"
+  },
+  {
+    "question": "In 1 Corinthians, what is described as the greatest of faith, hope, and love?",
+    "options": ["Faith", "Hope", "Love", "Grace"],
+    "answer": "Love",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which epistle contains the 'armor of God' passage?",
+    "options": ["Ephesians", "Galatians", "Colossians", "Philippians"],
+    "answer": "Ephesians",
+    "difficulty": "medium"
+  },
+  {
+    "question": "According to Galatians, what is part of the fruit of the Spirit?",
+    "options": ["Love, joy, peace", "Faith, hope, love", "Grace, mercy, peace", "Truth, light, life"],
+    "answer": "Love, joy, peace, patience",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Which epistle emphasizes that the just shall live by faith'?",
+    "options": ["Romans", "Hebrews", "James", "1 Peter"],
+    "answer": "Romans",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who is described as the high priest in the order of Melchizedek in Hebrews?",
+    "options": ["Aaron", "Jesus", "Moses", "David"],
+    "answer": "Jesus",
+    "difficulty": "medium"
+  },
+  {
+    "question": "According to James, what is dead without works?",
+    "options": ["Faith", "Love", "Hope", "Grace"],
+    "answer": "Faith",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which epistle tells believers to 'pray without ceasing'?",
+    "options": ["1 Thessalonians", "2 Timothy", "Colossians", "Titus"],
+    "answer": "1 Thessalonians",
+    "difficulty": "medium"
+  },
+  {
+    "question": "In Philippians, what does Paul say he can do through Christ?",
+    "options": ["Perform miracles", "Endure suffering", "Do all things", "Preach to nations"],
+    "answer": "Do all things",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which epistle warns that the love of money is the root of all kinds of evil?",
+    "options": ["1 Timothy", "2 Timothy", "Titus", "Hebrews"],
+    "answer": "1 Timothy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who is referred to as a 'beloved physician' in Colossians?",
+    "options": ["Mark", "Luke", "Timothy", "Barnabas"],
+    "answer": "Luke",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Which epistle emphasizes that God is love?",
+    "options": ["1 John", "2 John", "3 John", "Jude"],
+    "answer": "1 John",
+    "difficulty": "easy"
+  },
+   {
+    "question": "According to 2 Corinthians, God loves what kind of giver?",
+    "options": ["A generous giver", "A cheerful giver", "A quiet giver", "A faithful giver"],
+    "answer": "A cheerful giver",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In 2 Timothy, how is all Scripture described?",
+    "options": ["Inspired by God", "Written by prophets", "Ancient wisdom", "Divinely protected"],
+    "answer": "Inspired by God",
+    "difficulty": "medium"
+  },
+  {
+    "question": "According to Titus, what brings salvation to all people?",
+    "options": ["Faith", "Grace of God", "Good works", "Mercy"],
+    "answer": "Grace of God",
+    "difficulty": "medium"
   }
 ]
 
