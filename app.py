@@ -91,18 +91,6 @@ quiz = [
     "difficulty": "medium"
   },
   {
-    "question": "Which spiritual gift involves speaking messages from God to edify the church?",
-    "options": ["Healing", "Tongues", "Prophecy", "Giving"],
-    "answer": "Prophecy",
-    "difficulty": "medium"
-  },
-  {
-    "question": "According to 1 Corinthians 12, what is given to each believer for the common good?",
-    "options": ["A crown", "A spiritual gift", "Riches", "Authority"],
-    "answer": "A spiritual gift",
-    "difficulty": "medium"
-  },
-  {
     "question": "Who rebuked Elymas the sorcerer after being filled with the Holy Spirit?",
     "options": ["Peter", "Paul", "Barnabas", "John"],
     "answer": "Paul",
