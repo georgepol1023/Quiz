@@ -19,102 +19,109 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
   {
-    "question": "According to Romans, what is the wages of sin?",
-    "options": ["Death", "Judgment", "Suffering", "Separation"],
-    "answer": "Death",
+    "question": "Who was the Roman centurion that received the Holy Spirit while Peter was preaching?",
+    "options": ["Cornelius", "Festus", "Julius", "Lysias"],
+    "answer": "Cornelius",
     "difficulty": "easy"
   },
   {
-    "question": "Who wrote the Epistle to the Romans?",
-    "options": ["Peter", "Paul", "James", "John"],
+    "question": "In which city did Paul meet the twelve men who had not yet heard about the Holy Spirit?",
+    "options": ["Corinth", "Jerusalem", "Ephesus", "Philippi"],
+    "answer": "Ephesus",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What happened to the twelve men in Ephesus after Paul laid hands on them?",
+    "options": ["They were healed", "They spoke in tongues and prophesied", "They became apostles", "They saw a vision"],
+    "answer": "They spoke in tongues and prophesied",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who said, 'Repent and be baptized... and you will receive the gift of the Holy Spirit'?",
+    "options": ["Paul", "Peter", "John", "James"],
+    "answer": "Peter",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What visible sign appeared on the Day of Pentecost before the disciples were filled with the Holy Spirit?",
+    "options": ["A bright star", "Tongues of fire", "A rainbow", "A dove"],
+    "answer": "Tongues of fire",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who tried to buy the power of giving the Holy Spirit with money?",
+    "options": ["Ananias", "Simon the Sorcerer", "Herod", "Felix"],
+    "answer": "Simon the Sorcerer",
+    "difficulty": "medium"
+  },
+  {
+    "question": "According to Galatians 5, which of these is part of the fruit of the Spirit?",
+    "options": ["Jealousy", "Self-control", "Anger", "Pride"],
+    "answer": "Self-control",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which book contains the account of Cornelius receiving the Holy Spirit?",
+    "options": ["Romans", "Acts", "Ephesians", "Hebrews"],
+    "answer": "Acts",
+    "difficulty": "easy"
+  },
+  {
+    "question": "According to Romans 8, believers are led by whom?",
+    "options": ["The Law", "The Prophets", "The Holy Spirit", "Angels"],
+    "answer": "The Holy Spirit",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What did Jesus promise the disciples before ascending into heaven?",
+    "options": ["Earthly riches", "The Holy Spirit", "A new temple", "Political power"],
+    "answer": "The Holy Spirit",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who was filled with the Holy Spirit from his mother's womb according to Luke 1?",
+    "options": ["Jesus", "John the Baptist", "Peter", "Stephen"],
+    "answer": "John the Baptist",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who was described as a man full of faith and the Holy Spirit in Acts 6?",
+    "options": ["Philip", "Stephen", "Barnabas", "Silas"],
+    "answer": "Stephen",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Which spiritual gift involves speaking messages from God to edify the church?",
+    "options": ["Healing", "Tongues", "Prophecy", "Giving"],
+    "answer": "Prophecy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "According to 1 Corinthians 12, what is given to each believer for the common good?",
+    "options": ["A crown", "A spiritual gift", "Riches", "Authority"],
+    "answer": "A spiritual gift",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who rebuked Elymas the sorcerer after being filled with the Holy Spirit?",
+    "options": ["Peter", "Paul", "Barnabas", "John"],
     "answer": "Paul",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What did the disciples speak in after receiving the Holy Spirit at Pentecost?",
+    "options": ["Parables", "Tongues", "Hebrew only", "Prophecies only"],
+    "answer": "Tongues",
     "difficulty": "easy"
   },
   {
-    "question": "In 1 Corinthians, what is described as the greatest of faith, hope, and love?",
-    "options": ["Faith", "Hope", "Love", "Grace"],
+    "question": "Which fruit of the Spirit is listed first in Galatians 5?",
+    "options": ["Peace", "Joy", "Love", "Patience"],
     "answer": "Love",
     "difficulty": "easy"
-  },
-  {
-    "question": "Which epistle contains the 'armor of God' passage?",
-    "options": ["Ephesians", "Galatians", "Colossians", "Philippians"],
-    "answer": "Ephesians",
-    "difficulty": "medium"
-  },
-  {
-    "question": "According to Galatians, what is part of the fruit of the Spirit?",
-    "options": ["Love, joy, peace", "Faith, hope, love", "Grace, mercy, peace", "Truth, light, life"],
-    "answer": "Love, joy, peace, patience",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Which epistle emphasizes that the just shall live by faith'?",
-    "options": ["Romans", "Hebrews", "James", "1 Peter"],
-    "answer": "Romans",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who is described as the high priest in the order of Melchizedek in Hebrews?",
-    "options": ["Aaron", "Jesus", "Moses", "David"],
-    "answer": "Jesus",
-    "difficulty": "medium"
-  },
-  {
-    "question": "According to James, what is dead without works?",
-    "options": ["Faith", "Love", "Hope", "Grace"],
-    "answer": "Faith",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which epistle tells believers to 'pray without ceasing'?",
-    "options": ["1 Thessalonians", "2 Timothy", "Colossians", "Titus"],
-    "answer": "1 Thessalonians",
-    "difficulty": "medium"
-  },
-  {
-    "question": "In Philippians, what does Paul say he can do through Christ?",
-    "options": ["Perform miracles", "Endure suffering", "Do all things", "Preach to nations"],
-    "answer": "Do all things",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which epistle warns that the love of money is the root of all kinds of evil?",
-    "options": ["1 Timothy", "2 Timothy", "Titus", "Hebrews"],
-    "answer": "1 Timothy",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who is referred to as a 'beloved physician' in Colossians?",
-    "options": ["Mark", "Luke", "Timothy", "Barnabas"],
-    "answer": "Luke",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Which epistle emphasizes that God is love?",
-    "options": ["1 John", "2 John", "3 John", "Jude"],
-    "answer": "1 John",
-    "difficulty": "easy"
-  },
-   {
-    "question": "According to 2 Corinthians, God loves what kind of giver?",
-    "options": ["A generous giver", "A cheerful giver", "A quiet giver", "A faithful giver"],
-    "answer": "A cheerful giver",
-    "difficulty": "easy"
-  },
-  {
-    "question": "In 2 Timothy, how is all Scripture described?",
-    "options": ["Inspired by God", "Written by prophets", "Ancient wisdom", "Divinely protected"],
-    "answer": "Inspired by God",
-    "difficulty": "medium"
-  },
-  {
-    "question": "According to Titus, what brings salvation to all people?",
-    "options": ["Faith", "Grace of God", "Good works", "Mercy"],
-    "answer": "Grace of God",
-    "difficulty": "medium"
   }
 ]
+
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 50
