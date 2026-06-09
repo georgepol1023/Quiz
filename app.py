@@ -19,93 +19,98 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
   {
-    "question": "Who was the Roman centurion that received the Holy Spirit while Peter was preaching?",
-    "options": ["Cornelius", "Festus", "Julius", "Lysias"],
-    "answer": "Cornelius",
+    "question": "Who did John the Baptist identify as 'the Lamb of God'?",
+    "options": ["Peter", "Jesus", "Andrew", "John"],
+    "answer": "Jesus",
     "difficulty": "easy"
   },
   {
-    "question": "In which city did Paul meet the twelve men who had not yet heard about the Holy Spirit?",
-    "options": ["Corinth", "Jerusalem", "Ephesus", "Philippi"],
-    "answer": "Ephesus",
+    "question": "What was the first miracle Jesus performed according to the Gospel of John?",
+    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the five thousand"],
+    "answer": "Turning water into wine",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Pharisee visited Jesus at night to discuss being born again?",
+    "options": ["Gamaliel", "Nicodemus", "Caiaphas", "Joseph of Arimathea"],
+    "answer": "Nicodemus",
+    "difficulty": "easy"
+  },
+  {
+    "question": "At which well did Jesus speak with the Samaritan woman?",
+    "options": ["Jacob's Well", "Bethesda", "Siloam", "Kidron"],
+    "answer": "Jacob's Well",
     "difficulty": "medium"
   },
   {
-    "question": "What happened to the twelve men in Ephesus after Paul laid hands on them?",
-    "options": ["They were healed", "They spoke in tongues and prophesied", "They became apostles", "They saw a vision"],
-    "answer": "They spoke in tongues and prophesied",
-    "difficulty": "medium"
+    "question": "What food did Jesus multiply to feed more than five thousand people?",
+    "options": ["Five loaves and two fish", "Seven loaves and three fish", "Bread and grapes", "Fish only"],
+    "answer": "Five loaves and two fish",
+    "difficulty": "easy"
   },
   {
-    "question": "Who said, 'Repent and be baptized... and you will receive the gift of the Holy Spirit'?",
-    "options": ["Paul", "Peter", "John", "James"],
+    "question": "Who confessed to Jesus, 'Lord, to whom shall we go? You have the words of eternal life'?",
+    "options": ["John", "Peter", "Thomas", "Philip"],
     "answer": "Peter",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What visible sign appeared on the Day of Pentecost before the disciples were filled with the Holy Spirit?",
-    "options": ["A bright star", "Tongues of fire", "A rainbow", "A dove"],
-    "answer": "Tongues of fire",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who tried to buy the power of giving the Holy Spirit with money?",
-    "options": ["Ananias", "Simon the Sorcerer", "Herod", "Felix"],
-    "answer": "Simon the Sorcerer",
     "difficulty": "medium"
   },
   {
-    "question": "According to Galatians 5, which of these is part of the fruit of the Spirit?",
-    "options": ["Jealousy", "Self-control", "Anger", "Pride"],
-    "answer": "Self-control",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Which book contains the account of Cornelius receiving the Holy Spirit?",
-    "options": ["Romans", "Acts", "Ephesians", "Hebrews"],
-    "answer": "Acts",
-    "difficulty": "easy"
-  },
-  {
-    "question": "According to Romans 8, believers are led by whom?",
-    "options": ["The Law", "The Prophets", "The Holy Spirit", "Angels"],
-    "answer": "The Holy Spirit",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What did Jesus promise the disciples before ascending into heaven?",
-    "options": ["Earthly riches", "The Holy Spirit", "A new temple", "Political power"],
-    "answer": "The Holy Spirit",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who was filled with the Holy Spirit from his mother's womb according to Luke 1?",
-    "options": ["Jesus", "John the Baptist", "Peter", "Stephen"],
-    "answer": "John the Baptist",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who was described as a man full of faith and the Holy Spirit in Acts 6?",
-    "options": ["Philip", "Stephen", "Barnabas", "Silas"],
-    "answer": "Stephen",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who rebuked Elymas the sorcerer after being filled with the Holy Spirit?",
-    "options": ["Peter", "Paul", "Barnabas", "John"],
-    "answer": "Paul",
+    "question": "What did Jesus write on the ground when the woman caught in adultery was brought to Him?",
+    "options": ["The Ten Commandments", "The names of the accusers", "The Gospel", "The text does not say"],
+    "answer": "The text does not say",
     "difficulty": "hard"
   },
   {
-    "question": "What did the disciples speak in after receiving the Holy Spirit at Pentecost?",
-    "options": ["Parables", "Tongues", "Hebrew only", "Prophecies only"],
-    "answer": "Tongues",
+    "question": "Whose sight did Jesus restore by making mud with saliva and telling him to wash in the Pool of Siloam?",
+    "options": ["Bartimaeus", "A man born blind", "Lazarus", "Malchus"],
+    "answer": "A man born blind",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who did Jesus raise from the dead after he had been in the tomb for four days?",
+    "options": ["Jairus' daughter", "Lazarus", "Stephen", "John the Baptist"],
+    "answer": "Lazarus",
     "difficulty": "easy"
   },
   {
-    "question": "Which fruit of the Spirit is listed first in Galatians 5?",
-    "options": ["Peace", "Joy", "Love", "Patience"],
-    "answer": "Love",
+    "question": "Which disciple doubted Jesus' resurrection until he saw the nail marks?",
+    "options": ["Andrew", "Thomas", "Philip", "Matthew"],
+    "answer": "Thomas",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What did Jesus say He was in John 10?",
+    "options": ["The Vine", "The Good Shepherd", "The Bread of Life", "The Light of the World"],
+    "answer": "The Good Shepherd",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Who cut off the ear of the high priest's servant during Jesus' arrest?",
+    "options": ["James", "John", "Peter", "Thomas"],
+    "answer": "Peter",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What was the name of the high priest whose courtyard Peter entered after Jesus' arrest?",
+    "options": ["Annas", "Caiaphas", "Gamaliel", "Zacharias"],
+    "answer": "Caiaphas",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Who first recognized the risen Jesus on the shore after the miraculous catch of fish?",
+    "options": ["Peter", "Thomas", "The disciple whom Jesus loved", "Andrew"],
+    "answer": "The disciple whom Jesus loved",
+    "difficulty": "hard"
+  },
+  {
+    "question": "According to John 14:6, how did Jesus describe Himself?",
+    "options": [
+      "The Shepherd, the Door, and the King",
+      "The Way, the Truth, and the Life",
+      "The Light, the Bread, and the Vine",
+      "The Alpha, the Omega, and the Beginning"
+    ],
+    "answer": "The Way, the Truth, and the Life",
     "difficulty": "easy"
   }
 ]
