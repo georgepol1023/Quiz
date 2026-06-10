@@ -19,102 +19,96 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
   {
-    "question": "Who did John the Baptist identify as 'the Lamb of God'?",
-    "options": ["Peter", "Jesus", "Andrew", "John"],
-    "answer": "Jesus",
+    "question": "What is the name of the mother of Jesus?",
+    "options": ["Mary", "Martha", "Elizabeth", "Ruth"],
+    "answer": "Mary",
     "difficulty": "easy"
   },
   {
-    "question": "What was the first miracle Jesus performed according to the Gospel of John?",
-    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the five thousand"],
-    "answer": "Turning water into wine",
+    "question": "In what city was Jesus born?",
+    "options": ["Jerusalem", "Nazareth", "Bethlehem", "Rome"],
+    "answer": "Bethlehem",
     "difficulty": "easy"
   },
   {
-    "question": "Which Pharisee visited Jesus at night to discuss being born again?",
-    "options": ["Gamaliel", "Nicodemus", "Caiaphas", "Joseph of Arimathea"],
-    "answer": "Nicodemus",
+    "question": "What was Jesus laid in after He was born because there was no room in the inn?",
+    "options": ["A basket", "A manger", "A chariot", "A cradle"],
+    "answer": "A manger",
     "difficulty": "easy"
   },
   {
-    "question": "At which well did Jesus speak with the Samaritan woman?",
-    "options": ["Jacob's Well", "Bethesda", "Siloam", "Kidron"],
-    "answer": "Jacob's Well",
-    "difficulty": "medium"
-  },
-  {
-    "question": "What food did Jesus multiply to feed more than five thousand people?",
-    "options": ["Five loaves and two fish", "Seven loaves and three fish", "Bread and grapes", "Fish only"],
-    "answer": "Five loaves and two fish",
+    "question": "In the famous parable, who helped the beaten traveler after a priest and a Levite passed him by?",
+    "options": ["A Pharisee", "A Roman soldier", "A Good Samaritan", "A fisherman"],
+    "answer": "A Good Samaritan",
     "difficulty": "easy"
   },
   {
-    "question": "Who confessed to Jesus, 'Lord, to whom shall we go? You have the words of eternal life'?",
-    "options": ["John", "Peter", "Thomas", "Philip"],
+    "question": "What was the occupation of the men who were watching their flocks by night when the angels appeared?",
+    "options": ["Carpenters", "Shepherds", "Farmers", "Tax collectors"],
+    "answer": "Shepherds",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who was the cousin of Jesus who preached in the wilderness and baptized people?",
+    "options": ["John the Baptist", "Peter", "Andrew", "James"],
+    "answer": "John the Baptist",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What was the occupation of Zacchaeus, the short man who climbed a tree to see Jesus?",
+    "options": ["Fisherman", "Tax collector", "Carpenter", "Soldier"],
+    "answer": "Tax collector",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the parable of the Prodigal Son, what does the father do when his lost son returns home?",
+    "options": ["Rejects him", "Welcomes him with a feast", "Makes him a slave", "Sends him away"],
+    "answer": "Welcomes him with a feast",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many disciples did Jesus choose to be His closest followers?",
+    "options": ["3", "7", "12", "70"],
+    "answer": "12",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which disciple denied knowing Jesus three times before the rooster crowed?",
+    "options": ["Peter", "John", "Judas", "Thomas"],
     "answer": "Peter",
-    "difficulty": "medium"
-  },
-  {
-    "question": "What did Jesus write on the ground when the woman caught in adultery was brought to Him?",
-    "options": ["The Ten Commandments", "The names of the accusers", "The Gospel", "The text does not say"],
-    "answer": "The text does not say",
-    "difficulty": "hard"
-  },
-  {
-    "question": "Whose sight did Jesus restore by making mud with saliva and telling him to wash in the Pool of Siloam?",
-    "options": ["Bartimaeus", "A man born blind", "Lazarus", "Malchus"],
-    "answer": "A man born blind",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who did Jesus raise from the dead after he had been in the tomb for four days?",
-    "options": ["Jairus' daughter", "Lazarus", "Stephen", "John the Baptist"],
-    "answer": "Lazarus",
     "difficulty": "easy"
   },
   {
-    "question": "Which disciple doubted Jesus' resurrection until he saw the nail marks?",
-    "options": ["Andrew", "Thomas", "Philip", "Matthew"],
-    "answer": "Thomas",
+    "question": "What did Judas use to signal to the crowd which man was Jesus during His arrest?",
+    "options": ["A handshake", "A kiss", "A pointed finger", "A torch"],
+    "answer": "A kiss",
     "difficulty": "easy"
   },
   {
-    "question": "What did Jesus say He was in John 10?",
-    "options": ["The Vine", "The Good Shepherd", "The Bread of Life", "The Light of the World"],
-    "answer": "The Good Shepherd",
-    "difficulty": "medium"
-  },
-  {
-    "question": "Who cut off the ear of the high priest's servant during Jesus' arrest?",
-    "options": ["James", "John", "Peter", "Thomas"],
-    "answer": "Peter",
-    "difficulty": "medium"
-  },
-  {
-    "question": "What was the name of the high priest whose courtyard Peter entered after Jesus' arrest?",
-    "options": ["Annas", "Caiaphas", "Gamaliel", "Zacharias"],
-    "answer": "Caiaphas",
-    "difficulty": "hard"
-  },
-  {
-    "question": "Who first recognized the risen Jesus on the shore after the miraculous catch of fish?",
-    "options": ["Peter", "Thomas", "The disciple whom Jesus loved", "Andrew"],
-    "answer": "The disciple whom Jesus loved",
-    "difficulty": "hard"
-  },
-  {
-    "question": "According to John 14:6, how did Jesus describe Himself?",
-    "options": [
-      "The Shepherd, the Door, and the King",
-      "The Way, the Truth, and the Life",
-      "The Light, the Bread, and the Vine",
-      "The Alpha, the Omega, and the Beginning"
-    ],
-    "answer": "The Way, the Truth, and the Life",
+    "question": "Who was the Roman governor who handed Jesus over to be crucified?",
+    "options": ["Herod", "Pontius Pilate", "Caesar", "Felix"],
+    "answer": "Pontius Pilate",
     "difficulty": "easy"
+  },
+  {
+    "question": "What happened to Jesus three days after He was crucified?",
+    "options": ["He was moved to a new tomb", "He rose from the dead", "He went to Egypt", "Nothing"],
+    "answer": "He rose from the dead",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When Jesus visited Martha and Mary, which sister sat at Jesus' feet listening to Him?",
+    "options": ["Mary", "Martha", "Elizabeth", "Sarah"],
+    "answer": "Mary",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After His resurrection, Jesus walked and talked with two disciples on the road to which town?",
+    "options": ["Nazareth", "Emmaus", "Jericho", "Damascus"],
+    "answer": "Emmaus",
+    "difficulty": "medium"
   }
 ]
-
 
 CSV_FILE = "responses.csv"
 MAX_POINTS_PER_QUESTION = 50
