@@ -19,93 +19,87 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 
 quiz = [
   {
-    "question": "What is the name of the mother of Jesus?",
-    "options": ["Mary", "Martha", "Elizabeth", "Ruth"],
-    "answer": "Mary",
+    "question": "What did Jesus say to the fishermen Simon and Andrew when He called them?",
+    "options": ["Build a boat", "Follow Me, and I will make you fishers of men", "Go to Jerusalem", "Cast your nets at noon"],
+    "answer": "Follow Me, and I will make you fishers of men",
     "difficulty": "easy"
   },
   {
-    "question": "In what city was Jesus born?",
-    "options": ["Jerusalem", "Nazareth", "Bethlehem", "Rome"],
-    "answer": "Bethlehem",
+    "question": "What illness did the friends bring to Jesus by lowering a man through the roof?",
+    "options": ["Blindness", "Leprosy", "Paralysis", "Fever"],
+    "answer": "Paralysis",
     "difficulty": "easy"
   },
   {
-    "question": "What was Jesus laid in after He was born because there was no room in the inn?",
-    "options": ["A basket", "A manger", "A chariot", "A cradle"],
-    "answer": "A manger",
+    "question": "What did Jesus calm with a command, saying, 'Peace! Be still!'?",
+    "options": ["A crowd", "A storm", "A fire", "An army"],
+    "answer": "A storm",
     "difficulty": "easy"
   },
   {
-    "question": "In the famous parable, who helped the beaten traveler after a priest and a Levite passed him by?",
-    "options": ["A Pharisee", "A Roman soldier", "A Good Samaritan", "A fisherman"],
-    "answer": "A Good Samaritan",
+    "question": "What was the name of the ruler of the synagogue whose daughter Jesus raised to life?",
+    "options": ["Nicodemus", "Jairus", "Zacchaeus", "Bartimaeus"],
+    "answer": "Jairus",
     "difficulty": "easy"
   },
   {
-    "question": "What was the occupation of the men who were watching their flocks by night when the angels appeared?",
-    "options": ["Carpenters", "Shepherds", "Farmers", "Tax collectors"],
-    "answer": "Shepherds",
+    "question": "How many loaves did Jesus use to feed the five thousand?",
+    "options": ["2", "5", "7", "12"],
+    "answer": "5",
     "difficulty": "easy"
   },
   {
-    "question": "Who was the cousin of Jesus who preached in the wilderness and baptized people?",
-    "options": ["John the Baptist", "Peter", "Andrew", "James"],
-    "answer": "John the Baptist",
+    "question": "How many fish were used along with the loaves to feed the five thousand?",
+    "options": ["1", "2", "5", "12"],
+    "answer": "2",
     "difficulty": "easy"
   },
   {
-    "question": "What was the occupation of Zacchaeus, the short man who climbed a tree to see Jesus?",
-    "options": ["Fisherman", "Tax collector", "Carpenter", "Soldier"],
-    "answer": "Tax collector",
+    "question": "What did Jesus walk on to reach His disciples during the night?",
+    "options": ["A bridge", "The shore", "The water", "A boat"],
+    "answer": "The water",
     "difficulty": "easy"
   },
   {
-    "question": "In the parable of the Prodigal Son, what does the father do when his lost son returns home?",
-    "options": ["Rejects him", "Welcomes him with a feast", "Makes him a slave", "Sends him away"],
-    "answer": "Welcomes him with a feast",
+    "question": "What did blind Bartimaeus call out to Jesus?",
+    "options": ["Teacher from Nazareth", "Son of David, have mercy on me!", "Lord of heaven", "King of Israel"],
+    "answer": "Son of David, have mercy on me!",
     "difficulty": "easy"
   },
   {
-    "question": "How many disciples did Jesus choose to be His closest followers?",
-    "options": ["3", "7", "12", "70"],
-    "answer": "12",
+    "question": "What kind of animal did Jesus ride when He entered Jerusalem?",
+    "options": ["A horse", "A camel", "A donkey colt", "A mule"],
+    "answer": "A donkey colt",
     "difficulty": "easy"
   },
   {
-    "question": "Which disciple denied knowing Jesus three times before the rooster crowed?",
-    "options": ["Peter", "John", "Judas", "Thomas"],
+    "question": "What happened to the fig tree that Jesus cursed?",
+    "options": ["It grew fruit", "It was cut down", "It withered", "It caught fire"],
+    "answer": "It withered",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During the Last Supper, what did Jesus say the bread was?",
+    "options": ["The law", "His body", "The temple", "The kingdom"],
+    "answer": "His body",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which disciple cut off the ear of the high priest's servant during Jesus' arrest?",
+    "options": ["Peter", "John", "Thomas", "Philip"],
     "answer": "Peter",
     "difficulty": "easy"
   },
   {
-    "question": "What did Judas use to signal to the crowd which man was Jesus during His arrest?",
-    "options": ["A handshake", "A kiss", "A pointed finger", "A torch"],
-    "answer": "A kiss",
+    "question": "Who carried Jesus' cross on the way to Golgotha?",
+    "options": ["Joseph of Arimathea", "Simon of Cyrene", "Barabbas", "Andrew"],
+    "answer": "Simon of Cyrene",
     "difficulty": "easy"
   },
   {
-    "question": "Who was the Roman governor who handed Jesus over to be crucified?",
-    "options": ["Herod", "Pontius Pilate", "Caesar", "Felix"],
-    "answer": "Pontius Pilate",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What happened to Jesus three days after He was crucified?",
-    "options": ["He was moved to a new tomb", "He rose from the dead", "He went to Egypt", "Nothing"],
-    "answer": "He rose from the dead",
-    "difficulty": "easy"
-  },
-  {
-    "question": "When Jesus visited Martha and Mary, which sister sat at Jesus' feet listening to Him?",
-    "options": ["Mary", "Martha", "Elizabeth", "Sarah"],
-    "answer": "Mary",
-    "difficulty": "easy"
-  },
-  {
-    "question": "After His resurrection, Jesus walked and talked with two disciples on the road to which town?",
-    "options": ["Nazareth", "Emmaus", "Jericho", "Damascus"],
-    "answer": "Emmaus",
+    "question": "Who asked Pilate for permission to bury Jesus' body?",
+    "options": ["Stephen", "Joseph of Arimathea", "Jairus", "Matthew"],
+    "answer": "Joseph of Arimathea",
     "difficulty": "medium"
   }
 ]
