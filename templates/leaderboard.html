@@ -6,231 +6,44 @@
 <title>Bible Quiz - Leaderboard</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  }
-
-  .container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 800px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    animation: fadeIn .4s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(25px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-
-  h1 {
-    text-align: center;
-    margin-bottom: .5rem;
-    color: #667eea;
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
-
-  .subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-  }
-
-  .leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 2rem;
-  }
-
-  .leaderboard-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-  }
-
-  .leaderboard-table th {
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-
-  .leaderboard-table th.rank {
-    width: 60px;
-    text-align: center;
-  }
-
-  .leaderboard-table th.violations {
-    width: 100px;
-    text-align: center;
-  }
-
-  .leaderboard-table th.score {
-    width: 100px;
-    text-align: center;
-  }
-
-  .leaderboard-table th.points {
-    width: 100px;
-    text-align: center;
-  }
-
-  .leaderboard-table tbody tr {
-    border-bottom: 1px solid #e0e0e0;
-    transition: background-color 0.2s;
-  }
-
-  .leaderboard-table tbody tr:hover {
-    background-color: #f8f9fa;
-  }
-
-  .leaderboard-table td {
-    padding: 1rem;
-  }
-
-  .rank-cell {
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
-
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  .container { background: white; padding: 2.5rem; border-radius: 20px; width: 100%; max-width: 800px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); animation: fadeIn .4s ease-out; }
+  @keyframes fadeIn { from {opacity: 0; transform: translateY(25px);} to {opacity: 1; transform: translateY(0);} }
+  h1 { text-align: center; margin-bottom: .5rem; color: #667eea; font-size: 2.5rem; font-weight: 700; }
+  .subtitle { text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem; }
+  .leaderboard-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  .leaderboard-table thead { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+  .leaderboard-table th { padding: 1rem; text-align: left; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
+  .leaderboard-table th.rank { width: 60px; text-align: center; }
+  .leaderboard-table th.violations { width: 100px; text-align: center; }
+  .leaderboard-table th.score { width: 100px; text-align: center; }
+  .leaderboard-table th.points { width: 100px; text-align: center; }
+  .leaderboard-table tbody tr { border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s; }
+  .leaderboard-table tbody tr:hover { background-color: #f8f9fa; }
+  .leaderboard-table td { padding: 1rem; }
+  .rank-cell { text-align: center; font-weight: 700; font-size: 1.2rem; }
   .rank-1 { color: #FFD700; }
   .rank-2 { color: #C0C0C0; }
   .rank-3 { color: #CD7F32; }
-
-  .name-cell {
-    font-weight: 600;
-    color: #333;
-  }
-
-  .score-cell {
-    text-align: center;
-    font-weight: 600;
-    color: #667eea;
-    font-size: 1.1rem;
-  }
-
-  .points-cell {
-    text-align: center;
-    font-weight: 600;
-    color: #764ba2;
-  }
-
-  .violations-cell {
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .violations-none {
-    color: #4caf50;
-  }
-
-  .violations-some {
-    color: #ff9800;
-  }
-
-  .violations-many {
-    color: #f44336;
-  }
-
-  .back-button {
-    display: inline-block;
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-
-  .back-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #999;
-  }
-
-  .empty-state p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Mobile responsive */
-  @media (max-width: 768px) {
-    .container {
-      padding: 1.5rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    .leaderboard-table {
-      font-size: 0.9rem;
-    }
-
-    .leaderboard-table th,
-    .leaderboard-table td {
-      padding: 0.75rem 0.5rem;
-    }
-
-    .leaderboard-table th {
-      font-size: 0.75rem;
-    }
-
-    .score-cell,
-    .points-cell {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .leaderboard-table th.points,
-    .leaderboard-table td.points-cell {
-      display: none;
-    }
-
-    .container {
-      padding: 1rem;
-    }
-
-    h1 {
-      font-size: 1.75rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-  }
+  .name-cell { font-weight: 600; color: #333; }
+  .score-cell { text-align: center; font-weight: 600; color: #667eea; font-size: 1.1rem; }
+  .points-cell { text-align: center; font-weight: 600; color: #764ba2; }
+  .violations-cell { text-align: center; font-weight: 600; }
+  .violations-none { color: #4caf50; }
+  .violations-some { color: #ff9800; }
+  .violations-many { color: #f44336; }
+  .back-button { display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; text-align: center; border-radius: 12px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+  .back-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); }
+  .empty-state { text-align: center; padding: 3rem 1rem; color: #999; }
+  .empty-state p { font-size: 1.2rem; margin-bottom: 1rem; }
+  @media (max-width: 768px) { .container { padding: 1.5rem; } h1 { font-size: 2rem; } .leaderboard-table { font-size: 0.9rem; } .leaderboard-table th, .leaderboard-table td { padding: 0.75rem 0.5rem; } .leaderboard-table th { font-size: 0.75rem; } .score-cell, .points-cell { font-size: 1rem; } }
+  @media (max-width: 480px) { .leaderboard-table th.points, .leaderboard-table td.points-cell { display: none; } .container { padding: 1rem; } h1 { font-size: 1.75rem; } .subtitle { font-size: 1rem; } }
 </style>
 </head>
 <body>
   <div class="container">
     <h1>🏆 Leaderboard</h1>
-    <p class="subtitle">Top performers in the Bible Quiz</p>
-
+    <p class="subtitle">Top performers this round &middot; resets each new session</p>
     {% if leaderboard %}
     <table class="leaderboard-table">
       <thead>
@@ -249,23 +62,17 @@
           <td class="name-cell">{{ player.name }}</td>
           <td class="score-cell">{{ player.percentage }}%</td>
           <td class="points-cell">{{ player.points }}</td>
-          <td class="violations-cell 
-            {% if player.violations == 0 %}violations-none
-            {% elif player.violations <= 2 %}violations-some
-            {% else %}violations-many{% endif %}">
-            {{ player.violations }}
-          </td>
+          <td class="violations-cell {% if player.violations == 0 %}violations-none{% elif player.violations <= 2 %}violations-some{% else %}violations-many{% endif %}">{{ player.violations }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
     {% else %}
     <div class="empty-state">
-      <p>📊 No results yet!</p>
+      <p>📊 No results yet this round!</p>
       <p>Be the first to take the quiz.</p>
     </div>
     {% endif %}
-
     <a href="/" class="back-button">Take the Quiz</a>
   </div>
 </body>

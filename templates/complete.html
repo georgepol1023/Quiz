@@ -5,327 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Complete</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            {% if theme == 'dark' %}
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            {% else %}
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            {% endif %}
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: {% if theme == 'dark' %}#0f3460{% else %}white{% endif %};
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            color: {% if theme == 'dark' %}#e0e0e0{% else %}#333{% endif %};
-        }
-
-        .celebration {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: bounce 1s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            {% if theme == 'dark' %}
-            color: #e94560;
-            {% else %}
-            color: #667eea;
-            {% endif %}
-        }
-
-        .name {
-            font-size: 24px;
-            margin-bottom: 30px;
-            {% if theme == 'dark' %}
-            color: #e0e0e0;
-            {% else %}
-            color: #666;
-            {% endif %}
-        }
-
-        .score-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .score-box {
-            {% if theme == 'dark' %}
-            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
-            {% else %}
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            {% endif %}
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .score-label {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .score-value {
-            font-size: 48px;
-            font-weight: bold;
-        }
-
-        .fun-fact {
-            {% if theme == 'dark' %}
-            background: #16213e;
-            border-left: 4px solid #e94560;
-            {% else %}
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            {% endif %}
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .fun-fact-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            {% if theme == 'dark' %}
-            color: #e94560;
-            {% else %}
-            color: #667eea;
-            {% endif %}
-        }
-
-        .fun-fact-text {
-            {% if theme == 'dark' %}
-            color: #e0e0e0;
-            {% else %}
-            color: #666;
-            {% endif %}
-            line-height: 1.6;
-        }
-
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 18px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-primary {
-            {% if theme == 'dark' %}
-            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
-            {% else %}
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            {% endif %}
-            color: white;
-        }
-
-        .btn-secondary {
-            {% if theme == 'dark' %}
-            background: #16213e;
-            border: 2px solid #e94560;
-            color: #e94560;
-            {% else %}
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            {% endif %}
-        }
-
-        .btn-details {
-            {% if theme == 'dark' %}
-            background: #0f3460;
-            border: 2px solid #00d9ff;
-            color: #00d9ff;
-            {% else %}
-            background: #f0f4ff;
-            border: 2px solid #667eea;
-            color: #667eea;
-            {% endif %}
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .warning-message {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            color: #856404;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 30px 20px;
-                border-radius: 15px;
-            }
-
-            .celebration {
-                font-size: 60px;
-                margin-bottom: 15px;
-            }
-
-            h1 {
-                font-size: 28px;
-                margin-bottom: 8px;
-            }
-
-            .name {
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .score-container {
-                gap: 15px;
-                margin: 20px 0;
-            }
-
-            .score-box {
-                padding: 20px;
-            }
-
-            .score-label {
-                font-size: 12px;
-            }
-
-            .score-value {
-                font-size: 36px;
-            }
-
-            .fun-fact {
-                padding: 15px;
-                margin: 20px 0;
-            }
-
-            .fun-fact-title {
-                font-size: 14px;
-            }
-
-            .fun-fact-text {
-                font-size: 14px;
-                line-height: 1.5;
-            }
-
-            .btn {
-                padding: 15px;
-                font-size: 15px;
-            }
-
-            .buttons {
-                gap: 12px;
-                margin-top: 20px;
-            }
-
-            .warning-message {
-                padding: 12px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 15px;
-            }
-
-            .celebration {
-                font-size: 50px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .name {
-                font-size: 18px;
-            }
-
-            .score-container {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .score-value {
-                font-size: 32px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; {% if theme == 'dark' %}background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);{% else %}background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);{% endif %} min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: {% if theme == 'dark' %}#0f3460{% else %}white{% endif %}; border-radius: 20px; padding: 50px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 600px; width: 100%; text-align: center; color: {% if theme == 'dark' %}#e0e0e0{% else %}#333{% endif %}; }
+        .celebration { font-size: 80px; margin-bottom: 20px; animation: bounce 1s ease infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        h1 { font-size: 36px; margin-bottom: 10px; {% if theme == 'dark' %}color: #e94560;{% else %}color: #667eea;{% endif %} }
+        .name { font-size: 24px; margin-bottom: 30px; {% if theme == 'dark' %}color: #e0e0e0;{% else %}color: #666;{% endif %} }
+        .score-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
+        .score-box { {% if theme == 'dark' %}background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);{% else %}background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);{% endif %} color: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+        .score-label { font-size: 14px; opacity: 0.9; margin-bottom: 10px; }
+        .score-value { font-size: 48px; font-weight: bold; }
+        .fun-fact { {% if theme == 'dark' %}background: #16213e; border-left: 4px solid #e94560;{% else %}background: #f0f4ff; border-left: 4px solid #667eea;{% endif %} padding: 20px; border-radius: 10px; margin: 30px 0; text-align: left; }
+        .fun-fact-title { font-weight: bold; margin-bottom: 10px; {% if theme == 'dark' %}color: #e94560;{% else %}color: #667eea;{% endif %} }
+        .fun-fact-text { {% if theme == 'dark' %}color: #e0e0e0;{% else %}color: #666;{% endif %} line-height: 1.6; }
+        .buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .btn { padding: 18px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; text-decoration: none; display: block; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-primary { {% if theme == 'dark' %}background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);{% else %}background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);{% endif %} color: white; }
+        .btn-secondary { {% if theme == 'dark' %}background: #16213e; border: 2px solid #e94560; color: #e94560;{% else %}background: white; border: 2px solid #667eea; color: #667eea;{% endif %} }
+        .btn-details { {% if theme == 'dark' %}background: #0f3460; border: 2px solid #00d9ff; color: #00d9ff;{% else %}background: #f0f4ff; border: 2px solid #667eea; color: #667eea;{% endif %} }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        .warning-message { background: #fff3cd; border: 2px solid #ffc107; color: #856404; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-weight: bold; }
+        @media (max-width: 768px) { body { padding: 10px; } .container { padding: 30px 20px; border-radius: 15px; } .celebration { font-size: 60px; margin-bottom: 15px; } h1 { font-size: 28px; margin-bottom: 8px; } .name { font-size: 20px; margin-bottom: 20px; } .score-container { gap: 15px; margin: 20px 0; } .score-box { padding: 20px; } .score-label { font-size: 12px; } .score-value { font-size: 36px; } .fun-fact { padding: 15px; margin: 20px 0; } .fun-fact-title { font-size: 14px; } .fun-fact-text { font-size: 14px; line-height: 1.5; } .btn { padding: 15px; font-size: 15px; } .buttons { gap: 12px; margin-top: 20px; } .warning-message { padding: 12px; font-size: 14px; } }
+        @media (max-width: 480px) { .container { padding: 20px 15px; } .celebration { font-size: 50px; } h1 { font-size: 24px; } .name { font-size: 18px; } .score-container { grid-template-columns: 1fr; gap: 12px; } .score-value { font-size: 32px; } }
     </style>
 </head>
 <body>
     <div class="container">
         {% if was_terminated %}
-        <div class="warning-message">
-            ⚠️ Quiz was terminated due to tab switching violations
-        </div>
+        <div class="warning-message">⚠️ Quiz was terminated due to tab switching violations</div>
         {% endif %}
-
         <div class="celebration">🎉</div>
         <h1>Quiz Complete!</h1>
         <p class="name">{{ name }}</p>
-
         <div class="score-container">
-            <div class="score-box">
-                <div class="score-label">Accuracy</div>
-                <div class="score-value">{{ score }}%</div>
-            </div>
-            <div class="score-box">
-                <div class="score-label">Total Points</div>
-                <div class="score-value">{{ total_points }}</div>
-            </div>
+            <div class="score-box"><div class="score-label">Accuracy</div><div class="score-value">{{ score }}%</div></div>
+            <div class="score-box"><div class="score-label">Total Points</div><div class="score-value">{{ total_points }}</div></div>
         </div>
-
-        <div class="fun-fact">
-            <div class="fun-fact-title">💡 Fun Fact</div>
-            <div class="fun-fact-text">{{ fun_fact }}</div>
-        </div>
-
+        <div class="fun-fact"><div class="fun-fact-title">💡 Fun Fact</div><div class="fun-fact-text">{{ fun_fact }}</div></div>
         <div class="buttons">
             <a href="/results/{{ player_id }}" class="btn btn-details">📊 View Detailed Results</a>
             <a href="/leaderboard" class="btn btn-primary">View Leaderboard</a>
