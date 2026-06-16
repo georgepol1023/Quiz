@@ -5,7 +5,6 @@ import json
 import os
 import time
 import hashlib
-from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "praisejesus")
@@ -26,33 +25,6 @@ GOOGLE_SHEET_ID = os.environ.get("GOOGLE_SHEET_ID", "")
 WORKSHEET_NAME = os.environ.get("GOOGLE_WORKSHEET_NAME", "Responses")
 USE_SHEETS = bool(GOOGLE_CREDENTIALS_JSON and GOOGLE_SHEET_ID)
 
-# ---------------------------------------------------------------------------
-# Per-deploy leaderboard reset.
-#
-# The leaderboard shows only responses submitted at or after DEPLOY_TIME;
-# the sheet and /download always contain the full all-time history.
-#
-# DEPLOY_TIME is resolved in priority order:
-#   1. RENDER_GIT_COMMIT  -> a real redeploy gives a new commit, so the reset
-#      marker advances on deploy but NOT on an idle spin-up/spin-down (the
-#      commit is unchanged). We map the commit to the process start time.
-#   2. The current time at process start (fallback). Note: on Render's free
-#      tier this also advances on spin-up after idle, so the board would clear
-#      after an idle period too. Set RENDER_GIT_COMMIT (auto on Render) or a
-#      manual DEPLOY_ID to avoid that.
-#
-# You can also force a manual reset any time by bumping the DEPLOY_ID env var.
-# ---------------------------------------------------------------------------
-# Floor to whole seconds: stored timestamps are second-resolution strings, so
-# keeping microseconds here would wrongly exclude a response submitted in the
-# same second the app started.
-DEPLOY_TIME = datetime.now().replace(microsecond=0)
-_deploy_marker = (
-    os.environ.get("DEPLOY_ID")
-    or os.environ.get("RENDER_GIT_COMMIT")
-    or "local"
-)
-
 CSV_FILE = "responses.csv"  # local fallback only
 MAX_POINTS_PER_QUESTION = 50
 TIME_LIMIT_SECONDS = 20  # Time until points reach minimum
@@ -60,92 +32,98 @@ TIMESTAMP_FMT = "%Y-%m-%d %H:%M:%S"
 
 print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 print(f"Storage backend: {'Google Sheets' if USE_SHEETS else 'local CSV (responses.csv)'}")
-print(f"Leaderboard reset marker: {_deploy_marker} (showing entries since {DEPLOY_TIME:{TIMESTAMP_FMT}})")
+print("Leaderboard: showing all-time entries from storage")
 
 quiz = [
   {
-    "question": "What did Jesus say to the fishermen Simon and Andrew when He called them?",
-    "options": ["Build a boat", "Follow Me, and I will make you fishers of men", "Go to Jerusalem", "Cast your nets at noon"],
-    "answer": "Follow Me, and I will make you fishers of men",
+    "question": "Who built the ark?",
+    "options": ["Moses", "Noah", "David", "Abraham"],
+    "answer": "Noah",
     "difficulty": "easy"
   },
   {
-    "question": "What illness did the friends bring to Jesus by lowering a man through the roof?",
-    "options": ["Blindness", "Leprosy", "Paralysis", "Fever"],
-    "answer": "Paralysis",
+    "question": "Who was the first man created by God?",
+    "options": ["Noah", "Adam", "Moses", "Joseph"],
+    "answer": "Adam",
     "difficulty": "easy"
   },
   {
-    "question": "What did Jesus calm with a command, saying, 'Peace! Be still!'?",
-    "options": ["A crowd", "A storm", "A fire", "An army"],
-    "answer": "A storm",
+    "question": "Who was the first woman created by God?",
+    "options": ["Sarah", "Mary", "Eve", "Ruth"],
+    "answer": "Eve",
     "difficulty": "easy"
   },
   {
-    "question": "What was the name of the ruler of the synagogue whose daughter Jesus raised to life?",
-    "options": ["Nicodemus", "Jairus", "Zacchaeus", "Bartimaeus"],
-    "answer": "Jairus",
+    "question": "How many days did God take to create the world?",
+    "options": ["5", "6", "7", "8"],
+    "answer": "6",
     "difficulty": "easy"
   },
   {
-    "question": "How many loaves did Jesus use to feed the five thousand?",
-    "options": ["2", "5", "7", "12"],
-    "answer": "5",
+    "question": "What did God create on the first day?",
+    "options": ["Animals", "Light", "People", "Stars"],
+    "answer": "Light",
     "difficulty": "easy"
   },
   {
-    "question": "How many fish were used along with the loaves to feed the five thousand?",
-    "options": ["1", "2", "5", "12"],
-    "answer": "2",
+    "question": "Who led the Israelites out of Egypt?",
+    "options": ["David", "Abraham", "Moses", "Joshua"],
+    "answer": "Moses",
     "difficulty": "easy"
   },
   {
-    "question": "What did Jesus walk on to reach His disciples during the night?",
-    "options": ["A bridge", "The shore", "The water", "A boat"],
-    "answer": "The water",
+    "question": "What did David use to defeat Goliath?",
+    "options": ["A sword", "A spear", "A sling and a stone", "A bow and arrow"],
+    "answer": "A sling and a stone",
     "difficulty": "easy"
   },
   {
-    "question": "What did blind Bartimaeus call out to Jesus?",
-    "options": ["Teacher from Nazareth", "Son of David, have mercy on me!", "Lord of heaven", "King of Israel"],
-    "answer": "Son of David, have mercy on me!",
+    "question": "Where was Jesus born?",
+    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
+    "answer": "Bethlehem",
     "difficulty": "easy"
   },
   {
-    "question": "What kind of animal did Jesus ride when He entered Jerusalem?",
-    "options": ["A horse", "A camel", "A donkey colt", "A mule"],
-    "answer": "A donkey colt",
+    "question": "Who was Jesus' mother?",
+    "options": ["Martha", "Elizabeth", "Mary", "Ruth"],
+    "answer": "Mary",
     "difficulty": "easy"
   },
   {
-    "question": "What happened to the fig tree that Jesus cursed?",
-    "options": ["It grew fruit", "It was cut down", "It withered", "It caught fire"],
-    "answer": "It withered",
+    "question": "Who baptized Jesus?",
+    "options": ["Peter", "John the Baptist", "Andrew", "Paul"],
+    "answer": "John the Baptist",
     "difficulty": "easy"
   },
   {
-    "question": "During the Last Supper, what did Jesus say the bread was?",
-    "options": ["The law", "His body", "The temple", "The kingdom"],
-    "answer": "His body",
+    "question": "How many disciples did Jesus choose?",
+    "options": ["10", "11", "12", "13"],
+    "answer": "12",
     "difficulty": "easy"
   },
   {
-    "question": "Which disciple cut off the ear of the high priest's servant during Jesus' arrest?",
-    "options": ["Peter", "John", "Thomas", "Philip"],
+    "question": "What did Jesus turn water into?",
+    "options": ["Juice", "Milk", "Wine", "Oil"],
+    "answer": "Wine",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What did Jesus feed the five thousand with?",
+    "options": ["Bread and fish", "Rice and lamb", "Fruit and honey", "Bread and water"],
+    "answer": "Bread and fish",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who denied Jesus three times?",
+    "options": ["John", "Judas", "Peter", "Thomas"],
     "answer": "Peter",
     "difficulty": "easy"
   },
   {
-    "question": "Who carried Jesus' cross on the way to Golgotha?",
-    "options": ["Joseph of Arimathea", "Simon of Cyrene", "Barabbas", "Andrew"],
-    "answer": "Simon of Cyrene",
+    "question": "On what day did Jesus rise from the dead?",
+    "options": ["The first day", "The second day", "The third day", "The seventh day"],
+    "answer": "The third day",
     "difficulty": "easy"
-  },
-  {
-    "question": "Who asked Pilate for permission to bury Jesus' body?",
-    "options": ["Stephen", "Joseph of Arimathea", "Jairus", "Matthew"],
-    "answer": "Joseph of Arimathea",
-    "difficulty": "medium"
   }
 ]
 
@@ -250,22 +228,6 @@ def generate_player_id(name):
     """Generate a unique ID for each player based on name and timestamp"""
     unique_string = f"{name}_{time.time()}"
     return hashlib.sha256(unique_string.encode()).hexdigest()[:16]
-
-
-def _parse_ts(value):
-    """Parse a stored timestamp string; return None if unparseable."""
-    try:
-        return datetime.strptime(value, TIMESTAMP_FMT)
-    except (ValueError, TypeError):
-        return None
-
-
-def _row_is_current(row):
-    """True if a row was submitted at/after this deployment's reset marker."""
-    ts = _parse_ts(row[2]) if len(row) > 2 else None
-    if ts is None:
-        return False  # undated rows are treated as historical (hidden from board)
-    return ts >= DEPLOY_TIME
 
 
 # ---------------------------------------------------------------------------
@@ -446,8 +408,6 @@ def leaderboard():
             continue
         if not row[0]:
             continue
-        if not _row_is_current(row):
-            continue  # submitted before this deploy -> hidden from board
         try:
             leaderboard_data.append({
                 "player_id": row[0],
