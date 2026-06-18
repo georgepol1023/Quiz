@@ -14,10 +14,11 @@
   .leaderboard-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
   .leaderboard-table thead { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
   .leaderboard-table th { padding: 1rem; text-align: left; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
-  .leaderboard-table th.rank { width: 60px; text-align: center; }
-  .leaderboard-table th.violations { width: 100px; text-align: center; }
-  .leaderboard-table th.score { width: 100px; text-align: center; }
-  .leaderboard-table th.points { width: 100px; text-align: center; }
+  .leaderboard-table th.rank { width: 50px; text-align: center; }
+  .leaderboard-table th.played { width: 70px; text-align: center; }
+  .leaderboard-table th.violations { width: 90px; text-align: center; }
+  .leaderboard-table th.score { width: 90px; text-align: center; }
+  .leaderboard-table th.points { width: 90px; text-align: center; }
   .leaderboard-table tbody tr { border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s; }
   .leaderboard-table tbody tr:hover { background-color: #f8f9fa; }
   .leaderboard-table td { padding: 1rem; }
@@ -26,8 +27,9 @@
   .rank-2 { color: #C0C0C0; }
   .rank-3 { color: #CD7F32; }
   .name-cell { font-weight: 600; color: #333; }
+  .played-cell { text-align: center; font-weight: 600; color: #888; }
   .score-cell { text-align: center; font-weight: 600; color: #667eea; font-size: 1.1rem; }
-  .points-cell { text-align: center; font-weight: 600; color: #764ba2; }
+  .points-cell { text-align: center; font-weight: 700; color: #764ba2; font-size: 1.2rem; }
   .violations-cell { text-align: center; font-weight: 600; }
   .violations-none { color: #4caf50; }
   .violations-some { color: #ff9800; }
@@ -37,22 +39,23 @@
   .empty-state { text-align: center; padding: 3rem 1rem; color: #999; }
   .empty-state p { font-size: 1.2rem; margin-bottom: 1rem; }
   @media (max-width: 768px) { .container { padding: 1.5rem; } h1 { font-size: 2rem; } .leaderboard-table { font-size: 0.9rem; } .leaderboard-table th, .leaderboard-table td { padding: 0.75rem 0.5rem; } .leaderboard-table th { font-size: 0.75rem; } .score-cell, .points-cell { font-size: 1rem; } }
-  @media (max-width: 480px) { .leaderboard-table th.points, .leaderboard-table td.points-cell { display: none; } .container { padding: 1rem; } h1 { font-size: 1.75rem; } .subtitle { font-size: 1rem; } }
+  @media (max-width: 480px) { .leaderboard-table th.played, .leaderboard-table td.played-cell, .leaderboard-table th.violations, .leaderboard-table td.violations-cell { display: none; } .container { padding: 1rem; } h1 { font-size: 1.75rem; } .subtitle { font-size: 1rem; } }
 </style>
 </head>
 <body>
   <div class="container">
-    <h1>🏆 Leaderboard</h1>
-    <p class="subtitle">Top performers &middot; all-time</p>
+    <h1>🏆 League Table</h1>
+    <p class="subtitle">Accumulated points &middot; average score so far</p>
     {% if leaderboard %}
     <table class="leaderboard-table">
       <thead>
         <tr>
           <th class="rank">#</th>
-          <th>Name</th>
-          <th class="score">Score</th>
-          <th class="points">Points</th>
-          <th class="violations">⚠️ Violations</th>
+          <th>Candidate</th>
+          <th class="played" title="Quizzes played">P</th>
+          <th class="score" title="Average score so far">Score</th>
+          <th class="points" title="Total points accumulated">Pts</th>
+          <th class="violations">⚠️</th>
         </tr>
       </thead>
       <tbody>
@@ -60,6 +63,7 @@
         <tr>
           <td class="rank-cell rank-{{ loop.index }}">{{ loop.index }}</td>
           <td class="name-cell">{{ player.name }}</td>
+          <td class="played-cell">{{ player.played }}</td>
           <td class="score-cell">{{ player.percentage }}%</td>
           <td class="points-cell">{{ player.points }}</td>
           <td class="violations-cell {% if player.violations == 0 %}violations-none{% elif player.violations <= 2 %}violations-some{% else %}violations-many{% endif %}">{{ player.violations }}</td>

@@ -32,7 +32,7 @@ TIMESTAMP_FMT = "%Y-%m-%d %H:%M:%S"
 
 print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 print(f"Storage backend: {'Google Sheets' if USE_SHEETS else 'local CSV (responses.csv)'}")
-print("Leaderboard: showing all-time entries from storage")
+print("Leaderboard: league table aggregated per candidate (accumulated points + average score)")
 
 quiz =[
   {
@@ -251,6 +251,20 @@ def storage_csv_bytes():
     return buf.getvalue().encode("utf-8")
 
 
+def storage_clear_rows():
+    """Delete every data row from the active backend, keeping only the header.
+
+    This is what resets the league table so all candidates start equal.
+    """
+    if USE_SHEETS:
+        ws = _get_worksheet()
+        ws.clear()
+        ws.append_row(HEADER, value_input_option="RAW")
+    else:
+        with open(CSV_FILE, "w", newline="", encoding="utf-8") as f:
+            csv.writer(f).writerow(HEADER)
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -426,35 +440,80 @@ def view_results(player_id):
 
 @app.route("/leaderboard")
 def leaderboard():
-    """Leaderboard showing only entries since the last deployment."""
-    leaderboard_data = []
+    """League table: each candidate's accumulated points and average score across every attempt.
 
+    Rows are aggregated per candidate (by name), so playing multiple times builds up a
+    running points total just like a football league. Ordered by total points, then by
+    average score, then by fewest games played.
+    """
     score_idx = 3 + len(quiz)
     points_idx = score_idx + 1
     violations_idx = score_idx + 2
 
+    standings = {}  # normalised name -> accumulated stats
     for row in storage_get_rows():
         if len(row) < ROW_WIDTH:
             continue
         if not row[0]:
             continue
+        name = (row[1] or "").strip()
+        if not name:
+            continue
         try:
-            leaderboard_data.append({
-                "player_id": row[0],
-                "name": row[1],
-                "percentage": float(row[score_idx] or 0),
-                "points": int(row[points_idx] or 0),
-                "violations": int(row[violations_idx] or 0),
-            })
+            percentage = float(row[score_idx] or 0)
+            points = int(row[points_idx] or 0)
+            violations = int(row[violations_idx] or 0)
         except ValueError:
             continue  # skip malformed rows rather than 500
 
-    leaderboard_data.sort(key=lambda x: (x["percentage"], x["points"]), reverse=True)
+        key = name.lower()
+        agg = standings.get(key)
+        if agg is None:
+            agg = {"name": name, "played": 0, "points": 0,
+                   "percentage_sum": 0.0, "violations": 0}
+            standings[key] = agg
+        agg["played"] += 1
+        agg["points"] += points
+        agg["percentage_sum"] += percentage
+        agg["violations"] += violations
+
+    leaderboard_data = []
+    for agg in standings.values():
+        avg_pct = round(agg["percentage_sum"] / agg["played"], 1) if agg["played"] else 0
+        leaderboard_data.append({
+            "name": agg["name"],
+            "played": agg["played"],
+            "points": agg["points"],
+            "percentage": avg_pct,
+            "violations": agg["violations"],
+        })
+
+    # League-table ordering: most points first, then better average %, then fewer games.
+    leaderboard_data.sort(key=lambda x: (x["points"], x["percentage"], -x["played"]), reverse=True)
 
     return render_template("leaderboard.html",
                          leaderboard=leaderboard_data,
                          total_questions=len(quiz),
                          max_possible_points=MAX_POINTS_PER_QUESTION * len(quiz))
+
+
+@app.route("/reset", methods=["GET", "POST"])
+def reset_leaderboard():
+    """Admin: wipe every entry so the league table starts equal. Token-protected.
+
+    GET  /reset?token=...  -> confirmation page (no data is touched)
+    POST /reset            -> clears the active storage backend, then shows the table
+    """
+    token = request.values.get("token", "")
+    if token != ADMIN_TOKEN:
+        abort(403, description="Unauthorized access")
+
+    if request.method == "POST":
+        storage_clear_rows()
+        return redirect(url_for("leaderboard"))
+
+    # GET: require an explicit confirmation before the destructive wipe.
+    return render_template("reset.html", token=token)
 
 
 @app.route("/download")
