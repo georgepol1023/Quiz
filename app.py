@@ -34,7 +34,7 @@ print(f"Admin download URL: http://localhost:5000/download?token={ADMIN_TOKEN}")
 print(f"Storage backend: {'Google Sheets' if USE_SHEETS else 'local CSV (responses.csv)'}")
 print("Leaderboard: showing all-time entries from storage")
 
-quiz = [
+quiz =[
   {
     "question": "Who built the ark?",
     "options": ["Moses", "Noah", "David", "Abraham"],
@@ -42,56 +42,62 @@ quiz = [
     "difficulty": "easy"
   },
   {
-    "question": "Who was the first man created by God?",
-    "options": ["Noah", "Adam", "Moses", "Joseph"],
-    "answer": "Adam",
+    "question": "Who was swallowed by a great fish?",
+    "options": ["Jonah", "Peter", "Joseph", "Elijah"],
+    "answer": "Jonah",
     "difficulty": "easy"
   },
   {
-    "question": "Who was the first woman created by God?",
-    "options": ["Sarah", "Mary", "Eve", "Ruth"],
-    "answer": "Eve",
-    "difficulty": "easy"
-  },
-  {
-    "question": "How many days did God take to create the world?",
-    "options": ["5", "6", "7", "8"],
-    "answer": "6",
-    "difficulty": "easy"
-  },
-  {
-    "question": "What did God create on the first day?",
-    "options": ["Animals", "Light", "People", "Stars"],
-    "answer": "Light",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who led the Israelites out of Egypt?",
-    "options": ["David", "Abraham", "Moses", "Joshua"],
+    "question": "Who received the Ten Commandments from God?",
+    "options": ["Abraham", "Moses", "Joshua", "Samuel"],
     "answer": "Moses",
     "difficulty": "easy"
   },
   {
-    "question": "What did David use to defeat Goliath?",
-    "options": ["A sword", "A spear", "A sling and a stone", "A bow and arrow"],
-    "answer": "A sling and a stone",
+    "question": "Who defeated Goliath?",
+    "options": ["Saul", "Solomon", "David", "Joshua"],
+    "answer": "David",
     "difficulty": "easy"
   },
   {
-    "question": "Where was Jesus born?",
-    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
+    "question": "What was the name of the garden where Adam and Eve lived?",
+    "options": ["Garden of Eden", "Garden of Gethsemane", "Garden of Zion", "Garden of Jericho"],
+    "answer": "Garden of Eden",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many animals of each kind did Noah take into the ark?",
+    "options": ["One", "Two", "Three", "Four"],
+    "answer": "Two",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who interpreted Pharaoh's dreams?",
+    "options": ["Daniel", "Joseph", "Aaron", "Isaiah"],
+    "answer": "Joseph",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What sea did Moses part?",
+    "options": ["Dead Sea", "Sea of Galilee", "Red Sea", "Mediterranean Sea"],
+    "answer": "Red Sea",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who was Jesus' earthly father?",
+    "options": ["Peter", "Joseph", "John", "Andrew"],
+    "answer": "Joseph",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In which town was Jesus born?",
+    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Bethany"],
     "answer": "Bethlehem",
     "difficulty": "easy"
   },
   {
-    "question": "Who was Jesus' mother?",
-    "options": ["Martha", "Elizabeth", "Mary", "Ruth"],
-    "answer": "Mary",
-    "difficulty": "easy"
-  },
-  {
     "question": "Who baptized Jesus?",
-    "options": ["Peter", "John the Baptist", "Andrew", "Paul"],
+    "options": ["Peter", "John the Baptist", "James", "Paul"],
     "answer": "John the Baptist",
     "difficulty": "easy"
   },
@@ -103,26 +109,50 @@ quiz = [
   },
   {
     "question": "What did Jesus turn water into?",
-    "options": ["Juice", "Milk", "Wine", "Oil"],
+    "options": ["Milk", "Wine", "Oil", "Juice"],
     "answer": "Wine",
     "difficulty": "easy"
   },
   {
-    "question": "What did Jesus feed the five thousand with?",
-    "options": ["Bread and fish", "Rice and lamb", "Fruit and honey", "Bread and water"],
-    "answer": "Bread and fish",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who denied Jesus three times?",
-    "options": ["John", "Judas", "Peter", "Thomas"],
+    "question": "Who walked on water with Jesus for a short time?",
+    "options": ["John", "Peter", "Thomas", "Matthew"],
     "answer": "Peter",
     "difficulty": "easy"
   },
   {
-    "question": "On what day did Jesus rise from the dead?",
+    "question": "Who betrayed Jesus for thirty pieces of silver?",
+    "options": ["Peter", "Judas Iscariot", "Thomas", "Philip"],
+    "answer": "Judas Iscariot",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many loaves of bread were used to feed the five thousand?",
+    "options": ["3", "5", "7", "12"],
+    "answer": "5",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who climbed a tree to see Jesus?",
+    "options": ["Bartimaeus", "Zacchaeus", "Nicodemus", "Lazarus"],
+    "answer": "Zacchaeus",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What was the first miracle Jesus performed?",
+    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the five thousand"],
+    "answer": "Turning water into wine",
+    "difficulty": "easy"
+  },
+  {
+    "question": "On which day did Jesus rise from the dead?",
     "options": ["The first day", "The second day", "The third day", "The seventh day"],
     "answer": "The third day",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who wrote many letters that became part of the New Testament?",
+    "options": ["Peter", "Paul", "Matthew", "Luke"],
+    "answer": "Paul",
     "difficulty": "easy"
   }
 ]
