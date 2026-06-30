@@ -36,123 +36,123 @@ print("Leaderboard: league table aggregated per candidate (accumulated points + 
 
 quiz =[
   {
-    "question": "Who built the ark?",
-    "options": ["Moses", "Noah", "David", "Abraham"],
-    "answer": "Noah",
+    "question": "Who was the first man created by God?",
+    "options": ["Noah", "Adam", "Abraham", "Cain"],
+    "answer": "Adam",
     "difficulty": "easy"
   },
   {
-    "question": "Who was swallowed by a great fish?",
-    "options": ["Jonah", "Peter", "Joseph", "Elijah"],
-    "answer": "Jonah",
+    "question": "Who was the first woman created by God?",
+    "options": ["Sarah", "Mary", "Eve", "Rachel"],
+    "answer": "Eve",
     "difficulty": "easy"
   },
   {
-    "question": "Who received the Ten Commandments from God?",
-    "options": ["Abraham", "Moses", "Joshua", "Samuel"],
-    "answer": "Moses",
+    "question": "Who killed his brother Abel?",
+    "options": ["Seth", "Cain", "Esau", "Jacob"],
+    "answer": "Cain",
     "difficulty": "easy"
   },
   {
-    "question": "Who defeated Goliath?",
-    "options": ["Saul", "Solomon", "David", "Joshua"],
-    "answer": "David",
+    "question": "What was the name of Abraham's wife?",
+    "options": ["Rebecca", "Sarah", "Rachel", "Leah"],
+    "answer": "Sarah",
     "difficulty": "easy"
   },
   {
-    "question": "What was the name of the garden where Adam and Eve lived?",
-    "options": ["Garden of Eden", "Garden of Gethsemane", "Garden of Zion", "Garden of Jericho"],
-    "answer": "Garden of Eden",
+    "question": "Who led the Israelites into the Promised Land after Moses?",
+    "options": ["Joshua", "Aaron", "Samuel", "David"],
+    "answer": "Joshua",
     "difficulty": "easy"
   },
   {
-    "question": "How many animals of each kind did Noah take into the ark?",
-    "options": ["One", "Two", "Three", "Four"],
-    "answer": "Two",
+    "question": "Who was the strongest man in the Bible?",
+    "options": ["David", "Saul", "Samson", "Solomon"],
+    "answer": "Samson",
     "difficulty": "easy"
   },
   {
-    "question": "Who interpreted Pharaoh's dreams?",
-    "options": ["Daniel", "Joseph", "Aaron", "Isaiah"],
-    "answer": "Joseph",
+    "question": "What weapon did David use to defeat Goliath?",
+    "options": ["Sword", "Spear", "Bow and arrow", "Sling"],
+    "answer": "Sling",
     "difficulty": "easy"
   },
   {
-    "question": "What sea did Moses part?",
-    "options": ["Dead Sea", "Sea of Galilee", "Red Sea", "Mediterranean Sea"],
-    "answer": "Red Sea",
+    "question": "Who built the first temple in Jerusalem?",
+    "options": ["David", "Solomon", "Saul", "Hezekiah"],
+    "answer": "Solomon",
     "difficulty": "easy"
   },
   {
-    "question": "Who was Jesus' earthly father?",
-    "options": ["Peter", "Joseph", "John", "Andrew"],
-    "answer": "Joseph",
+    "question": "Which angel told Mary she would have a baby?",
+    "options": ["Michael", "Gabriel", "Raphael", "Uriel"],
+    "answer": "Gabriel",
     "difficulty": "easy"
   },
   {
-    "question": "In which town was Jesus born?",
-    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Bethany"],
-    "answer": "Bethlehem",
+    "question": "What was the occupation of Peter before following Jesus?",
+    "options": ["Carpenter", "Fisherman", "Tax collector", "Shepherd"],
+    "answer": "Fisherman",
     "difficulty": "easy"
   },
   {
-    "question": "Who baptized Jesus?",
-    "options": ["Peter", "John the Baptist", "James", "Paul"],
-    "answer": "John the Baptist",
+    "question": "Who was Jesus' mother?",
+    "options": ["Elizabeth", "Martha", "Mary", "Salome"],
+    "answer": "Mary",
     "difficulty": "easy"
   },
   {
-    "question": "How many disciples did Jesus choose?",
-    "options": ["10", "11", "12", "13"],
-    "answer": "12",
+    "question": "Where was Jesus baptized?",
+    "options": ["Jordan River", "Sea of Galilee", "Dead Sea", "Euphrates River"],
+    "answer": "Jordan River",
     "difficulty": "easy"
   },
   {
-    "question": "What did Jesus turn water into?",
-    "options": ["Milk", "Wine", "Oil", "Juice"],
-    "answer": "Wine",
+    "question": "Which disciple was a tax collector before following Jesus?",
+    "options": ["Matthew", "John", "Andrew", "Philip"],
+    "answer": "Matthew",
     "difficulty": "easy"
   },
   {
-    "question": "Who walked on water with Jesus for a short time?",
-    "options": ["John", "Peter", "Thomas", "Matthew"],
+    "question": "What did Jesus calm during a storm?",
+    "options": ["The mountains", "The sea", "The desert", "The forest"],
+    "answer": "The sea",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who denied knowing Jesus three times?",
+    "options": ["Thomas", "Peter", "James", "Andrew"],
     "answer": "Peter",
     "difficulty": "easy"
   },
   {
-    "question": "Who betrayed Jesus for thirty pieces of silver?",
-    "options": ["Peter", "Judas Iscariot", "Thomas", "Philip"],
-    "answer": "Judas Iscariot",
+    "question": "How many fish were used along with the loaves to feed the five thousand?",
+    "options": ["1", "2", "5", "7"],
+    "answer": "2",
     "difficulty": "easy"
   },
   {
-    "question": "How many loaves of bread were used to feed the five thousand?",
-    "options": ["3", "5", "7", "12"],
-    "answer": "5",
+    "question": "What was the name of the man Jesus raised from the dead after four days?",
+    "options": ["Bartimaeus", "Lazarus", "Nicodemus", "Zacchaeus"],
+    "answer": "Lazarus",
     "difficulty": "easy"
   },
   {
-    "question": "Who climbed a tree to see Jesus?",
-    "options": ["Bartimaeus", "Zacchaeus", "Nicodemus", "Lazarus"],
-    "answer": "Zacchaeus",
+    "question": "What is the last book of the New Testament?",
+    "options": ["Jude", "Acts", "Revelation", "Romans"],
+    "answer": "Revelation",
     "difficulty": "easy"
   },
   {
-    "question": "What was the first miracle Jesus performed?",
-    "options": ["Healing a blind man", "Walking on water", "Turning water into wine", "Feeding the five thousand"],
-    "answer": "Turning water into wine",
+    "question": "Who was thrown into a den of lions?",
+    "options": ["Daniel", "Joseph", "Jeremiah", "Elijah"],
+    "answer": "Daniel",
     "difficulty": "easy"
   },
   {
-    "question": "On which day did Jesus rise from the dead?",
-    "options": ["The first day", "The second day", "The third day", "The seventh day"],
-    "answer": "The third day",
-    "difficulty": "easy"
-  },
-  {
-    "question": "Who wrote many letters that became part of the New Testament?",
-    "options": ["Peter", "Paul", "Matthew", "Luke"],
-    "answer": "Paul",
+    "question": "What did God create on the first day?",
+    "options": ["Animals", "The sun", "Light", "People"],
+    "answer": "Light",
     "difficulty": "easy"
   }
 ]
